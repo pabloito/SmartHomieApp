@@ -3,9 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_black_24dp"
+        android:title="@string/nav_home" />
+    <item
+        android:id="@+id/nav_devices"
         android:icon="@drawable/baseline_devices_other_black_24dp"
         android:title="@string/nav_devices" />
     <item
+        android:id="@+id/nav_routines"
         android:icon="@drawable/baseline_play_circle_outline_black_24dp"
         android:title="@string/nav_routines" />
 </menu>

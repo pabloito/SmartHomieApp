@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainNav;
@@ -36,19 +40,36 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        setFragment(homeFragment);
+                        setUpHomeFragment();
                         break;
                     case R.id.nav_devices:
-                        setFragment(devicesFragment);
+                        setUpDevicesFragment();
                         break;
                     case R.id.nav_routines:
-                        setFragment(routinesFragment);
+                        setUpRoutinesFragment();
                         break;
                 }
                 return true;
             }
         });
     }
+
+    private void setUpHomeFragment(){
+        HorizontalScrollView devices = findViewById(R.id.home_devices);
+        HorizontalScrollView routines = findViewById(R.id.home_routines);
+
+        setFragment(homeFragment);
+    }
+
+    private void setUpDevicesFragment(){
+        setFragment(devicesFragment);
+    }
+
+    private void setUpRoutinesFragment(){
+        setFragment(routinesFragment);
+    }
+
+
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);

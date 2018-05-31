@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@color/colorNavBar"
         app:itemIconTint="@color/nav_item_colors"
         app:itemTextColor="@color/nav_item_colors"
         app:menu="@menu/nav_items"></android.support.design.widget.BottomNavigationView>
@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:layout_above="@id/main_nav"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:background="@color/colorBackground">
     </FrameLayout>
 </RelativeLayout>

@@ -35,18 +35,22 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        addDevice(view,new Device("hrmna d fer"));
-        addDevice(view,new Device("hrmna d fer"));
-        addDevice(view,new Device("hrmna d fer"));
-        addDevice(view,new Device("hrmna d fer"));
-        addDevice(view,new Device("hrmna d fer"));
-        addDevice(view,new Device("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
-        addRoutine(view,new Routine("hrmna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addDevice(view,new Device("La hermna d fer"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
+        addRoutine(view,new Routine("Me voy"));
     }
 
     public void addDevice(View view, Device device){

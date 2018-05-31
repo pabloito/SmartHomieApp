@@ -5,14 +5,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:context=".HomeFragment"
-    android:layout_margin="1dp"
-    android:background="#f2f2f2">
-
+    android:layout_margin="10dp"
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"></LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,23 +27,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nav_devices"
-                android:textAppearance="@android:style/TextAppearance.Holo.Large" />
+                android:textColor="@color/colorWhite"
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/colorHomeList"
+            android:elevation="40dp">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorHomeList">
 
                 <LinearLayout
+                    android:id="@+id/home_devices"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:id="@+id/home_devices">
+                    android:layout_height="150dp"
+                    android:orientation="horizontal">
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -53,27 +62,35 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
                 android:text="@string/nav_routines"
-                android:textAppearance="@android:style/TextAppearance.Holo.Large" />
+                android:textAppearance="@android:style/TextAppearance.Holo.Large"
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@color/colorHomeList">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/colorHomeList"
+                android:elevation="40dp">
 
                 <LinearLayout
+                    android:id="@+id/home_routines"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:id="@+id/home_routines"></LinearLayout>
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"></LinearLayout>
+
             </HorizontalScrollView>
         </LinearLayout>
     </LinearLayout>

@@ -11,6 +11,6 @@
     <color name="colorHomeList">#8Ce6e6e6</color>
     <color name="colorBackground">#004d4d</color>
     <color name="colorNavBar">#004d4d</color>
-    <color name="colorListItem">#f2f2f2</color>
+    <color name="colorTopBar">#59d9d9d9</color>
 
 </resources>

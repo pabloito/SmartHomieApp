@@ -35,31 +35,37 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        addDevice(view);
-        addDevice(view);
-        addDevice(view);
-        addDevice(view);
-        addDevice(view);
-        addDevice(view);
-        addDevice(view);
-        addRoutine(view);
-        addRoutine(view);
-        addRoutine(view);
-        addRoutine(view);
-        addRoutine(view);
-        addRoutine(view);
-        addRoutine(view);
+        addDevice(view,new Device("hrmna d fer"));
+        addDevice(view,new Device("hrmna d fer"));
+        addDevice(view,new Device("hrmna d fer"));
+        addDevice(view,new Device("hrmna d fer"));
+        addDevice(view,new Device("hrmna d fer"));
+        addDevice(view,new Device("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
+        addRoutine(view,new Routine("hrmna d fer"));
     }
 
-    public void addDevice(View view){
+    public void addDevice(View view, Device device){
         LinearLayout devices = view.findViewById(R.id.home_devices);
-        View device = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
-        devices.addView(device);
+        View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
+
+        TextView t = deviceView.findViewById(R.id.item_name);
+        t.append(device.name);
+
+        devices.addView(deviceView);
     }
 
-    public void addRoutine(View view){
+    public void addRoutine(View view, Routine routine){
         LinearLayout routines = view.findViewById(R.id.home_routines);
-        View routine = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
-        routines.addView(routine);
+        View routineView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
+
+        TextView t = routineView.findViewById(R.id.item_name);
+        t.append(routine.name);
+
+        routines.addView(routineView);
     }
 }

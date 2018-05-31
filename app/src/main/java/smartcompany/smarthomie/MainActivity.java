@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpHomeFragment(){
-        //HorizontalScrollView devices = findViewById(R.id.home_devices);
-        //HorizontalScrollView routines = findViewById(R.id.home_routines);
-
         setFragment(homeFragment);
     }
 

@@ -4,9 +4,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private DevicesFragment devicesFragment;
     private RoutinesFragment routinesFragment;
+    private SettingsFragment settingsFragment;
+    private HelpFragment helpFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         devicesFragment = new DevicesFragment();
         routinesFragment = new RoutinesFragment();
+        settingsFragment = new SettingsFragment();
+        helpFragment = new HelpFragment();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -58,6 +65,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                setUpSettingsFragment();
+                return true;
+
+            case R.id.action_help:
+                setUpHelpFragment();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu )
+    {
+        getMenuInflater().inflate( R.menu.action_bar, menu );
+        return true;
+    }
+
     private void setUpHomeFragment(){
         setFragment(homeFragment);
     }
@@ -70,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
         setFragment(routinesFragment);
     }
 
+    private void setUpSettingsFragment(){
+        setFragment(settingsFragment);
+    }
+
+    private void setUpHelpFragment(){
+        setFragment(helpFragment);
+    }
 
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

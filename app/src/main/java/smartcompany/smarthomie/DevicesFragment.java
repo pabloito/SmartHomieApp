@@ -6,6 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 /**
@@ -26,4 +30,36 @@ public class DevicesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_devices, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button newDevButton = (Button) view.findViewById(R.id.new_device_button_devices);
+
+        newDevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).externalSetFragment("newDeviceFragment");
+            }
+        });
+/*
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));
+        addDevice(view, new Device("La hermna d fer"));*/
+    }
+
+    public void addDevice(View view, Device device){
+        LinearLayout devices = view.findViewById(R.id.devices_scroll);
+        View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
+
+        TextView t = deviceView.findViewById(R.id.item_name);
+        t.append(device.name);
+
+        devices.addView(deviceView);
+    }
 }

@@ -42,7 +42,7 @@
                         android:textColor="@color/colorWhite" />
 
                     <ImageButton
-                        android:id="@+id/new_device_button"
+                        android:id="@+id/new_device_button_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorTransparent"
@@ -101,7 +101,7 @@
                         android:textColor="@color/colorWhite" />
 
                     <ImageButton
-                        android:id="@+id/new_routine_button"
+                        android:id="@+id/new_routine_button_home"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/colorTransparent"

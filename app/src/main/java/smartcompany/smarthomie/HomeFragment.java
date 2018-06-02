@@ -38,8 +38,8 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ImageButton newDevButton = (ImageButton) view.findViewById(R.id.new_device_button);
-        final ImageButton newRoutineButton= (ImageButton) view.findViewById(R.id.new_routine_button);
+        ImageButton newDevButton = (ImageButton) view.findViewById(R.id.new_device_button_home);
+        final ImageButton newRoutineButton= (ImageButton) view.findViewById(R.id.new_routine_button_home);
 
         newDevButton.setOnClickListener(new View.OnClickListener() {
             @Override

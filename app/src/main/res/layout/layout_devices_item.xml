@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="1dp"
     android:background="@color/colorTransparent"
     tools:context=".HomeFragment">
-
-
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -39,9 +37,20 @@
                 android:autoSizeMinTextSize="5sp"
                 android:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:textColor="@color/colorBlack"
-                />
+                android:textColor="@color/colorBlack" />
 
         </RelativeLayout>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/device_type"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_delete"
+        android:layout_gravity="center|right"/>
+</TableRow>

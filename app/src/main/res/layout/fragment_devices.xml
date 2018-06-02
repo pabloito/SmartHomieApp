@@ -53,11 +53,9 @@
 
                     <TableLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:id="@+id/devices_scroll">
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
                     </TableLayout>
                 </ScrollView>
 
@@ -69,7 +67,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/new_device_button_devices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

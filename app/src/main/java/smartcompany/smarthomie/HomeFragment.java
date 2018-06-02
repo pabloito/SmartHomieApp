@@ -1,7 +1,9 @@
 package smartcompany.smarthomie;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 
     public void addRoutine(View view, Routine routine){
         LinearLayout routines = view.findViewById(R.id.home_routines);

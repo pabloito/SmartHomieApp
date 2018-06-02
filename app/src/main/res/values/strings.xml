@@ -7,7 +7,13 @@
     <string name="action_settings">Settings</string>
     <string name="new_device">New device</string>
     <string name="new_routine">New routine</string>
+    <string name="curtain_button_on">Raise</string>
+    <string name="curtain_button_off">Drop</string>
+    <string name="curtain_text_on">Droped</string>
+    <string name="curtain_text_off">Raised</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="curtain_default">Curtain Name</string>
+    <string name="remove_device_text">Remove</string>
 </resources>

@@ -1,9 +1,9 @@
 package smartcompany.smarthomie;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private HelpFragment helpFragment;
     private NewDeviceFragment newDeviceFragment;
     private NewRoutineFragment newRoutineFragment;
+    private Curtain curtainFragment;
 
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
+        curtainFragment = new Curtain();
         homeFragment = new HomeFragment();
         devicesFragment = new DevicesFragment();
         routinesFragment = new RoutinesFragment();
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         newDeviceFragment = new NewDeviceFragment();
         newRoutineFragment = new NewRoutineFragment();
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         setFragment(homeFragment);

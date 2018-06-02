@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private RoutinesFragment routinesFragment;
     private SettingsFragment settingsFragment;
     private HelpFragment helpFragment;
+    private NewDeviceFragment newDeviceFragment;
+    private NewRoutineFragment newRoutineFragment;
 
 
     @Override
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         routinesFragment = new RoutinesFragment();
         settingsFragment = new SettingsFragment();
         helpFragment = new HelpFragment();
+        newDeviceFragment = new NewDeviceFragment();
+        newRoutineFragment = new NewRoutineFragment();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -109,9 +114,43 @@ public class MainActivity extends AppCompatActivity {
         setFragment(helpFragment);
     }
 
+    private void setUpNewDeviceFragment(){
+        setFragment(newDeviceFragment);
+    }
+
+    private void setUpNewRoutineFragment(){
+        setFragment(newRoutineFragment);
+    }
+
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void externalSetFragment(String fragment) {
+        switch (fragment) {
+            case "homeFragment":
+                setUpHomeFragment();
+                break;
+            case "devicesFragment":
+                setUpDevicesFragment();
+                break;
+            case "routinesFragment":
+                setUpRoutinesFragment();
+                break;
+            case "settingsFragment":
+                setUpSettingsFragment();
+                break;
+            case "helpFragment":
+                setUpSettingsFragment();
+                break;
+            case "newDeviceFragment":
+                setUpNewDeviceFragment();
+                break;
+            case "newRoutineFragment":
+                setUpNewRoutineFragment();
+                break;
+        }
     }
 }

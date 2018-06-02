@@ -9,9 +9,12 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -34,6 +37,23 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ImageButton newDevButton = (ImageButton) view.findViewById(R.id.new_device_button);
+        final ImageButton newRoutineButton= (ImageButton) view.findViewById(R.id.new_routine_button);
+
+        newDevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).externalSetFragment("newDeviceFragment");
+            }
+        });
+
+        newRoutineButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).externalSetFragment("newRoutineFragment");
+            }
+        });
 
         addDevice(view,new Device("La hermna d fer"));
         addDevice(view,new Device("La hermna d fer"));

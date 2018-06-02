@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 
@@ -41,15 +42,25 @@ public class RoutinesFragment extends Fragment {
                 ((MainActivity) getActivity()).externalSetFragment("newRoutineFragment");
             }
         });
+
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
+        addRoutine(view, new Routine("a dormir lok"));
     }
 
-    public void addRoutine(View view, Device device){/*
-        LinearLayout devices = view.findViewById(R.id.devices_scroll);
-        View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
+    public void addRoutine(View view, Routine routine){
+        TableLayout devices = view.findViewById(R.id.routines_scroll);
+        View deviceView = getLayoutInflater().inflate(R.layout.layout_routines_item,((ViewGroup)getView().getParent()),false);
 
         TextView t = deviceView.findViewById(R.id.item_name);
-        t.append(device.name);
+        t.append(routine.name);
 
-        devices.addView(deviceView);*/
+        devices.addView(deviceView);
     }
 }

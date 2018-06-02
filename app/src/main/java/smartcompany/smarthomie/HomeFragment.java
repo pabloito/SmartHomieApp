@@ -75,14 +75,27 @@ public class HomeFragment extends Fragment {
 
         devices.addView(deviceView);
 
-        View imageView = deviceView.findViewById(R.id.image_view);
-        imageView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
-            }
-        });
+
+        // esto tiene q ser un switch grande con typedef de typeID
+        if(device.type.equals("Curtain")){
+            View imageView = deviceView.findViewById(R.id.image_view);
+            imageView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
+                }
+            });
+        }
+        else{
+            View imageView = deviceView.findViewById(R.id.image_view);
+            imageView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "HANDLER WORKS",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
 

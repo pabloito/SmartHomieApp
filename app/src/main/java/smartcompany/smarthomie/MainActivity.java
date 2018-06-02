@@ -133,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
         setFragment(newRoutineFragment);
     }
 
+    private void setUpCurtainFragment(){
+        setFragment(curtainFragment);
+    }
+
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
@@ -162,6 +166,9 @@ public class MainActivity extends AppCompatActivity {
             case "newRoutineFragment":
                 setUpNewRoutineFragment();
                 break;
+            case "curtainFragment":
+                setUpCurtainFragment();
+                break;
         }
     }
 
@@ -169,14 +176,12 @@ public class MainActivity extends AppCompatActivity {
         devicesMap = new HashMap<>();
 
         // placeholer @nacho
-        devicesMap.put("Freezer del quincho",new Device("Freezer del quincho","Heladera"));
-        devicesMap.put("Freezer2",new Device("Freezer2","Heladera"));
-        devicesMap.put("Freezer3",new Device("Freezer3","Heladera"));
-        devicesMap.put("Freezer5",new Device("Freezer5","Heladera"));
-        devicesMap.put("Fre3ezer5",new Device("Freezer5","Heladera"));
-        devicesMap.put("Free5zer5",new Device("Freezer5","Heladera"));
-        devicesMap.put("Free4",new Device("Freezer5","Heladera"));
-        devicesMap.put("Fr2zer5",new Device("Freezer5","Heladera"));
+        devicesMap.put("cortina del quincho",new Device("Cortina del quincho","Curtain"));
+        devicesMap.put("cortina 2del quincho",new Device("Cortina del quincho","Curtain"));
+        devicesMap.put("cortina3 del quincho",new Device("Cortina del quincho","Curtain"));
+        devicesMap.put("cortina del 5quincho",new Device("Cortina del quincho de la hermana de fer","Curtain"));
+        devicesMap.put("cort4ina del quincho",new Device("Cortina del quincho je","Curtain"));
+        devicesMap.put("cortin2a del quincho",new Device("Cortina del quinchoooo","Curtain"));
     }
 
     public void updateRoutines(){

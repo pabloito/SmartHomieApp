@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,19 +46,9 @@ public class DevicesFragment extends Fragment {
             }
         });
 
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
-        addDevice(view, new Device("freezer del quincho","Heladera"));
+
+        ((MainActivity)getActivity()).updateDevices();
+        drawDevices(view);
     }
 
     public void addDevice(View view, Device device){
@@ -88,5 +80,16 @@ public class DevicesFragment extends Fragment {
                         Toast.LENGTH_LONG).show();;
             }
         });
+    }
+
+    public void drawDevices(View view){
+        MainActivity m = (MainActivity) getActivity();
+        m.updateDevices();
+
+        HashMap<String, Device> dmap = m.getDevicesMap();
+
+        for(String key : dmap.keySet()){
+            addDevice(view, dmap.get(key));
+        }
     }
 }

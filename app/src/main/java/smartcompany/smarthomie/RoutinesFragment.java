@@ -13,6 +13,8 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,15 +47,8 @@ public class RoutinesFragment extends Fragment {
             }
         });
 
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
-        addRoutine(view, new Routine("a dormir lok"));
+        ((MainActivity)getActivity()).updateRoutines();
+        drawRoutines(view);
     }
 
     public void addRoutine(View view, Routine routine){
@@ -91,5 +86,16 @@ public class RoutinesFragment extends Fragment {
                         Toast.LENGTH_LONG).show();;
             }
         });
+    }
+
+    public void drawRoutines(View view){
+        MainActivity m = (MainActivity) getActivity();
+        m.updateDevices();
+
+        HashMap<String, Routine> rmap = m.getRoutinesMap();
+
+        for(String key : rmap.keySet()){
+            addRoutine(view, rmap.get(key));
+        }
     }
 }

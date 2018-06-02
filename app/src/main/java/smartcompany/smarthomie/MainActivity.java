@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
@@ -28,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
     private HelpFragment helpFragment;
     private NewDeviceFragment newDeviceFragment;
     private NewRoutineFragment newRoutineFragment;
+
+    //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
+    // Se actualiza con las funciones updateDevices y updateRoutines
+    HashMap<String, Device> devicesMap;
+    HashMap<String, Routine> routinesMap;
+    //-------------------------------------------------------
 
 
     @Override
@@ -152,5 +161,41 @@ public class MainActivity extends AppCompatActivity {
                 setUpNewRoutineFragment();
                 break;
         }
+    }
+
+    public void updateDevices(){
+        devicesMap = new HashMap<>();
+
+        // placeholer @nacho
+        devicesMap.put("Freezer del quincho",new Device("Freezer del quincho","Heladera"));
+        devicesMap.put("Freezer2",new Device("Freezer2","Heladera"));
+        devicesMap.put("Freezer3",new Device("Freezer3","Heladera"));
+        devicesMap.put("Freezer5",new Device("Freezer5","Heladera"));
+        devicesMap.put("Fre3ezer5",new Device("Freezer5","Heladera"));
+        devicesMap.put("Free5zer5",new Device("Freezer5","Heladera"));
+        devicesMap.put("Free4",new Device("Freezer5","Heladera"));
+        devicesMap.put("Fr2zer5",new Device("Freezer5","Heladera"));
+    }
+
+    public void updateRoutines(){
+        routinesMap = new HashMap<>();
+
+        // placeholder @nacho
+        routinesMap.put("Me voy de aca",new Routine("Me voy de aca"));
+        routinesMap.put("Prender freezer",new Routine("Prender freezer"));
+        routinesMap.put("Prend234",new Routine("Prender freezer"));
+        routinesMap.put("Prender 2er",new Routine("Prender freezer"));
+        routinesMap.put("Pren4r5er",new Routine("Prender freezer"));
+        routinesMap.put("Pr2eezer",new Routine("Prender freezer"));
+        routinesMap.put("Pr34reezer",new Routine("Prender freezer"));
+        routinesMap.put("Pren3zer",new Routine("Prender freezer"));
+    }
+
+    public HashMap<String, Device> getDevicesMap(){
+        return devicesMap;
+    }
+
+    public HashMap<String, Routine> getRoutinesMap(){
+        return routinesMap;
     }
 }

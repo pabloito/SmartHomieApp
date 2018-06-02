@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,22 +57,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addDevice(view,new Device("La hermna d fer"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
-        addRoutine(view,new Routine("Me voy"));
+        ((MainActivity)getActivity()).updateRoutines();
+        ((MainActivity)getActivity()).updateDevices();
+
+        drawDevices(view);
+        drawRoutines(view);
     }
 
     public void addDevice(View view, Device device){
@@ -109,5 +100,27 @@ public class HomeFragment extends Fragment {
                         Toast.LENGTH_LONG).show();;
             }
         });
+    }
+
+    public void drawDevices(View view){
+        MainActivity m = (MainActivity) getActivity();
+        m.updateDevices();
+
+        HashMap<String, Device> dmap = m.getDevicesMap();
+
+        for(String key : dmap.keySet()){
+            addDevice(view, dmap.get(key));
+        }
+    }
+
+    public void drawRoutines(View view){
+        MainActivity m = (MainActivity) getActivity();
+        m.updateDevices();
+
+        HashMap<String, Routine> rmap = m.getRoutinesMap();
+
+        for(String key : rmap.keySet()){
+            addRoutine(view, rmap.get(key));
+        }
     }
 }

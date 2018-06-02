@@ -58,14 +58,14 @@ public class RoutinesFragment extends Fragment {
 
     public void addRoutine(View view, Routine routine){
         TableLayout devices = view.findViewById(R.id.routines_scroll);
-        View deviceView = getLayoutInflater().inflate(R.layout.layout_routines_item,((ViewGroup)getView().getParent()),false);
+        View routineView = getLayoutInflater().inflate(R.layout.layout_routines_item,((ViewGroup)getView().getParent()),false);
 
-        devices.addView(deviceView);
+        devices.addView(routineView);
 
-        TextView t = deviceView.findViewById(R.id.item_name);
+        TextView t = routineView.findViewById(R.id.item_name);
         t.append(routine.name);
 
-        ImageButton delete = deviceView.findViewById(R.id.routine_delete);
+        ImageButton delete = routineView.findViewById(R.id.routine_delete);
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,11 +74,20 @@ public class RoutinesFragment extends Fragment {
             }
         });
 
-        ImageButton execute = deviceView.findViewById(R.id.routine_execute);
+        ImageButton execute = routineView.findViewById(R.id.routine_execute);
         execute.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "EXECUTE HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
+
+        View imageView = routineView.findViewById(R.id.image_view);
+        imageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "HANDLER WORKS",
                         Toast.LENGTH_LONG).show();;
             }
         });

@@ -81,6 +81,15 @@ public class HomeFragment extends Fragment {
         t.append(device.name);
 
         devices.addView(deviceView);
+
+        View imageView = deviceView.findViewById(R.id.image_view);
+        imageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
     }
 
     public void addRoutine(View view, Routine routine){
@@ -91,5 +100,14 @@ public class HomeFragment extends Fragment {
         t.append(routine.name);
 
         routines.addView(routineView);
+
+        View imageView = routineView.findViewById(R.id.image_view);
+        imageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
     }
 }

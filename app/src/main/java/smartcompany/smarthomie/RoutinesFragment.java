@@ -41,7 +41,6 @@ public class RoutinesFragment extends Fragment {
                 ((MainActivity) getActivity()).externalSetFragment("newRoutineFragment");
             }
         });
-
     }
 
     public void addRoutine(View view, Device device){/*

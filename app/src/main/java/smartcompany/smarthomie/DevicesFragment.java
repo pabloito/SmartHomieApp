@@ -42,20 +42,28 @@ public class DevicesFragment extends Fragment {
                 ((MainActivity) getActivity()).externalSetFragment("newDeviceFragment");
             }
         });
-/*
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));
-        addDevice(view, new Device("La hermna d fer"));*/
+
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
+        addDevice(view, new Device("freezer del quincho","Heladera"));
     }
 
     public void addDevice(View view, Device device){
         LinearLayout devices = view.findViewById(R.id.devices_scroll);
-        View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
+        View deviceView = getLayoutInflater().inflate(R.layout.layout_devices_item,((ViewGroup)getView().getParent()),false);
+
+        TextView type = deviceView.findViewById(R.id.device_type);
+        type.append(device.type);
 
         TextView t = deviceView.findViewById(R.id.item_name);
         t.append(device.name);

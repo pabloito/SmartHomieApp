@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -69,5 +70,14 @@ public class DevicesFragment extends Fragment {
         t.append(device.name);
 
         devices.addView(deviceView);
+
+        ImageButton delete = deviceView.findViewById(R.id.device_delete);
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "DELETE HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
     }
 }

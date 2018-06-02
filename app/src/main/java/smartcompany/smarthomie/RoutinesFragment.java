@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -58,9 +60,27 @@ public class RoutinesFragment extends Fragment {
         TableLayout devices = view.findViewById(R.id.routines_scroll);
         View deviceView = getLayoutInflater().inflate(R.layout.layout_routines_item,((ViewGroup)getView().getParent()),false);
 
+        devices.addView(deviceView);
+
         TextView t = deviceView.findViewById(R.id.item_name);
         t.append(routine.name);
 
-        devices.addView(deviceView);
+        ImageButton delete = deviceView.findViewById(R.id.routine_delete);
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "DELETE HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
+
+        ImageButton execute = deviceView.findViewById(R.id.routine_execute);
+        execute.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "EXECUTE HANDLER WORKS",
+                        Toast.LENGTH_LONG).show();;
+            }
+        });
     }
 }

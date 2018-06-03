@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">SmartHomie</string>
+    <string name="nav_devices">Dispositivos</string>
+    <string name="nav_routines">Rutinas</string>
+    <string name="nav_home">Índice</string>
+    <string name="action_help">Help</string>
+    <string name="action_settings">Settings</string>
+    <string name="new_device">New device</string>
+    <string name="new_routine">New routine</string>
+    <string name="receive_notif">Receive notifications</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- DEVICE NAMES -->
+    <string name="curtain_default">Curtain Name</string>
+    <string name="oven_default">Oven Name</string>
+    <string name="door_default">Door Name</string>
+    <string name="light_default">Light Name</string>
+    <string name="alarm_default">Alarm Name</string>
+    <string name="fridge_default">Fridge Name</string>
+
+
+    <!-- GENERAL DEVICE STRINGS-->
+    <string name="remove_device_text">Remove</string>
+
+
+    <!-- CURTAIN STRINGS-->
+    <string name="curtain_button_on">Raise</string>
+    <string name="curtain_button_off">Drop</string>
+    <string name="curtain_text_on">Droped</string>
+    <string name="curtain_text_off">Raised</string>
+
+
+    <!-- DOOR STRINGS-->
+    <string name="door_text_off">Closed</string>
+    <string name="door_button_off">Open</string>
+    <string name="lock_text_off">Locked</string>
+    <string name="lock_button_off">Unlock</string>
+    <string name="door_text_on">Opened</string>
+    <string name="door_button_on">Close</string>
+    <string name="lock_text_on">Unlocked</string>
+    <string name="lock_button_on">Lock</string>
+    <string name="Settings">Settings</string>
+
+
+    <!-- ALARM STRINGS-->
+
+    <!-- FRIDGE STRINGS-->
+
+    <!-- OVEN STRINGS-->
+
+    <!-- LIGHT STRINGS-->
+
+</resources>

@@ -16,4 +16,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="curtain_default">Curtain Name</string>
     <string name="remove_device_text">Remove</string>
+    <string name="oven_default">Oven Name</string>
+    <string name="door_default">Door Name</string>
+    <string name="light_default">Light Name</string>
+    <string name="alarm_default">Alarm Name</string>
+    <string name="fridge_default">Fridge Name</string>
 </resources>

@@ -32,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private NewDeviceFragment newDeviceFragment;
     private NewRoutineFragment newRoutineFragment;
     private Curtain curtainFragment;
+    private Door doorFragment;
+    private Oven ovenFragment;
+    private Alarm alarmFragment;
+    private Light lightFragment;
+    private Fridge fridgeFragment;
 
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
@@ -48,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
         mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
 
-        curtainFragment = new Curtain();
         homeFragment = new HomeFragment();
         devicesFragment = new DevicesFragment();
         routinesFragment = new RoutinesFragment();
@@ -57,10 +61,17 @@ public class MainActivity extends AppCompatActivity {
         newDeviceFragment = new NewDeviceFragment();
         newRoutineFragment = new NewRoutineFragment();
 
+        curtainFragment = new Curtain();
+        alarmFragment = new Alarm();
+        fridgeFragment = new Fridge();
+        lightFragment = new Light();
+        ovenFragment = new Oven();
+        doorFragment = new Door();
+
         android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        setFragment(homeFragment);
+        setFragment(doorFragment);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

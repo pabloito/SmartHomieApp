@@ -16,6 +16,7 @@ import android.widget.Toast;
  */
 public class DoorFragment extends Fragment {
 
+    Door door;
 
     public DoorFragment() {
         // Required empty public constructor
@@ -32,6 +33,7 @@ public class DoorFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        door = (Door) ((MainActivity)getActivity()).getCurrentDevice();
 
         final Button doorButton = (Button) view.findViewById(R.id.door_button);
         final TextView doorText= (TextView) view.findViewById(R.id.door_text);

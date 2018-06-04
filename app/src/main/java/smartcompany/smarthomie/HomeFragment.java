@@ -83,7 +83,12 @@ public class HomeFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
+                        ma.externalSetFragment("curtainFragment");
                     }
                 });
                 break;
@@ -91,7 +96,12 @@ public class HomeFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
+                        ma.externalSetFragment("fridgeFragment");
                     }
                 });
                 break;
@@ -99,7 +109,12 @@ public class HomeFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getActivity()).externalSetFragment("doorFragment");
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
+                        ma.externalSetFragment("doorFragment");
                     }
                 });
                 break;
@@ -107,7 +122,12 @@ public class HomeFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getActivity()).externalSetFragment("lightFragment");
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
+                        ma.externalSetFragment("lightFragment");
                     }
                 });
                 break;
@@ -115,11 +135,15 @@ public class HomeFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
+                        ma.externalSetFragment("ovenFragment");
                     }
                 });
                 break;
-
         }
     }
 

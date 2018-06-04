@@ -18,6 +18,8 @@ import android.widget.Toast;
  */
 public class CurtainFragment extends Fragment {
 
+    Curtain curtain;
+
     public CurtainFragment() {
         // Required empty public constructor
     }
@@ -32,6 +34,7 @@ public class CurtainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        curtain = (Curtain) ((MainActivity)getActivity()).getCurrentDevice();
 
         final Button curtainButton = (Button) view.findViewById(R.id.curtain_button);
         final TextView curtainText= (TextView) view.findViewById(R.id.curtain_text);

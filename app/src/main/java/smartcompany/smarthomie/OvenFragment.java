@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public class OvenFragment extends Fragment {
 
+    Oven oven;
 
     public OvenFragment() {
         // Required empty public constructor
@@ -24,6 +25,11 @@ public class OvenFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_oven, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        oven = (Oven) ((MainActivity)getActivity()).getCurrentDevice();
     }
 
 }

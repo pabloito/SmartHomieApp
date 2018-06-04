@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public class LightFragment extends Fragment {
 
+    Light light;
 
     public LightFragment() {
         // Required empty public constructor
@@ -26,4 +27,8 @@ public class LightFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_light, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        light = (Light) ((MainActivity)getActivity()).getCurrentDevice();
+    }
 }

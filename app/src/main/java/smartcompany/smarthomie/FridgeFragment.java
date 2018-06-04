@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public class FridgeFragment extends Fragment {
 
+    Fridge fridge;
 
     public FridgeFragment() {
         // Required empty public constructor
@@ -26,4 +27,8 @@ public class FridgeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_fridge, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        fridge = (Fridge) ((MainActivity)getActivity()).getCurrentDevice();
+    }
 }

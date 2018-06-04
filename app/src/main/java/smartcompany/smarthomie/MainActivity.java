@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private LightFragment lightFragment;
     private FridgeFragment fridgeFragment;
 
+    private Device currentDevice = null;
+
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
     //-------------------------------------------------------
@@ -218,5 +220,13 @@ public class MainActivity extends AppCompatActivity {
 
     public HashMap<String, Routine> getRoutinesMap(){
         return routinesMap;
+    }
+
+    public Device getCurrentDevice(){
+        return currentDevice;
+    }
+
+    public void setCurrentDevice(Device d){
+        currentDevice=d;
     }
 }

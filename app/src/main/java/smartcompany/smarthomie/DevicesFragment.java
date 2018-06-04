@@ -73,13 +73,50 @@ public class DevicesFragment extends Fragment {
         });
 
         View imageView = deviceView.findViewById(R.id.image_view);
-        imageView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
-            }
-        });
+
+        switch(device.type){
+            case "Curtain":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
+                    }
+                });
+                break;
+            case "Fridge":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
+                    }
+                });
+                break;
+            case "Door":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("doorFragment");
+                    }
+                });
+                break;
+            case "Light":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("lightFragment");
+                    }
+                });
+                break;
+            case "Oven":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
+                    }
+                });
+                break;
+
+        }
     }
 
     public void drawDevices(View view){

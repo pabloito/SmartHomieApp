@@ -76,25 +76,50 @@ public class HomeFragment extends Fragment {
         devices.addView(deviceView);
 
 
-        // esto tiene q ser un switch grande con typedef de typeID
-        if(device.type.equals("Curtain")){
-            View imageView = deviceView.findViewById(R.id.image_view);
-            imageView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
-                }
-            });
-        }
-        else{
-            View imageView = deviceView.findViewById(R.id.image_view);
-            imageView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getActivity(), "HANDLER WORKS",
-                            Toast.LENGTH_LONG).show();
-                }
-            });
+        View imageView = deviceView.findViewById(R.id.image_view);
+
+        switch(device.type){
+            case "Curtain":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
+                    }
+                });
+                break;
+            case "Fridge":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
+                    }
+                });
+                break;
+            case "Door":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("doorFragment");
+                    }
+                });
+                break;
+            case "Light":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("lightFragment");
+                    }
+                });
+                break;
+            case "Oven":
+                imageView.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
+                    }
+                });
+                break;
+
         }
     }
 

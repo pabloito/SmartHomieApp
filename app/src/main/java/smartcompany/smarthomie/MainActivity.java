@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
+    //-------------------------------------------------------
     HashMap<String, Device> devicesMap;
     HashMap<String, Routine> routinesMap;
     //-------------------------------------------------------
@@ -170,6 +171,18 @@ public class MainActivity extends AppCompatActivity {
             case "curtainFragment":
                 setUpCurtainFragment();
                 break;
+            case "fridgeFragment":
+                setFragment(fridgeFragment);
+                break;
+            case "ovenFragment":
+                setFragment(ovenFragment);
+                break;
+            case "doorFragment":
+                setFragment(doorFragment);
+                break;
+            case "lightFragment":
+                setFragment(lightFragment);
+                break;
         }
     }
 
@@ -178,10 +191,10 @@ public class MainActivity extends AppCompatActivity {
 
         // placeholer @nacho
         devicesMap.put("cortina del quincho",new Device("Cortina del quincho","Curtain"));
-        devicesMap.put("cortina 2del quincho",new Device("Cortina del quincho","Curtain"));
-        devicesMap.put("cortina3 del quincho",new Device("Cortina del quincho","Curtain"));
-        devicesMap.put("cortina del 5quincho",new Device("Cortina del quincho de la hermana de fer","Curtain"));
-        devicesMap.put("cort4ina del quincho",new Device("Cortina del quincho je","Curtain"));
+        devicesMap.put("freezer",new Device("freezer","Fridge"));
+        devicesMap.put("hornito ",new Device("hornito ","Oven"));
+        devicesMap.put("luz del pasillo",new Device("luz del pasillo","Light"));
+        devicesMap.put("luz del pasillo",new Device("puertita","Door"));
         devicesMap.put("cortin2a del quincho",new Device("Cortina del quinchoooo","Curtain"));
     }
 

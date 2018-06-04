@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,7 +67,7 @@ public class HomeFragment extends Fragment {
         drawRoutines(view);
     }
 
-    public void addDevice(View view, Device device){
+    public void addDevice(View view, final Device device){
         LinearLayout devices = view.findViewById(R.id.home_devices);
         View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
 
@@ -87,6 +88,7 @@ public class HomeFragment extends Fragment {
                         View parent = (View)v.getParent();
                         String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
                         Device d = ma.getDevicesMap().get(name);
+                        Log.d("a",device.name);
                         ma.setCurrentDevice(d);
                         ma.externalSetFragment("curtainFragment");
                     }
@@ -100,6 +102,7 @@ public class HomeFragment extends Fragment {
                         View parent = (View)v.getParent();
                         String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
                         Device d = ma.getDevicesMap().get(name);
+                        Log.d("a",device.name);
                         ma.setCurrentDevice(d);
                         ma.externalSetFragment("fridgeFragment");
                     }
@@ -161,8 +164,12 @@ public class HomeFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
+                MainActivity ma = ((MainActivity)getActivity());
+                View parent = (View)v.getParent();
+                String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                Routine d = ma.getRoutinesMap().get(name);
+                ma.setCurrentRoutine(d);
+                ma.externalSetFragment("routineFragment");
             }
         });
     }

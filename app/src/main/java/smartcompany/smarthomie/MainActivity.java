@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.HashMap;
 
@@ -28,8 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private OvenFragment ovenFragment;
     private LightFragment lightFragment;
     private FridgeFragment fridgeFragment;
+    private RoutineFragment routineFragment;
 
     private Device currentDevice = null;
+    private Routine currentRoutine = null;
 
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         helpFragment = new HelpFragment();
         newDeviceFragment = new NewDeviceFragment();
         newRoutineFragment = new NewRoutineFragment();
+        routineFragment = new RoutineFragment();
 
         curtainFragment = new CurtainFragment();
         fridgeFragment = new FridgeFragment();
@@ -161,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
             case "settingsFragment":
                 setUpSettingsFragment();
                 break;
+            case "routineFragment":
+                setFragment(routineFragment);
+                break;
             case "helpFragment":
                 setUpSettingsFragment();
                 break;
@@ -192,12 +199,12 @@ public class MainActivity extends AppCompatActivity {
         devicesMap = new HashMap<>();
 
         // placeholer @nacho
-        devicesMap.put("cortina del quincho",new Device("Cortina del quincho","Curtain"));
-        devicesMap.put("freezer",new Device("freezer","Fridge"));
-        devicesMap.put("hornito ",new Device("hornito ","Oven"));
-        devicesMap.put("luz del pasillo",new Device("luz del pasillo","Light"));
-        devicesMap.put("luz del pasillo",new Device("puertita","Door"));
-        devicesMap.put("cortin2a del quincho",new Device("Cortina del quinchoooo","Curtain"));
+        devicesMap.put("cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
+        devicesMap.put("freezer",new Fridge("freezer","Fridge"));
+        devicesMap.put("hornito ",new Oven("hornito ","Oven"));
+        devicesMap.put("luz del pasillo",new Light("luz del pasillo","Light"));
+        devicesMap.put("puertita",new Door("puertita","Door"));
+        devicesMap.put("cortin2a del quincho",new Curtain("Cortina del quinchoooo","Curtain"));
     }
 
     public void updateRoutines(){
@@ -226,7 +233,16 @@ public class MainActivity extends AppCompatActivity {
         return currentDevice;
     }
 
+    public Routine getCurrentRoutine(){
+        return currentRoutine;
+    }
+
     public void setCurrentDevice(Device d){
         currentDevice=d;
     }
+
+    public void setCurrentRoutine(Routine d){
+        currentRoutine=d;
+    }
+
 }

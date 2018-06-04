@@ -82,8 +82,12 @@ public class RoutinesFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
+                MainActivity ma = ((MainActivity)getActivity());
+                View parent = (View)v.getParent();
+                String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                Routine d = ma.getRoutinesMap().get(name);
+                ma.setCurrentRoutine(d);
+                ma.externalSetFragment("routineFragment");
             }
         });
     }

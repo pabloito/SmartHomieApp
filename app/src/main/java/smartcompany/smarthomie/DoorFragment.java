@@ -14,10 +14,10 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Door extends Fragment {
+public class DoorFragment extends Fragment {
 
 
-    public Door() {
+    public DoorFragment() {
         // Required empty public constructor
     }
 

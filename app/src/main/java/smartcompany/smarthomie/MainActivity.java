@@ -4,21 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mMainNav;
@@ -31,12 +23,11 @@ public class MainActivity extends AppCompatActivity {
     private HelpFragment helpFragment;
     private NewDeviceFragment newDeviceFragment;
     private NewRoutineFragment newRoutineFragment;
-    private Curtain curtainFragment;
-    private Door doorFragment;
-    private Oven ovenFragment;
-    private Alarm alarmFragment;
-    private Light lightFragment;
-    private Fridge fridgeFragment;
+    private CurtainFragment curtainFragment;
+    private DoorFragment doorFragment;
+    private OvenFragment ovenFragment;
+    private LightFragment lightFragment;
+    private FridgeFragment fridgeFragment;
 
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
@@ -61,17 +52,16 @@ public class MainActivity extends AppCompatActivity {
         newDeviceFragment = new NewDeviceFragment();
         newRoutineFragment = new NewRoutineFragment();
 
-        curtainFragment = new Curtain();
-        alarmFragment = new Alarm();
-        fridgeFragment = new Fridge();
-        lightFragment = new Light();
-        ovenFragment = new Oven();
-        doorFragment = new Door();
+        curtainFragment = new CurtainFragment();
+        fridgeFragment = new FridgeFragment();
+        lightFragment = new LightFragment();
+        ovenFragment = new OvenFragment();
+        doorFragment = new DoorFragment();
 
         android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        setFragment(doorFragment);
+        setFragment(homeFragment);
 
         mMainNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

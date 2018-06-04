@@ -16,9 +16,9 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Curtain extends Fragment {
+public class CurtainFragment extends Fragment {
 
-    public Curtain() {
+    public CurtainFragment() {
         // Required empty public constructor
     }
 

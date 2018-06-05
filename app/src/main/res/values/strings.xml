@@ -85,6 +85,9 @@
     <string name="lamp_state_text">State</string>
     <string name="lamp_brightness_text">Brightness</string>
     <string name="lamp_color_text">Color</string>
+    <string name="select_devices">Select Devices</string>
+    <string name="enter_routine_name">Enter name</string>
+    <string name="save_routine">Save</string>
     <string-array name="lamp_state_array">
         <item>On</item>
         <item>Off</item>

@@ -63,6 +63,7 @@ public class FridgeFragment extends Fragment {
                                                   boolean fromUser)
                     {
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
+                        fridge.setFreezerTemperature(curr);
                         System.out.println(curr);
                     }
                 });
@@ -83,6 +84,7 @@ public class FridgeFragment extends Fragment {
                                                   boolean fromUser)
                     {
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
+                        fridge.setRefridgeratorTemperature(curr);
                         System.out.println(curr);
                     }
                 });
@@ -94,6 +96,7 @@ public class FridgeFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String[] array = getResources().getStringArray(R.array.fridge_mode_array);
                 int index = parentView.getSelectedItemPosition();
+                fridge.setMode(array[index]);
                 System.out.println("you have selected: "+array[index]);
 
             }
@@ -101,6 +104,7 @@ public class FridgeFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                fridge.setMode(null);
             }
 
         });

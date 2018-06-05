@@ -51,10 +51,12 @@ public class DoorFragment extends Fragment {
                 if(doorButton.getText().equals(str)){ //TURINING ON CASE
                     doorButton.setText(R.string.door_button_on);
                     doorText.setText(R.string.door_text_on);
+                    door.open();
                 }
                 else{ //TURNING OFF CASE
                     doorButton.setText(R.string.door_button_off);
                     doorText.setText(R.string.door_text_off);
+                    door.close();
                 }
             }
         });
@@ -67,10 +69,12 @@ public class DoorFragment extends Fragment {
                 if(lockButton.getText().equals(str)){ //TURINING ON CASE
                     lockButton.setText(R.string.lock_button_on);
                     lockText.setText(R.string.lock_text_on);
+                    door.unlock();
                 }
                 else{ //TURNING OFF CASE
                     lockButton.setText(R.string.lock_button_off);
                     lockText.setText(R.string.lock_text_off);
+                    door.lock();
                 }
             }
         });

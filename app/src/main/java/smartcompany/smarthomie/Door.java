@@ -8,4 +8,17 @@ public class Door extends Device {
     public Door(String name, String type) {
         super(name, type);
     }
+
+    public void lock() {
+
+    }
+    public void unlock() {
+
+    }
+    public void open() {
+
+    }
+    public void close() {
+
+    }
 }

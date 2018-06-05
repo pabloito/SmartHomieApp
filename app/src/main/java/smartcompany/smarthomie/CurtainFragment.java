@@ -49,10 +49,12 @@ public class CurtainFragment extends Fragment {
                 if(curtainButton.getText().equals(str)){ //TURINING ON CASE
                     curtainButton.setText(R.string.curtain_button_on);
                     curtainText.setText(R.string.curtain_text_on);
+                    curtain.lowerCurtain();
                 }
                 else{ //TURNING OFF CASE
                     curtainButton.setText(R.string.curtain_button_off);
                     curtainText.setText(R.string.curtain_text_off);
+                    curtain.lowerCurtain();
                 }
             }
         });

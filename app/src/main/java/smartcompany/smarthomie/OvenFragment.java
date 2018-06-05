@@ -62,6 +62,7 @@ public class OvenFragment extends Fragment {
                     {
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         System.out.println(curr);
+                        oven.setTemperature(curr);
                     }
                 });
 
@@ -74,12 +75,14 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_state_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
+                oven.setState(array[index]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                oven.setState(null);
             }
 
         });
@@ -93,12 +96,14 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_convection_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
+                oven.setConvection(array[index]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                oven.setConvection(null);
             }
 
         });
@@ -112,12 +117,13 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_grill_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-
+                oven.setGrill(array[index]);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                oven.setGrill(null);
             }
 
         });
@@ -131,12 +137,14 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_heat_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
+                oven.setHeat(array[index]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                oven.setHeat(null);
             }
 
         });

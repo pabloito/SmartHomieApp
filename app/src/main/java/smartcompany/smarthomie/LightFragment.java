@@ -59,6 +59,7 @@ public class LightFragment extends Fragment {
                                                   boolean fromUser)
                     {
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
+                        light.setBrightness(curr);
                         System.out.println(curr);
                     }
                 });
@@ -72,12 +73,14 @@ public class LightFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.lamp_state_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
+                light.setState(array[index]);
 
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                light.setState(null);
             }
 
         });
@@ -91,12 +94,13 @@ public class LightFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.lamp_color_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-
+                light.setColor(array[index]);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 System.out.println("No item selected");
+                light.setColor(null);
             }
 
         });

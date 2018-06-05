@@ -45,9 +45,6 @@
     <string name="lock_text_on">Unlocked</string>
     <string name="lock_button_on">Lock</string>
 
-
-    <!-- ALARM STRINGS-->
-
     <!-- FRIDGE STRINGS-->
     <string name="fridge_text_mode">Mode</string>
     <string name="fridge_text_refrigerator">Refrigerator Temperature</string>
@@ -61,5 +58,19 @@
     <!-- OVEN STRINGS-->
 
     <!-- LIGHT STRINGS-->
+
+    <string name="lamp_state_text">State</string>
+    <string name="lamp_brightness_text">Brightness</string>
+    <string name="lamp_color_text">Color</string>
+    <string-array name="lamp_state_array">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+    <string-array name="lamp_color_array">
+        <item>Default</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
 
 </resources>

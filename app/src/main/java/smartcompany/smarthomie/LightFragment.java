@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 /**
@@ -39,7 +40,7 @@ public class LightFragment extends Fragment {
         final SeekBar lampBrightnessSlider = (SeekBar) view.findViewById(R.id.lamp_brightness_slider);
         final Spinner lampColorSelect = (Spinner) view.findViewById(R.id.lamp_color_select);
         final Spinner lampStateSelect = (Spinner) view.findViewById(R.id.lamp_state_select);
-        final Button removeButton = (Button) view.findViewById(R.id.fridge_remove_button);
+        final Button removeButton = (Button) view.findViewById(R.id.lamp_remove_button);
 
         lampBrightnessSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
@@ -98,6 +99,15 @@ public class LightFragment extends Fragment {
                 System.out.println("No item selected");
             }
 
+        });
+
+        removeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast toast = Toast.makeText(getContext(), "Lo removiste!.",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
         });
     }
 }

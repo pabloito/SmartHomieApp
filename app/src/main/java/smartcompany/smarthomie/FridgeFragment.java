@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -102,6 +103,15 @@ public class FridgeFragment extends Fragment {
                 System.out.println("No item selected");
             }
 
+        });
+
+        removeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast toast = Toast.makeText(getContext(), "Lo removiste!.",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
         });
     }
 }

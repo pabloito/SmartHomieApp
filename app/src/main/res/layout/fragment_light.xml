@@ -148,7 +148,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/fridge_remove_button"
+                        android:id="@+id/lamp_remove_button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/remove_device_text" />

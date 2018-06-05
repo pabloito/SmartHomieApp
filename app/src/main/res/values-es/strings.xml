@@ -47,6 +47,7 @@
     <string name="select_devices">Select Devices</string>
     <string name="enter_routine_name">Enter name</string>
     <string name="save_routine">Save</string>
+    <string name="routine_devices">Routine Devices</string>
 
 
     <!-- ALARM STRINGS-->

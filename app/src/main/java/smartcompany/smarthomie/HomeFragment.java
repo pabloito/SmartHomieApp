@@ -187,7 +187,7 @@ public class HomeFragment extends Fragment {
 
     public void drawRoutines(View view){
         MainActivity m = (MainActivity) getActivity();
-        m.updateDevices();
+        m.updateRoutines();
 
         HashMap<String, Routine> rmap = m.getRoutinesMap();
 

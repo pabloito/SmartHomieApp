@@ -213,12 +213,6 @@ public class MainActivity extends AppCompatActivity {
         // placeholder @nacho
         routinesMap.put("Me voy de aca",new Routine("Me voy de aca"));
         routinesMap.put("Prender freezer",new Routine("Prender freezer"));
-        routinesMap.put("Prend234",new Routine("Prender freezer"));
-        routinesMap.put("Prender 2er",new Routine("Prender freezer"));
-        routinesMap.put("Pren4r5er",new Routine("Prender freezer"));
-        routinesMap.put("Pr2eezer",new Routine("Prender freezer"));
-        routinesMap.put("Pr34reezer",new Routine("Prender freezer"));
-        routinesMap.put("Pren3zer",new Routine("Prender freezer"));
     }
 
     public HashMap<String, Device> getDevicesMap(){

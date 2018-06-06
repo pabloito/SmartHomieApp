@@ -199,12 +199,11 @@ public class MainActivity extends AppCompatActivity {
         devicesMap = new HashMap<>();
 
         // placeholer @nacho
-        devicesMap.put("cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
+        devicesMap.put("Cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
         devicesMap.put("freezer",new Fridge("freezer","Fridge"));
         devicesMap.put("hornito ",new Oven("hornito ","Oven"));
         devicesMap.put("luz del pasillo",new Light("luz del pasillo","Light"));
         devicesMap.put("puertita",new Door("puertita","Door"));
-        devicesMap.put("cortin2a del quincho",new Curtain("Cortina del quinchoooo","Curtain"));
     }
 
     public void updateRoutines(){

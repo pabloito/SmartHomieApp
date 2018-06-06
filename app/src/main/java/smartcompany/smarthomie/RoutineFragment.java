@@ -79,22 +79,33 @@ public class RoutineFragment extends Fragment {
         TextView t = routineView.findViewById(R.id.item_name);
         t.append(device.name);
 
-        View imageView = view.findViewById(R.id.image_view);
-        Log.d("a",imageView.toString());
+        View imageView = routineView.findViewById(R.id.image_view);
+        Log.d("a",device.type);
         switch(device.type){
             case "Curtain":
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
                     }
                 });
                 break;
             case "Fridge":
+                Log.d("a","CLICKf");
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
-                        Log.d("a","CLICKO");
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
                     }
                 });
@@ -103,6 +114,11 @@ public class RoutineFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("doorFragment");
                     }
                 });
@@ -111,6 +127,11 @@ public class RoutineFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("lightFragment");
                     }
                 });
@@ -119,11 +140,18 @@ public class RoutineFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
                     }
                 });
                 break;
-
+            default:
+                Log.d("a","default");
+                break;
         }
     }
 

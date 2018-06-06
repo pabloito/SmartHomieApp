@@ -14,12 +14,11 @@ public class Routine {
 
     public HashMap<String, Device> getRoutineDevices(){
         HashMap<String, Device> f = new HashMap<>();
-        f.put("heladera",new Fridge("heladera","Heladera"));
-        f.put("helad2era",new Fridge("heladera","Heladera"));
-        f.put("hela3dera",new Fridge("helasadera","Heladera"));
-        f.put("hela4dera",new Fridge("helaasddera","Heladera"));
-        f.put("hela5dera",new Fridge("heladadera","Heladera"));
-        f.put("hela6dera",new Fridge("heladdsera","Heladera"));
+        f.put("Cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
+        f.put("freezer",new Fridge("freezer","Fridge"));
+        f.put("hornito ",new Oven("hornito ","Oven"));
+        f.put("luz del pasillo",new Light("luz del pasillo","Light"));
+        f.put("puertita",new Door("puertita","Door"));
         return f;
     }
 

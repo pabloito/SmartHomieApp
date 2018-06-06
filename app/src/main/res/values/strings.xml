@@ -90,7 +90,7 @@
     <string name="save_routine">Save</string>
     <string name="routine_devices">Routine Devices</string>
     <string name="modify_routine_actions">Modify routine actions for device:</string>
-    <string name="back_to_routine">Save and back to routine</string>
+    <string name="back_to_routine">Back to routine</string>
     <string-array name="lamp_state_array">
         <item>On</item>
         <item>Off</item>

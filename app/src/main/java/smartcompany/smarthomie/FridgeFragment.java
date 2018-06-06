@@ -51,14 +51,12 @@ public class FridgeFragment extends Fragment {
             View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
             routineLayout.addView(routineView);
 
-            Button save = view.findViewById(R.id.saveAndBackToRoutine);
+            Button save = view.findViewById(R.id.backToRoutine);
 
             save.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    Toast toast = Toast.makeText(getContext(), "save and back handler falta",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
+                    ((MainActivity)getActivity()).externalSetFragment("routineFragment");
                 }
             });
         }

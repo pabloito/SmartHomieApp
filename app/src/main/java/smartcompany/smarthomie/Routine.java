@@ -8,12 +8,16 @@ import java.util.HashMap;
 public class Routine {
     String name;
 
+    // necesitamos un array temporal de action objects para una rutina que se está creando
+
     public Routine(String name){
         this.name = name;
     }
 
     public HashMap<String, Device> getRoutineDevices(){
         HashMap<String, Device> f = new HashMap<>();
+
+        // placeholder @nacho
         f.put("Cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
         f.put("freezer",new Fridge("freezer","Fridge"));
         f.put("hornito ",new Oven("hornito ","Oven"));

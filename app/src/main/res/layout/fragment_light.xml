@@ -15,7 +15,15 @@
             android:id="@+id/routine_lay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical|center"
+            android:text="@string/light_default" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -170,11 +178,6 @@
             </TableLayout>
         </ScrollView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:gravity="center_vertical|center"
-            android:text="@string/light_default" />
     </LinearLayout>
 
 

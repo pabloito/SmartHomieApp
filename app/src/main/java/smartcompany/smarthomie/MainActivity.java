@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-    boolean comesFromRoutine = false;
+    private boolean comesFromRoutine = false;
 
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 public class OvenFragment extends Fragment {
 
     Oven oven;
+    Routine routine;
 
     public OvenFragment() {
         // Required empty public constructor
@@ -36,6 +38,27 @@ public class OvenFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         oven = (Oven) ((MainActivity)getActivity()).getCurrentDevice();
+
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.saveAndBackToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Toast toast = Toast.makeText(getContext(), "save and back handler falta",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+        }
+
 
         final SeekBar ovenTemperatureSlider = (SeekBar) view.findViewById(R.id.oven_temperature_slider);
         final Spinner ovenConvectionSelect = (Spinner) view.findViewById(R.id.oven_convection_select);

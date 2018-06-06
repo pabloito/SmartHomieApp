@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import android.widget.Toast;
 public class DoorFragment extends Fragment {
 
     Door door;
+    Routine routine;
 
     public DoorFragment() {
         // Required empty public constructor
@@ -35,6 +37,27 @@ public class DoorFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         door = (Door) ((MainActivity)getActivity()).getCurrentDevice();
+
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.saveAndBackToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Toast toast = Toast.makeText(getContext(), "save and back handler falta",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
+        }
+
 
         final Button doorButton = (Button) view.findViewById(R.id.door_button);
         final TextView doorText= (TextView) view.findViewById(R.id.door_text);

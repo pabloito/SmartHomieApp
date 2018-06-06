@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+    boolean comesFromRoutine = false;
+
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 
@@ -146,8 +149,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragment(Fragment fragment){
+        if(getSupportFragmentManager().findFragmentByTag("current") instanceof RoutineFragment){
+            Log.d("W","Comes from routine...");
+            comesFromRoutine=true;
+        }
+        else {
+            Log.d("W","Doesn't come from routine...");
+            comesFromRoutine=false;
+        }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_frame, fragment);
+        fragmentTransaction.replace(R.id.main_frame, fragment, "current");
         fragmentTransaction.commit();
     }
 
@@ -236,6 +247,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void setCurrentRoutine(Routine d){
         currentRoutine=d;
+    }
+
+    public boolean getComesFromRoutine(){
+        return comesFromRoutine;
     }
 
 }

@@ -29,4 +29,8 @@ public class Routine {
     public void delete(){
 
     }
+
+    public void addAction(){// recibe action object?
+
+    }
 }

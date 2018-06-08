@@ -63,6 +63,10 @@ public class LightFragment extends Fragment {
         final Spinner lampStateSelect = (Spinner) view.findViewById(R.id.lamp_state_select);
         final Button removeButton = (Button) view.findViewById(R.id.lamp_remove_button);
 
+        lampBrightnessSlider.setProgress(light.getBrightness()-1);
+        lampColorSelect.setSelection(light.getColorIndex());
+        lampStateSelect.setSelection(light.getStateIndex());
+
         lampBrightnessSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
                 {

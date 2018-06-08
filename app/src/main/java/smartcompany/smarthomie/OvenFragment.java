@@ -65,6 +65,12 @@ public class OvenFragment extends Fragment {
         final Spinner ovenStateSelect = (Spinner) view.findViewById(R.id.oven_state_select);
         final Button removeButton = (Button) view.findViewById(R.id.oven_remove_button);
 
+        ovenTemperatureSlider.setProgress(oven.getTemperature()-90);
+        ovenConvectionSelect.setSelection(oven.getConvectionIndex());
+        ovenGrillSelect.setSelection(oven.getGrillIndex());
+        ovenHeatSelect.setSelection(oven.getHeatIndex());
+        ovenStateSelect.setSelection(oven.getStateIndex());
+
         ovenTemperatureSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
                 {

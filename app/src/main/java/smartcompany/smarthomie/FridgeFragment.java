@@ -42,6 +42,7 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         fridge = (Fridge) ((MainActivity)getActivity()).getCurrentDevice();
+        System.out.println(fridge);
 
         MainActivity ma = (MainActivity)getActivity();
 
@@ -66,6 +67,10 @@ public class FridgeFragment extends Fragment {
         final SeekBar refridgeratorTempSlider = (SeekBar) view.findViewById(R.id.refridgerator_temp_slider);
         final Spinner fridgeModeSelect = (Spinner) view.findViewById(R.id.fridge_mode_select);
         final Button removeButton = (Button) view.findViewById(R.id.fridge_remove_button);
+
+        fridgeTempSlider.setProgress(fridge.getFreezerTemperature()+20);
+        refridgeratorTempSlider.setProgress(fridge.getRefridgeratorTemperature()-2);
+        fridgeModeSelect.setSelection(fridge.getModeIndex());
 
         fridgeTempSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()

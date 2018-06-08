@@ -59,6 +59,14 @@ public class CurtainFragment extends Fragment {
         final TextView curtainText= (TextView) view.findViewById(R.id.curtain_text);
         final Button removeButton = (Button) view.findViewById(R.id.curtain_remove_button);
 
+        if(curtain.isRaised()){
+            curtainButton.setText(R.string.curtain_button_off);
+            curtainText.setText(R.string.curtain_text_off);
+        }else{
+            curtainButton.setText(R.string.curtain_button_on);
+            curtainText.setText(R.string.curtain_text_on);
+        }
+
         curtainButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -73,7 +81,7 @@ public class CurtainFragment extends Fragment {
                 else{ //TURNING OFF CASE
                     curtainButton.setText(R.string.curtain_button_off);
                     curtainText.setText(R.string.curtain_text_off);
-                    curtain.lowerCurtain();
+                    curtain.raiseCurtain();
                 }
             }
         });

@@ -211,9 +211,9 @@ public class MainActivity extends AppCompatActivity {
 
         // placeholer @nacho
         devicesMap.put("Cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
-        devicesMap.put("freezer",new Fridge("freezer","Fridge"));
-        devicesMap.put("hornito ",new Oven("hornito ","Oven"));
-        devicesMap.put("luz del pasillo",new Light("luz del pasillo","Light"));
+        devicesMap.put("freezer",new Fridge("freezer","Fridge", getApplicationContext()));
+        devicesMap.put("hornito ",new Oven("hornito ","Oven", getApplicationContext()));
+        devicesMap.put("luz del pasillo",new Light("luz del pasillo","Light", getApplicationContext()));
         devicesMap.put("puertita",new Door("puertita","Door"));
     }
 
@@ -221,8 +221,8 @@ public class MainActivity extends AppCompatActivity {
         routinesMap = new HashMap<>();
 
         // placeholder @nacho
-        routinesMap.put("Me voy de aca",new Routine("Me voy de aca"));
-        routinesMap.put("Prender freezer",new Routine("Prender freezer"));
+        routinesMap.put("Me voy de aca",new Routine("Me voy de aca", getApplicationContext()));
+        routinesMap.put("Prender freezer",new Routine("Prender freezer", getApplicationContext()));
     }
 
     public HashMap<String, Device> getDevicesMap(){

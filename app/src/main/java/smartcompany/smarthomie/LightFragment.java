@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 public class LightFragment extends Fragment {
 
     Light light;
+    Routine routine;
 
     public LightFragment() {
         // Required empty public constructor
@@ -37,10 +39,33 @@ public class LightFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         light = (Light) ((MainActivity)getActivity()).getCurrentDevice();
 
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.backToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    ((MainActivity)getActivity()).externalSetFragment("routineFragment");
+                }
+            });
+        }
+
+
         final SeekBar lampBrightnessSlider = (SeekBar) view.findViewById(R.id.lamp_brightness_slider);
         final Spinner lampColorSelect = (Spinner) view.findViewById(R.id.lamp_color_select);
         final Spinner lampStateSelect = (Spinner) view.findViewById(R.id.lamp_state_select);
         final Button removeButton = (Button) view.findViewById(R.id.lamp_remove_button);
+
+        lampBrightnessSlider.setProgress(light.getBrightness()-1);
+        lampColorSelect.setSelection(light.getColorIndex());
+        lampStateSelect.setSelection(light.getStateIndex());
 
         lampBrightnessSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()

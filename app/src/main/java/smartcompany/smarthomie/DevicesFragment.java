@@ -79,6 +79,12 @@ public class DevicesFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
                     }
                 });
@@ -87,6 +93,12 @@ public class DevicesFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
                     }
                 });
@@ -95,6 +107,12 @@ public class DevicesFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("doorFragment");
                     }
                 });
@@ -103,6 +121,12 @@ public class DevicesFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("lightFragment");
                     }
                 });
@@ -111,6 +135,12 @@ public class DevicesFragment extends Fragment {
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
+
+                        MainActivity ma = ((MainActivity)getActivity());
+                        View parent = (View)v.getParent();
+                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                        Device d = ma.getDevicesMap().get(name);
+                        ma.setCurrentDevice(d);
                         ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
                     }
                 });

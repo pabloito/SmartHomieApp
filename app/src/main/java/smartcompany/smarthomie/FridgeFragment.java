@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 public class FridgeFragment extends Fragment {
 
     Fridge fridge;
+    Routine routine;
 
     public FridgeFragment() {
         // Required empty public constructor
@@ -40,11 +42,35 @@ public class FridgeFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         fridge = (Fridge) ((MainActivity)getActivity()).getCurrentDevice();
+        System.out.println(fridge);
+
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.backToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    ((MainActivity)getActivity()).externalSetFragment("routineFragment");
+                }
+            });
+        }
+
 
         final SeekBar fridgeTempSlider = (SeekBar) view.findViewById(R.id.fridge_temp_slider);
         final SeekBar refridgeratorTempSlider = (SeekBar) view.findViewById(R.id.refridgerator_temp_slider);
         final Spinner fridgeModeSelect = (Spinner) view.findViewById(R.id.fridge_mode_select);
         final Button removeButton = (Button) view.findViewById(R.id.fridge_remove_button);
+
+        fridgeTempSlider.setProgress(fridge.getFreezerTemperature()+20);
+        refridgeratorTempSlider.setProgress(fridge.getRefridgeratorTemperature()-2);
+        fridgeModeSelect.setSelection(fridge.getModeIndex());
 
         fridgeTempSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()

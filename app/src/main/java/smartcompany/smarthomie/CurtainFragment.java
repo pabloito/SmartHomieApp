@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import android.widget.Toast;
 public class CurtainFragment extends Fragment {
 
     Curtain curtain;
+    Routine routine;
 
     public CurtainFragment() {
         // Required empty public constructor
@@ -34,11 +36,36 @@ public class CurtainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        curtain = (Curtain) ((MainActivity)getActivity()).getCurrentDevice();
+        curtain = (Curtain) ((MainActivity) getActivity()).getCurrentDevice();
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.backToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    ((MainActivity)getActivity()).externalSetFragment("routineFragment");
+                }
+            });
+        }
 
         final Button curtainButton = (Button) view.findViewById(R.id.curtain_button);
         final TextView curtainText= (TextView) view.findViewById(R.id.curtain_text);
         final Button removeButton = (Button) view.findViewById(R.id.curtain_remove_button);
+
+        if(curtain.isRaised()){
+            curtainButton.setText(R.string.curtain_button_off);
+            curtainText.setText(R.string.curtain_text_off);
+        }else{
+            curtainButton.setText(R.string.curtain_button_on);
+            curtainText.setText(R.string.curtain_text_on);
+        }
 
         curtainButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -54,7 +81,7 @@ public class CurtainFragment extends Fragment {
                 else{ //TURNING OFF CASE
                     curtainButton.setText(R.string.curtain_button_off);
                     curtainText.setText(R.string.curtain_text_off);
-                    curtain.lowerCurtain();
+                    curtain.raiseCurtain();
                 }
             }
         });

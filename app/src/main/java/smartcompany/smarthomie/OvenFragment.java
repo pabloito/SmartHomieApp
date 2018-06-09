@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 public class OvenFragment extends Fragment {
 
     Oven oven;
+    Routine routine;
 
     public OvenFragment() {
         // Required empty public constructor
@@ -37,12 +39,37 @@ public class OvenFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         oven = (Oven) ((MainActivity)getActivity()).getCurrentDevice();
 
+        MainActivity ma = (MainActivity)getActivity();
+
+        if (ma.getComesFromRoutine()){
+            routine = ma.getCurrentRoutine();
+            LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
+            View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
+            routineLayout.addView(routineView);
+
+            Button save = view.findViewById(R.id.backToRoutine);
+
+            save.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    ((MainActivity)getActivity()).externalSetFragment("routineFragment");
+                }
+            });
+        }
+
+
         final SeekBar ovenTemperatureSlider = (SeekBar) view.findViewById(R.id.oven_temperature_slider);
         final Spinner ovenConvectionSelect = (Spinner) view.findViewById(R.id.oven_convection_select);
         final Spinner ovenGrillSelect = (Spinner) view.findViewById(R.id.oven_grill_select);
         final Spinner ovenHeatSelect = (Spinner) view.findViewById(R.id.oven_heat_select);
         final Spinner ovenStateSelect = (Spinner) view.findViewById(R.id.oven_state_select);
         final Button removeButton = (Button) view.findViewById(R.id.oven_remove_button);
+
+        ovenTemperatureSlider.setProgress(oven.getTemperature()-90);
+        ovenConvectionSelect.setSelection(oven.getConvectionIndex());
+        ovenGrillSelect.setSelection(oven.getGrillIndex());
+        ovenHeatSelect.setSelection(oven.getHeatIndex());
+        ovenStateSelect.setSelection(oven.getStateIndex());
 
         ovenTemperatureSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()

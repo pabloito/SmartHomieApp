@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
                         View parent = (View)v.getParent();
                         String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
                         Device d = ma.getDevicesMap().get(name);
-                        Log.d("a",device.name);
+                        Log.d("NAME",d.name);
                         ma.setCurrentDevice(d);
                         ma.externalSetFragment("curtainFragment");
                     }

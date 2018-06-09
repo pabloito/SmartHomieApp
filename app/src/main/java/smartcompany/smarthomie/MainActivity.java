@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private LightFragment lightFragment;
     private FridgeFragment fridgeFragment;
     private RoutineFragment routineFragment;
+    private AddDevice addDevice;
 
     private Device currentDevice = null;
     private Routine currentRoutine = null;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         newDeviceFragment = new NewDeviceFragment();
         newRoutineFragment = new NewRoutineFragment();
         routineFragment = new RoutineFragment();
+        addDevice = new AddDevice();
 
         curtainFragment = new CurtainFragment();
         fridgeFragment = new FridgeFragment();
@@ -145,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         setFragment(curtainFragment);
     }
 
+    private void setUpAddDevice(){ setFragment(this.addDevice);}
+
     private void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
@@ -191,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "lightFragment":
                 setFragment(lightFragment);
+                break;
+            case "addDevice":
+                setUpAddDevice();
                 break;
         }
     }

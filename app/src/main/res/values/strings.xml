@@ -86,12 +86,17 @@
     <string name="lamp_brightness_text">Brightness</string>
     <string name="lamp_color_text">Color</string>
     <string name="select_devices">Select Devices</string>
-    <string name="enter_routine_name">Enter name</string>
+    <string name="enter_routine_name">Entry name...</string>
     <string name="save_routine">Save</string>
     <string name="routine_devices">Routine Devices</string>
     <string name="back_to_routine">Back to routine</string>
     <string name="modify_routine_actions">Modify routine actions for device:</string>
     <string name="add_device">AddDevice</string>
+    <string name="saveText">Save</string>
+    <string name="EntryName">Entry name...</string>
+    <string name="selectType">Select Type</string>
+    <string name="Cancel">Cancel</string>
+    <string name="titleText">Add device</string>
     <string-array name="lamp_state_array">
         <item>On</item>
         <item>Off</item>

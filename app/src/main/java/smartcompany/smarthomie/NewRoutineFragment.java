@@ -3,15 +3,20 @@ package smartcompany.smarthomie;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -38,6 +43,44 @@ public class NewRoutineFragment extends Fragment {
 
         ((MainActivity)getActivity()).updateDevices();
         drawDevices(view);
+
+        final Button save = (Button) view.findViewById(R.id.buttonSave2);
+        final EditText name = (EditText) view.findViewById(R.id.EntryName2);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Pattern cmp = Pattern.compile("^[a-z|A-Z|0-9_]+( [a-z|A-Z|0-9_]+)*$");
+                Editable str = name.getText();
+
+                if(str.length() == 0){
+                    Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos un caracter !",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+                if(str.length() < 3){
+                    Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos 3 caracteres !",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+                Matcher real = cmp.matcher(str);
+
+                if(!real.find()){
+                    Toast toast = Toast.makeText(getContext(), "El nombre tiene caracteres inválidos !",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+                if(nameIsUsed(str)){
+                    Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
     }
 
     public void addDevices(View view, Device device){

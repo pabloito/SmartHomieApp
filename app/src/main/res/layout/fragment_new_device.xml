@@ -7,10 +7,11 @@
 
 
     <TextView
+        android:id="@+id/titleName"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:gravity="center_vertical|center"
-        android:text="Add Device" />
+        android:text="@string/titleText" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,12 +34,12 @@
                     >
 
                     <EditText
-                        android:id="@+id/editText"
+                        android:id="@+id/EntryName"
                         android:layout_width="357dp"
                         android:layout_height="wrap_content"
                         android:ems="100"
                         android:inputType="textPersonName"
-                        android:text="Entry name..." />
+                        android:text="@string/EntryName" />
                 </LinearLayout>
 
             </TableRow>
@@ -56,9 +57,9 @@
                     >
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select type" />
+                        android:layout_width="149dp"
+                        android:layout_height="33dp"
+                        android:text="@string/selectType" />
 
                 </LinearLayout>
 
@@ -70,7 +71,7 @@
 
 
                     <Spinner
-                        android:id="@+id/spinner1"
+                        android:id="@+id/dropdownTypes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:drawable/btn_dropdown"
@@ -89,11 +90,11 @@
                     android:layout_weight="50">
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/buttonSave"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Save" />
+                        android:text="@string/saveText" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,11 +104,11 @@
                     android:layout_weight="50">
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/buttonCancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Cancel" />
+                        android:text="@string/Cancel" />
                 </LinearLayout>
             </TableRow>
         </TableLayout>

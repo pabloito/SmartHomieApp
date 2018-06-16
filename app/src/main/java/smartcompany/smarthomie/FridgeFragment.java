@@ -62,6 +62,8 @@ public class FridgeFragment extends Fragment {
             });
         }
 
+        final TextView title = (TextView) view.findViewById(R.id.fridge_title);
+        title.setText(fridge.getName());
 
         final SeekBar fridgeTempSlider = (SeekBar) view.findViewById(R.id.fridge_temp_slider);
         final SeekBar refridgeratorTempSlider = (SeekBar) view.findViewById(R.id.refridgerator_temp_slider);

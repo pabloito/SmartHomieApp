@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -57,6 +58,8 @@ public class LightFragment extends Fragment {
             });
         }
 
+        final TextView title = (TextView) view.findViewById(R.id.light_title);
+        title.setText(light.getName());
 
         final SeekBar lampBrightnessSlider = (SeekBar) view.findViewById(R.id.lamp_brightness_slider);
         final Spinner lampColorSelect = (Spinner) view.findViewById(R.id.lamp_color_select);

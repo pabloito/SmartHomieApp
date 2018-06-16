@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,27 @@ public class SettingsFragment extends Fragment {
 
         TextView t = settingsView.findViewById(R.id.item_name);
         t.append(device.name);
+
+        ImageView imageView = settingsView.findViewById(R.id.image_view);
+
+        switch(device.type){
+            case "Curtain":
+                imageView.setImageResource(R.drawable.curtain);
+                break;
+            case "Fridge":
+                imageView.setImageResource(R.drawable.fridge);
+                break;
+            case "Door":
+                imageView.setImageResource(R.drawable.door);
+                break;
+            case "Light":
+                imageView.setImageResource(R.drawable.light);
+                break;
+            case "Oven":
+                imageView.setImageResource(R.drawable.oven);
+                break;
+
+        }
 
         CheckBox check = settingsView.findViewById(R.id.checkBox);
         check.setOnClickListener(new View.OnClickListener(){

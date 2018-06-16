@@ -99,6 +99,8 @@
     <string name="titleText">Add device</string>
     <string name="help_title">Help</string>
     <string name="help_description">Welcome to the help screen!</string>
+    <string name="recieve_notifications">Recieve notifications</string>
+    <string name="receive_notifications">Receive Notifications</string>
     <string-array name="lamp_state_array">
         <item>On</item>
         <item>Off</item>

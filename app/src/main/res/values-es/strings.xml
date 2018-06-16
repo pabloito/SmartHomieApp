@@ -55,6 +55,8 @@
     <string name="selectType">Seleccione tipo</string>
     <string name="Cancel">Cancelar</string>
     <string name="titleText">Agregar dispositivo</string>
+    <string name="help_title">Help</string>
+    <string name="help_description">Welcome to the help screen!</string>
 
 
     <!-- ALARM STRINGS-->

@@ -2,25 +2,45 @@
     <string name="app_name">SmartHomie</string>
     <string name="nav_devices">Dispositivos</string>
     <string name="nav_routines">Rutinas</string>
-    <string name="nav_home">Índice</string>
+    <string name="nav_home">Inicio</string>
     <string name="action_help">Ayuda</string>
-    <string name="action_settings">Ajustes</string>
+    <string name="action_settings">Configuraciones</string>
     <string name="new_device">Nuevo dispositivo</string>
-    <string name="new_routine">Nueva rutina</string>
-    <string name="receive_notif">Recibe notificaciones</string>
+    <string name="new_routine">Nueva Rutina</string>
+    <string name="Settings">Configuraciones</string>
+    <string name="receive_notif">Reciba notificaciones</string>
+    <string name="select_devices">Seleccionar dispositivos</string>
+    <string name="enter_routine_name">Escriba el nombre</string>
+    <string name="save_routine">Guardar</string>
+    <string name="routine_devices">Dispositivos de Rutina</string>
+    <string name="back_to_routine">Regresar a la rutina</string>
+    <string name="modify_routine_actions">Modificar accionas de rutina para dispositivo:</string>
+    <string name="add_device">Agregar Dispositivo</string>
+    <string name="saveText">Guardar</string>
+    <string name="EntryName">Escriba el nombre</string>
+    <string name="selectType">Seleccione tipo</string>
+    <string name="Cancel">Cancelar</string>
+    <string name="titleText">Agregar dispositivo</string>
+    <string name="help_title">Ayuda</string>
+    <string name="help_description">Bienvenido a la sección de Ayuda!
+            Los dispositivos y rutinas previamente creados se encuentran en el inicio. Para agregar dispositivos a la lista, dijirase a la pestaña "Dispositivos" y seleccione "Nuevo dispositivo".
+            Para eliminar un dispositivo se debe presionar sobre el mismo y seleccionar la opción "Eliminar" dentro de la ventana.
+			Para agregar rutinas a la lista, dijirase a la pestaña "Rutinas" y seleccione "Nueva rutina".
+			Para eliminar una rutina se debe presionar sobre la mismo y seleccionar el tacho dentro de la ventana. </string>
+    <string name="recieve_notifications">Recibir notificaciones</string>
+    <string name="receive_notifications">Recibir notificaciones</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hola fragment vacio</string>
+    <string name="hello_blank_fragment">Hola Mundo</string>
 
 
     <!-- DEVICE NAMES -->
-    <string name="curtain_default">Nombre de cortina</string>
-    <string name="oven_default">Nombre de horno</string>
-    <string name="door_default">Nombre de puerta</string>
-    <string name="light_default">Nombre de luz</string>
-    <string name="alarm_default">Nombre de alarma</string>
-    <string name="fridge_default">Nombre de heladera</string>
+    <string name="curtain_default">Nombre de Cortina</string>
+    <string name="oven_default">Nombre de Horno</string>
+    <string name="door_default">Nombre de Puerta</string>
+    <string name="light_default">Nombre de Luz</string>\
+    <string name="fridge_default">Nombre de Heladera</string>
 
 
     <!-- GENERAL DEVICE STRINGS-->
@@ -28,43 +48,72 @@
 
 
     <!-- CURTAIN STRINGS-->
-    <string name="curtain_button_on">Levantar</string>
-    <string name="curtain_button_off">Bajar</string>
-    <string name="curtain_text_on">Cerrada</string>
-    <string name="curtain_text_off">Abierta</string>
+    <string name="curtain_button_on">Ascender</string>
+    <string name="curtain_button_off">Descender</string>
+    <string name="curtain_text_on">Descendida</string>
+    <string name="curtain_text_off">Ascendida</string>
 
 
     <!-- DOOR STRINGS-->
     <string name="door_text_off">Cerrada</string>
-    <string name="door_button_off">Abierta</string>
-    <string name="lock_text_off">Trabada</string>
-    <string name="lock_button_off">Destrabada</string>
+    <string name="door_button_off">Abrir</string>
+    <string name="lock_text_off">Bloqueada</string>
+    <string name="lock_button_off">Desbloquear</string>
     <string name="door_text_on">Abierta</string>
-    <string name="door_button_on">Cerrada</string>
-    <string name="lock_text_on">Destrabada</string>
-    <string name="lock_button_on">Trabada</string>
-    <string name="Settings">Ajustes</string>
-    <string name="select_devices">Seleccione dispositivos</string>
-    <string name="enter_routine_name">Ingrese nombre...</string>
-    <string name="save_routine">Guardar</string>
-    <string name="routine_devices">Dispositivos de rutina</string>
-    <string name="modify_routine_actions">Modificar funciones de dispositivos en rutinas:</string>
-    <string name="back_to_routine">Volver a rutinas</string>
-    <string name="saveText">Guardar</string>
-    <string name="EntryName">Ingrese nombre...</string>
-    <string name="selectType">Seleccione tipo</string>
-    <string name="Cancel">Cancelar</string>
-    <string name="titleText">Agregar dispositivo</string>
-    <string name="help_title">Help</string>
-    <string name="help_description">Welcome to the help screen!</string>
-
-
-    <!-- ALARM STRINGS-->
+    <string name="door_button_on">Cerrar</string>
+    <string name="lock_text_on">Desbloqueada</string>
+    <string name="lock_button_on">Bloquear</string>
 
     <!-- FRIDGE STRINGS-->
+    <string name="fridge_text_mode">Modo</string>
+    <string name="fridge_text_refrigerator">Temperatura de Refrigerador</string>
+    <string name="fridge_text_fridge">Temperatura de Freezer</string>
+    <string-array name="fridge_mode_array">
+        <item>Estandar</item>
+        <item>Fiesta</item>
+        <item>Eco</item>
+    </string-array>
 
     <!-- OVEN STRINGS-->
+    <string name="oven_state_text">Estado</string>
+    <string name="oven_heat_text">Calor</string>
+    <string name="oven_grill_text">Grill</string>
+    <string name="oven_temperature_text">Temperatura</string>
+    <string name="oven_convection_text">Convección</string>
+    <string-array name="oven_state_array">
+        <item>Prendido</item>
+        <item>Apagado</item>
+    </string-array>
+    <string-array name="oven_convection_array">
+        <item>Normal</item>
+        <item>Eco</item>
+        <item>Apagado</item>
+    </string-array>
+    <string-array name="oven_heat_array">
+        <item>Convenciónal</item>
+        <item>Superior</item>
+        <item>Inferior</item>
+    </string-array>
+    <string-array name="oven_grill_array">
+        <item>Grande</item>
+        <item>Eco</item>
+        <item>Apagado</item>
+    </string-array>
 
     <!-- LIGHT STRINGS-->
+    <string name="lamp_state_text">Estado</string>
+    <string name="lamp_brightness_text">Brillo</string>
+    <string name="lamp_color_text">Color</string>
+
+    <string-array name="lamp_state_array">
+        <item>Prendio</item>
+        <item>Apagado</item>
+    </string-array>
+    <string-array name="lamp_color_array">
+        <item>Estandar</item>
+        <item>Rojo</item>
+        <item>Azul</item>
+        <item>Verde</item>
+    </string-array>
 
 </resources>

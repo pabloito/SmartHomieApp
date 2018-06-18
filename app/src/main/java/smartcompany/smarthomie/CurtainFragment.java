@@ -87,7 +87,7 @@ public class CurtainFragment extends Fragment {
                 createNotificationChannel();
 
                 if(curtain.allowsNotification()) {
-                    Intent intent = new Intent(getContext(), Curtain.class);
+                    Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
@@ -125,7 +125,7 @@ public class CurtainFragment extends Fragment {
         });
     }
 
-    private NotificationChannel createNotificationChannel() {
+    public void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -138,9 +138,7 @@ public class CurtainFragment extends Fragment {
             // or other notification behaviors after this
             NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
-            return channel;
         }
-        return null;
     }
 
 }

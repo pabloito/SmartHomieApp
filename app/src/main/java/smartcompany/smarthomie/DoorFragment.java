@@ -1,8 +1,15 @@
 package smartcompany.smarthomie;
 
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +47,8 @@ public class DoorFragment extends Fragment {
         System.out.println(door);
 
         MainActivity ma = (MainActivity)getActivity();
+
+        createNotificationChannel();
 
         if (ma.getComesFromRoutine()){
             routine = ma.getCurrentRoutine();
@@ -84,6 +93,20 @@ public class DoorFragment extends Fragment {
         doorButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                if(door.allowsNotification()) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                            .setContentTitle(getContext().getString(R.string.notification_title))
+                            .setContentText(getContext().getString(R.string.notification_text_before)+door.name+getContext().getString(R.string.notification_text_after))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setContentIntent(pendingIntent)
+                            .setAutoCancel(true);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                    notificationManager.notify(0, mBuilder.build());
+                }
 
                 String str = getResources().getString(R.string.door_button_off);
 
@@ -103,6 +126,20 @@ public class DoorFragment extends Fragment {
         lockButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                if(door.allowsNotification()) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                            .setContentTitle(getContext().getString(R.string.notification_title))
+                            .setContentText(getContext().getString(R.string.notification_text_before)+door.name+getContext().getString(R.string.notification_text_after))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setContentIntent(pendingIntent)
+                            .setAutoCancel(true);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                    notificationManager.notify(0, mBuilder.build());
+                }
 
                 String str = getResources().getString(R.string.lock_button_off);
 
@@ -128,6 +165,21 @@ public class DoorFragment extends Fragment {
                 toast.show();
             }
         });
+    }
+    public void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(getContext().getString(R.string.channel_name), name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 }

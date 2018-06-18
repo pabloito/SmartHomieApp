@@ -1,8 +1,15 @@
 package smartcompany.smarthomie;
 
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -44,6 +51,7 @@ public class FridgeFragment extends Fragment {
         fridge = (Fridge) ((MainActivity)getActivity()).getCurrentDevice();
         System.out.println(fridge);
 
+        createNotificationChannel();
         MainActivity ma = (MainActivity)getActivity();
 
         if (ma.getComesFromRoutine()){
@@ -90,6 +98,20 @@ public class FridgeFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
+                        if(fridge.allowsNotification()) {
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                    .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                    .setContentTitle(getContext().getString(R.string.notification_title))
+                                    .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                    .setContentIntent(pendingIntent)
+                                    .setAutoCancel(true);
+                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                            notificationManager.notify(0, mBuilder.build());
+                        }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         fridge.setFreezerTemperature(curr);
                         System.out.println(curr);
@@ -111,6 +133,20 @@ public class FridgeFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
+                        if(fridge.allowsNotification()) {
+                            Intent intent = new Intent(getContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                    .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                    .setContentTitle(getContext().getString(R.string.notification_title))
+                                    .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                    .setContentIntent(pendingIntent)
+                                    .setAutoCancel(true);
+                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                            notificationManager.notify(0, mBuilder.build());
+                        }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         fridge.setRefridgeratorTemperature(curr);
                         System.out.println(curr);
@@ -126,7 +162,20 @@ public class FridgeFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 fridge.setMode(array[index]);
                 System.out.println("you have selected: "+array[index]);
-
+                if(fridge.allowsNotification()) {
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                            .setContentTitle(getContext().getString(R.string.notification_title))
+                            .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                            .setContentIntent(pendingIntent)
+                            .setAutoCancel(true);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                    notificationManager.notify(0, mBuilder.build());
+                }
             }
 
             @Override
@@ -145,5 +194,20 @@ public class FridgeFragment extends Fragment {
                 toast.show();
             }
         });
+    }
+    public void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(getContext().getString(R.string.channel_name), name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

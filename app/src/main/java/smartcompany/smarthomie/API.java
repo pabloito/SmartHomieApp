@@ -153,7 +153,7 @@ public class API {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(currentContext,"No se pudo conectar con la API",Toast.LENGTH_LONG).show();
             }
         });
 

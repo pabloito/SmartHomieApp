@@ -1,13 +1,6 @@
 package smartcompany.smarthomie;
 
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
@@ -57,35 +50,10 @@ public class CurtainFragment extends Fragment {
 
             Button back = view.findViewById(R.id.backToRoutine);
 
-            Intent notificationIntent = new Intent(getContext(), MainActivity.class);
-
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getContext());
-            stackBuilder.addParentStack(MainActivity.class);
-            stackBuilder.addNextIntent(notificationIntent);
-
-            final PendingIntent contentIntent =
-                    stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
             back.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     ((MainActivity)getActivity()).externalSetFragment("routineFragment");
-
-                    Notification notification = new Notification.Builder(getContext())
-                            .setContentTitle(getResources().getString(R.string.notification_title))
-                            .setContentText(getResources().getString(R.string.notification_text))
-                            .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                            .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                            .setLargeIcon(BitmapFactory.decodeResource(getResources(), android.R.drawable.stat_sys_download_done))
-                            .setSmallIcon(android.R.drawable.stat_sys_download_done)
-                            .setContentIntent(contentIntent).build();
-
-                    NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-
-                    // Ignore deprecated warning. In newer devices SDK 16+ should use build() method.
-                    // getNotification() method internally calls build() method.
-                    notificationManager.notify(MY_NOTIFICATION_ID, notification);
-
                 }
             });
         }

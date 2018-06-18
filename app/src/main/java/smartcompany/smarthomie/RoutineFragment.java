@@ -84,6 +84,7 @@ public class RoutineFragment extends Fragment {
         Log.d("a",device.type);
         switch(device.type){
             case "Curtain":
+                imageView.setImageResource(R.drawable.curtain);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -97,6 +98,7 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Fridge":
+                imageView.setImageResource(R.drawable.fridge);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -111,6 +113,7 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Door":
+                imageView.setImageResource(R.drawable.door);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -124,6 +127,7 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Light":
+                imageView.setImageResource(R.drawable.light);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -137,6 +141,7 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Oven":
+                imageView.setImageResource(R.drawable.oven);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {

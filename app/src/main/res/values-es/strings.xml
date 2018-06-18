@@ -6,12 +6,8 @@
     <string name="action_help">Ayuda</string>
     <string name="action_settings">Configuraciones</string>
     <string name="new_device">Nuevo dispositivo</string>
-<<<<<<< HEAD
-    <string name="new_routine">Nueva rutina</string>
-    <string name="receive_notif">Recibe notificaciones</string>
     <string name="notification_title">Notificación !</string>
     <string name="notification_text">Se realizó la acción deseada.</string>
-=======
     <string name="new_routine">Nueva Rutina</string>
     <string name="Settings">Configuraciones</string>
     <string name="receive_notif">Reciba notificaciones</string>
@@ -35,7 +31,6 @@
 			Para eliminar una rutina se debe presionar sobre la mismo y seleccionar el tacho dentro de la ventana. </string>
     <string name="recieve_notifications">Recibir notificaciones</string>
     <string name="receive_notifications">Recibir notificaciones</string>
->>>>>>> master
 
 
     <!-- TODO: Remove or change this placeholder text -->

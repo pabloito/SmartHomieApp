@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -76,8 +77,7 @@ public class HomeFragment extends Fragment {
 
         devices.addView(deviceView);
 
-
-        View imageView = deviceView.findViewById(R.id.image_view);
+        ImageView imageView = (ImageView) deviceView.findViewById(R.id.image_view);
 
         switch(device.type){
             case "Curtain":
@@ -93,6 +93,7 @@ public class HomeFragment extends Fragment {
                         ma.externalSetFragment("curtainFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.curtain);
                 break;
             case "Fridge":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -107,6 +108,7 @@ public class HomeFragment extends Fragment {
                         ma.externalSetFragment("fridgeFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.fridge);
                 break;
             case "Door":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -120,6 +122,7 @@ public class HomeFragment extends Fragment {
                         ma.externalSetFragment("doorFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.door);
                 break;
             case "Light":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -133,6 +136,7 @@ public class HomeFragment extends Fragment {
                         ma.externalSetFragment("lightFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.light);
                 break;
             case "Oven":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -146,6 +150,7 @@ public class HomeFragment extends Fragment {
                         ma.externalSetFragment("ovenFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.oven);
                 break;
         }
     }

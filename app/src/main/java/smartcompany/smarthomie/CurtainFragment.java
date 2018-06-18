@@ -90,6 +90,9 @@ public class CurtainFragment extends Fragment {
             });
         }
 
+        final TextView title = (TextView) view.findViewById(R.id.curtain_title);
+        title.setText(curtain.getName());
+
         final Button curtainButton = (Button) view.findViewById(R.id.curtain_button);
         final TextView curtainText= (TextView) view.findViewById(R.id.curtain_text);
         final Button removeButton = (Button) view.findViewById(R.id.curtain_remove_button);

@@ -76,7 +76,7 @@ public class NewDeviceFragment extends Fragment {
                     toast.show();
                 }
 
-                if(nameIsUsed(str)){
+                if(/*nameIsUsed(str)*/true){
                     Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
                             Toast.LENGTH_SHORT);
                     toast.show();

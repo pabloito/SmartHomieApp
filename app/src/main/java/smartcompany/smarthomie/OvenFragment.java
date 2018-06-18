@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -56,6 +57,9 @@ public class OvenFragment extends Fragment {
                 }
             });
         }
+
+        final TextView title = (TextView) view.findViewById(R.id.oven_title);
+        title.setText(oven.getName());
 
 
         final SeekBar ovenTemperatureSlider = (SeekBar) view.findViewById(R.id.oven_temperature_slider);

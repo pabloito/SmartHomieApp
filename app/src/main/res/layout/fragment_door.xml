@@ -18,10 +18,13 @@
             android:orientation="vertical"></LinearLayout>
 
         <TextView
+            android:id="@+id/door_title"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:gravity="center_vertical|center"
-            android:text="@string/door_default" />
+            android:text="@string/door_default"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -50,7 +53,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/door_text_off" />
+                            android:text="@string/door_text_off"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -63,7 +67,7 @@
                             android:id="@+id/door_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/door_button_off" />
+                            android:text="@string/door_button_off"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -83,7 +87,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/lock_text_off" />
+                            android:text="@string/lock_text_off"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -96,7 +101,7 @@
                             android:id="@+id/lock_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/lock_button_off" />
+                            android:text="@string/lock_button_off"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -117,7 +122,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/remove_device_text" />
+                            android:text="@string/remove_device_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -130,7 +136,7 @@
                             android:id="@+id/door_remove_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/remove_device_text" />
+                            android:text="@string/remove_device_text"/>
                     </LinearLayout>
 
                 </TableRow>

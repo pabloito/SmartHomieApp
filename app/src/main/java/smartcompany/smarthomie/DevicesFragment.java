@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,7 +73,7 @@ public class DevicesFragment extends Fragment {
             }
         });
 
-        View imageView = deviceView.findViewById(R.id.image_view);
+        ImageView imageView = deviceView.findViewById(R.id.image_view);
 
         switch(device.type){
             case "Curtain":
@@ -88,6 +89,7 @@ public class DevicesFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.curtain);
                 break;
             case "Fridge":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -102,6 +104,7 @@ public class DevicesFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.fridge);
                 break;
             case "Door":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -116,6 +119,7 @@ public class DevicesFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("doorFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.door);
                 break;
             case "Light":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -130,6 +134,7 @@ public class DevicesFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("lightFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.light);
                 break;
             case "Oven":
                 imageView.setOnClickListener(new View.OnClickListener(){
@@ -144,6 +149,7 @@ public class DevicesFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.oven);
                 break;
 
         }

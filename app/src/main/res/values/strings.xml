@@ -9,8 +9,31 @@
     <string name="new_routine">New routine</string>
     <string name="Settings">Settings</string>
     <string name="receive_notif">Receive notifications</string>
+<<<<<<< HEAD
     <string name="notification_title">Notification !</string>
     <string name="notification_text">The desired action was executed.</string>
+=======
+    <string name="select_devices">Select Devices</string>
+    <string name="enter_routine_name">Entry name...</string>
+    <string name="save_routine">Save</string>
+    <string name="routine_devices">Routine Devices</string>
+    <string name="back_to_routine">Back to routine</string>
+    <string name="modify_routine_actions">Modify routine actions for device:</string>
+    <string name="add_device">AddDevice</string>
+    <string name="saveText">Save</string>
+    <string name="EntryName">Entry name...</string>
+    <string name="selectType">Select Type</string>
+    <string name="Cancel">Cancel</string>
+    <string name="titleText">Add device</string>
+    <string name="help_title">Help</string>
+    <string name="help_description">Welcome to the help screen!
+            Previously created devices and routines are found in the home. To add new devices to the list, make your way to the "Devices" tab and select "New Device".
+            To remove a device tap on it and select the "Remove" option inside the newly opened window.
+            To add a routine to the list, make your way to the "Routines" tab and select "New Routine".
+            To delete a routine tap on it and select the "Remove" option inside the newly opened window.</string>
+    <string name="recieve_notifications">Recieve notifications</string>
+    <string name="receive_notifications">Receive Notifications</string>
+>>>>>>> master
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -87,18 +110,7 @@
     <string name="lamp_state_text">State</string>
     <string name="lamp_brightness_text">Brightness</string>
     <string name="lamp_color_text">Color</string>
-    <string name="select_devices">Select Devices</string>
-    <string name="enter_routine_name">Entry name...</string>
-    <string name="save_routine">Save</string>
-    <string name="routine_devices">Routine Devices</string>
-    <string name="back_to_routine">Back to routine</string>
-    <string name="modify_routine_actions">Modify routine actions for device:</string>
-    <string name="add_device">AddDevice</string>
-    <string name="saveText">Save</string>
-    <string name="EntryName">Entry name...</string>
-    <string name="selectType">Select Type</string>
-    <string name="Cancel">Cancel</string>
-    <string name="titleText">Add device</string>
+
     <string-array name="lamp_state_array">
         <item>On</item>
         <item>Off</item>

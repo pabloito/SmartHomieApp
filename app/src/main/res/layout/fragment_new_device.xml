@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:gravity="center_vertical|center"
-        android:text="@string/titleText" />
+        android:text="@string/titleText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@android:color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -39,7 +41,8 @@
                         android:layout_height="wrap_content"
                         android:ems="100"
                         android:inputType="textPersonName"
-                        android:text="@string/EntryName" />
+                        android:text="@string/EntryName"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
 
             </TableRow>
@@ -59,7 +62,8 @@
                     <TextView
                         android:layout_width="149dp"
                         android:layout_height="33dp"
-                        android:text="@string/selectType" />
+                        android:text="@string/selectType"
+                        android:textColor="@android:color/white"/>
 
                 </LinearLayout>
 
@@ -75,7 +79,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:drawable/btn_dropdown"
-                        android:spinnerMode="dropdown"/>
+                        android:spinnerMode="dropdown"
+                        android:textColor="@android:color/white"/>
                 </LinearLayout>
             </TableRow>
 
@@ -94,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/saveText" />
+                        android:text="@string/saveText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/Cancel" />
+                        android:text="@string/Cancel"/>
                 </LinearLayout>
             </TableRow>
         </TableLayout>

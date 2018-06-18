@@ -13,7 +13,6 @@ public class Curtain extends Device {
 
     public void raiseCurtain(){
         raised=true;
-
     }
     public void lowerCurtain(){
         raised=false;

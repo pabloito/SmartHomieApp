@@ -57,6 +57,8 @@ public class DoorFragment extends Fragment {
             });
         }
 
+        final TextView title = (TextView) view.findViewById(R.id.door_title);
+        title.setText(door.getName());
 
         final Button doorButton = (Button) view.findViewById(R.id.door_button);
         final TextView doorText= (TextView) view.findViewById(R.id.door_text);

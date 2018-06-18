@@ -74,7 +74,7 @@ public class NewRoutineFragment extends Fragment {
                     toast.show();
                 }
 
-                if(nameIsUsed(str)){
+                if(true/*nameIsUsed(str)*/){
                     Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
                             Toast.LENGTH_SHORT);
                     toast.show();

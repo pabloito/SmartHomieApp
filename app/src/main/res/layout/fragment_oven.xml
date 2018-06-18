@@ -18,10 +18,13 @@
             android:orientation="vertical"></LinearLayout>
 
         <TextView
+            android:id="@+id/oven_title"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:gravity="center_vertical|center"
-            android:text="@string/oven_default" />
+            android:text="@string/oven_default"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -50,7 +53,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_state_text" />
+                            android:text="@string/oven_state_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -64,7 +68,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:drawable/btn_dropdown"
-                            android:spinnerMode="dropdown" />
+                            android:spinnerMode="dropdown"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -84,7 +89,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_heat_text" />
+                            android:text="@string/oven_heat_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -98,7 +104,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:drawable/btn_dropdown"
-                            android:spinnerMode="dropdown" />
+                            android:spinnerMode="dropdown"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -118,7 +125,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_grill_text" />
+                            android:text="@string/oven_grill_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -133,7 +141,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@android:drawable/btn_dropdown"
-                            android:spinnerMode="dropdown" />
+                            android:spinnerMode="dropdown"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -153,7 +162,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_temperature_text" />
+                            android:text="@string/oven_temperature_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -188,7 +198,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_convection_text" />
+                            android:text="@string/oven_convection_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -202,7 +213,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@android:drawable/btn_dropdown"
-                            android:spinnerMode="dropdown" />
+                            android:spinnerMode="dropdown"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                 </TableRow>
@@ -223,7 +235,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/remove_device_text" />
+                            android:text="@string/remove_device_text"
+                            android:textColor="@android:color/white"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -236,7 +249,7 @@
                             android:id="@+id/oven_remove_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/remove_device_text" />
+                            android:text="@string/remove_device_text"/>
                     </LinearLayout>
 
                 </TableRow>

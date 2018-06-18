@@ -23,6 +23,8 @@
     <string name="selectType">Select Type</string>
     <string name="Cancel">Cancel</string>
     <string name="titleText">Add device</string>
+    <string name="channel_name">Channel</string>
+    <string name="channel_description">Channel</string>
     <string name="help_title">Help</string>
     <string name="help_description">Welcome to the help screen!
             Previously created devices and routines are found in the home. To add new devices to the list, make your way to the "Devices" tab and select "New Device".

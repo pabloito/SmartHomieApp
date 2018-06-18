@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,7 +80,7 @@ public class RoutineFragment extends Fragment {
         TextView t = routineView.findViewById(R.id.item_name);
         t.append(device.name);
 
-        View imageView = routineView.findViewById(R.id.image_view);
+        ImageView imageView = routineView.findViewById(R.id.image_view);
         Log.d("a",device.type);
         switch(device.type){
             case "Curtain":
@@ -147,6 +148,7 @@ public class RoutineFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
                     }
                 });
+                imageView.setImageResource(R.drawable.fridge);
                 break;
             default:
                 Log.d("a","default");

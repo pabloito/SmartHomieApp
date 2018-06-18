@@ -62,7 +62,7 @@ public class NewDeviceFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                boolean ok = true;
                 Pattern cmp = Pattern.compile("^[a-z|A-Z|0-9_]+( [a-z|A-Z|0-9_]+)*$");
                 Editable str = selectType.getText();
 
@@ -70,12 +70,14 @@ public class NewDeviceFragment extends Fragment {
                     Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos un caracter !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
                 }
 
                 if(str.length() < 3){
                     Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos 3 caracteres !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
                 }
 
                 Matcher real = cmp.matcher(str);
@@ -84,13 +86,23 @@ public class NewDeviceFragment extends Fragment {
                     Toast toast = Toast.makeText(getContext(), "El nombre tiene caracteres inválidos !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
+                }
+                if (API.getDevicesMap() != null){
+                    if(API.getDevicesMap().containsKey(selectType.getText().toString())){
+                      Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
+                            Toast.LENGTH_SHORT);
+                        toast.show();
+                        ok = false;
+                    }
                 }
 
-                if(/*nameIsUsed(str)*/true){
-                    Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
+                if (ok) {
+                    String type = dropdown.getSelectedItem().toString().toLowerCase();
+                    type = DevicesTypes.TypeId(type);
+                    API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null));
                 }
+
             }
         });
     }

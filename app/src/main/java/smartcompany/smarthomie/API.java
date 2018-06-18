@@ -11,7 +11,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,7 +18,6 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +26,7 @@ public class API {
     static private RequestQueue rQueue = null;
     static private boolean alreadyInit = false;
     static private Gson gson;
-    static private Context curretContext;
+    static private Context currentContext;
     static private String baseUrl;
     static private HashMap<String,Device> devicesMap;
 
@@ -43,7 +41,7 @@ public class API {
     }
 
     public static void ChangeContext(Context context) {
-        curretContext = context;
+        currentContext = context;
         baseUrl = context.getString(R.string.BaseUrl);
         rQueue = Volley.newRequestQueue(context);
     }
@@ -114,7 +112,7 @@ public class API {
         if(rQueue!=null) {
             String requestUrl = baseUrl + "/devices/" + d.getId() + "/" + eventName;
 
-            Toast.makeText(curretContext,"",Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext,"",Toast.LENGTH_LONG).show();
 
             JSONArray arrayParameters = new JSONArray();
             arrayParameters.put(parameters);
@@ -133,5 +131,32 @@ public class API {
             rQueue.add(request);
             rQueue.start();
         }
+    }
+
+    public static void AddNewDevice(Device d) {
+        String requestUrl = baseUrl + "/devices/";
+        JSONObject requestJson = new JSONObject();
+        try {
+            requestJson.put("typeId" , d.getTypeId());
+            requestJson.put("name",d.getName());
+            if (d.getMeta() != null) requestJson.put("meta",d.getMeta());
+        }catch (Exception e) {
+            Toast.makeText(currentContext,"Cannot add Device, check the device properties",Toast.LENGTH_LONG).show();
+        }
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, requestUrl, requestJson, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(currentContext,"Dispositivo Agregado!",Toast.LENGTH_LONG).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        rQueue.add(jsonRequest);
+        rQueue.start();
     }
 }

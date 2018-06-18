@@ -93,7 +93,8 @@ public class DoorFragment extends Fragment {
         doorButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(door.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(door)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -126,7 +127,8 @@ public class DoorFragment extends Fragment {
         lockButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                if(door.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(door)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);

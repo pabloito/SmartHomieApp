@@ -86,7 +86,8 @@ public class CurtainFragment extends Fragment {
 
                 createNotificationChannel();
 
-                if(curtain.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(curtain)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);

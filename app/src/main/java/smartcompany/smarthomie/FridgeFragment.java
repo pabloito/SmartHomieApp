@@ -98,7 +98,8 @@ public class FridgeFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
-                        if(fridge.allowsNotification()) {
+                        MainActivity m = (MainActivity) (getActivity());
+                        if(m.allowsNotification(fridge)) {
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -133,8 +134,9 @@ public class FridgeFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
-                        if(fridge.allowsNotification()) {
-                            Intent intent = new Intent(getContext(), MainActivity.class);
+                        MainActivity m = (MainActivity) (getActivity());
+                        if(m.allowsNotification(fridge)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
@@ -162,7 +164,8 @@ public class FridgeFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 fridge.setMode(array[index]);
                 System.out.println("you have selected: "+array[index]);
-                if(fridge.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(fridge)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);

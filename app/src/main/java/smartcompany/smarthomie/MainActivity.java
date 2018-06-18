@@ -1,5 +1,8 @@
 package smartcompany.smarthomie;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.annotation.NonNull;
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, Device> devicesMap;
     HashMap<String, Routine> routinesMap;
     //-------------------------------------------------------
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,4 +256,20 @@ public class MainActivity extends AppCompatActivity {
         return comesFromRoutine;
     }
 
+    public boolean allowsNotification(Device d){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Log.d("NOTIF",d.name);
+        int ret;
+        if((ret=prefs.getInt(d.name,3))==3){
+            new Exception("device not created");
+        }
+        else if (ret==0){
+            Log.d("NOTIF","false");
+            return false;
+        }
+
+        Log.d("NOTIF","true");
+        return true;
+    }
 }

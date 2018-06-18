@@ -1,8 +1,11 @@
 package smartcompany.smarthomie;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +24,6 @@ import java.util.HashMap;
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment {
-
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -76,10 +78,38 @@ public class SettingsFragment extends Fragment {
         check.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "check HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
+                MainActivity ma = ((MainActivity)getActivity());
+                View parent = (View)v.getParent().getParent();
+                String name = ((TextView)parent.findViewById(R.id.rel_layout).findViewById(R.id.item_name)).getText().toString();
+                Device d = ma.getDevicesMap().get(name);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                CheckBox check = v.findViewById(R.id.checkBox);
+                if(check.isChecked()){
+                    editor.putInt(d.name,1);
+                }
+                else{
+                    editor.putInt(d.name,0);
+                }
             }
         });
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = prefs.edit();
+
+        int ret;
+        if(prefs.getInt(device.name,3)==3){
+            editor.putInt(device.name, 0);
+        }
+
+        ret=prefs.getInt(device.name,3);
+        if(ret==1){
+            check.setChecked(true);
+        }
+
+        if(ret==0){
+            check.setChecked(false);
+        }
     }
 
     public void drawDevices(View view){

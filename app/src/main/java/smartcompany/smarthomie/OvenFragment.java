@@ -98,7 +98,8 @@ public class OvenFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
-                        if(oven.allowsNotification()) {
+                        MainActivity m = (MainActivity) (getActivity());
+                        if(m.allowsNotification(oven)) {
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -128,7 +129,8 @@ public class OvenFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 oven.setState(array[index]);
-                if(oven.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(oven)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -163,8 +165,9 @@ public class OvenFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 oven.setConvection(array[index]);
-                if(oven.allowsNotification()) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(oven)) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
@@ -198,7 +201,8 @@ public class OvenFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 oven.setGrill(array[index]);
-                if(oven.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(oven)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -232,7 +236,8 @@ public class OvenFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 oven.setHeat(array[index]);
-                if(oven.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(oven)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);

@@ -1,5 +1,8 @@
 package smartcompany.smarthomie;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 public class Device {
     String name;
     String type;
@@ -12,10 +15,6 @@ public class Device {
     public Device(String name, String type){
         this.name = name;
         this.type = type;
-    }
-
-    public boolean allowsNotification(){
-        return true;
     }
 
     public String getName() {

@@ -94,7 +94,8 @@ public class LightFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
-                        if(light.allowsNotification()) {
+                        MainActivity m = (MainActivity) (getActivity());
+                        if(m.allowsNotification(light)) {
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -124,7 +125,8 @@ public class LightFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 light.setState(array[index]);
-                if(light.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(light)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
@@ -159,7 +161,8 @@ public class LightFragment extends Fragment {
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 light.setColor(array[index]);
-                if(light.allowsNotification()) {
+                MainActivity m = (MainActivity) (getActivity());
+                if(m.allowsNotification(light)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);

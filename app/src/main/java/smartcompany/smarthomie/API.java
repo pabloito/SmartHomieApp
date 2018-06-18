@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -153,6 +154,62 @@ public class API {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+            }
+        });
+
+        rQueue.add(jsonRequest);
+        rQueue.start();
+    }
+
+    public static void RemoveDevice(Device d) {
+        String requestUrl = baseUrl + "/devices/" + d.getId();
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.DELETE, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            if(response.getBoolean("result")){
+                                Toast.makeText(currentContext,"Dispositivo borrado con exito",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(currentContext,"No se pudo remover el dispositivo",Toast.LENGTH_LONG).show();
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonRequest);
+        rQueue.start();
+    }
+
+    public static void RemoveDevice(String id) {
+        String requestUrl = baseUrl + "/devices/" + id;
+
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.DELETE, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            if(response.getBoolean("result")){
+                                Toast.makeText(currentContext,"Dispositivo borrado con exito",Toast.LENGTH_LONG).show();
+                            }else{
+                                Toast.makeText(currentContext,"No se pudo remover el dispositivo",Toast.LENGTH_LONG).show();
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
             }
         });
 

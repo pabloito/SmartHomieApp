@@ -40,9 +40,9 @@
                         android:layout_width="357dp"
                         android:layout_height="wrap_content"
                         android:ems="100"
+                        android:hint="@string/EntryName"
                         android:inputType="textPersonName"
-                        android:text="@string/EntryName"
-                        android:textColor="@android:color/white"/>
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
 
             </TableRow>

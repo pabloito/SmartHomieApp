@@ -19,7 +19,7 @@
     <string name="routine_devices">Routine Devices</string>
     <string name="back_to_routine">Back to routine</string>
     <string name="modify_routine_actions">Modify routine actions for device:</string>
-    <string name="add_device">AddDevice</string>
+    <string name="add_device">Add Device</string>
     <string name="saveText">Save</string>
     <string name="EntryName">Entry name...</string>
     <string name="selectType">Select Type</string>

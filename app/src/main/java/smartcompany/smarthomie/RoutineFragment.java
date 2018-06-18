@@ -96,7 +96,6 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Fridge":
-                Log.d("a","CLICKf");
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {

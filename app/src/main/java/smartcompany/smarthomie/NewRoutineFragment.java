@@ -85,7 +85,7 @@ public class NewRoutineFragment extends Fragment {
 
     public void addDevices(View view, Device device){
         TableLayout devices = view.findViewById(R.id.new_routine_scroll);
-        View newRoutineView = getLayoutInflater().inflate(R.layout.layout_settings_listitem,((ViewGroup)getView().getParent()),false);
+        View newRoutineView = getLayoutInflater().inflate(R.layout.new_routine_listitem,((ViewGroup)getView().getParent()),false);
 
         devices.addView(newRoutineView);
 

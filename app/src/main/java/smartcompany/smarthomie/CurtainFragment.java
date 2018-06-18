@@ -86,19 +86,16 @@ public class CurtainFragment extends Fragment {
 
                 createNotificationChannel();
 
-                System.out.println("entered");
-
                 if(curtain.allowsNotification()) {
-                    System.out.println("entered");
                     Intent intent = new Intent(getContext(), Curtain.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
                             .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle("Test Notification")
-                            .setContentText("Test Notification")
+                            .setContentTitle(getContext().getString(R.string.notification_title))
+                            .setContentText(getContext().getString(R.string.notification_text_before)+curtain.name+getContext().getString(R.string.notification_text_after))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)    
+                            .setContentIntent(pendingIntent)
                             .setAutoCancel(true);
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                     notificationManager.notify(0, mBuilder.build());

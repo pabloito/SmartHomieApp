@@ -14,7 +14,12 @@ public class Device {
         this.type = type;
     }
 
+    public boolean allowsNotification(){
+        return true;
+    }
+
     public String getName() {
         return name;
     }
+
 }

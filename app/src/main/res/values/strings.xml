@@ -9,8 +9,9 @@
     <string name="new_routine">New routine</string>
     <string name="Settings">Settings</string>
     <string name="receive_notif">Receive notifications</string>
-    <string name="notification_title">Notification !</string>
-    <string name="notification_text">The desired action was executed.</string>
+    <string name="notification_title">Device Change!</string>
+    <string name="notification_text_before"> </string>
+    <string name="notification_text_after">\'s value changed!</string>
     <string name="select_devices">Select Devices</string>
     <string name="enter_routine_name">Entry name...</string>
     <string name="save_routine">Save</string>

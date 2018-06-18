@@ -7,12 +7,14 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,8 +48,16 @@ public class NewDeviceFragment extends Fragment {
         final TextView title = (TextView) view.findViewById(R.id.titleName);
         final Spinner dropdown = (Spinner) view.findViewById(R.id.dropdownTypes);
 
-        String[] items = new String[]{DevicesTypes.BLIND.TypeName(),DevicesTypes.OVEN.TypeName(),DevicesTypes.REFRIGERATOR.TypeName(),DevicesTypes.LAMP.TypeName(),DevicesTypes.DOOR.TypeName()};
+        cancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                ((MainActivity)getActivity()).externalSetFragment("homeFragment");
+            }
+        });
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(view.getContext(),R.array.devices,R.layout.support_simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dropdown.setAdapter(adapter);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override

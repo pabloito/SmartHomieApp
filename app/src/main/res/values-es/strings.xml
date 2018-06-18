@@ -122,4 +122,12 @@
         <item>Verde</item>
     </string-array>
 
+    <string-array name="devices">
+        <item>Heladera</item>
+        <item>Luz</item>
+        <item>Horno</item>
+        <item>Puerta</item>
+        <item>Cortina</item>
+    </string-array>
+
 </resources>

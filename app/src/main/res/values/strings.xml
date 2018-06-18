@@ -125,4 +125,13 @@
         <item>Green</item>
     </string-array>
 
+    <string-array name="devices">
+        <item>Fridge</item>
+        <item>Light</item>
+        <item>Oven</item>
+        <item>Door</item>
+        <item>Curtain</item>
+    </string-array>
+
+
 </resources>

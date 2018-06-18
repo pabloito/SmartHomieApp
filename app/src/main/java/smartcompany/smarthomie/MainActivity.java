@@ -1,6 +1,6 @@
 package smartcompany.smarthomie;
 
-import android.content.Context;
+import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -15,7 +15,23 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONObject;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private boolean comesFromRoutine = false;
@@ -43,17 +59,21 @@ public class MainActivity extends AppCompatActivity {
     //---------- ACA ESTA TODA LA DATA QUE LEE DE LA API-----
     // Se actualiza con las funciones updateDevices y updateRoutines
     //-------------------------------------------------------
-    HashMap<String, Device> devicesMap;
-    HashMap<String, Routine> routinesMap;
+    HashMap<String, Device> devicesMap = new HashMap<>();
+    HashMap<String, Routine> routinesMap = new HashMap<>();
     //-------------------------------------------------------
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMainFrame = (FrameLayout) findViewById(R.id.main_frame);
-        mMainNav = (BottomNavigationView) findViewById(R.id.main_nav);
+        API.initAPIConnection(getApplicationContext());
+        API.SendAndRequestAllDevices();
+
+        mMainFrame =  findViewById(R.id.main_frame);
+        mMainNav =  findViewById(R.id.main_nav);
 
         homeFragment = new HomeFragment();
         devicesFragment = new DevicesFragment();
@@ -70,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         ovenFragment = new OvenFragment();
         doorFragment = new DoorFragment();
 
-        android.support.v7.widget.Toolbar myToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.my_toolbar);
+        android.support.v7.widget.Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         setFragment(homeFragment);
@@ -92,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void onStart(){
+        super.onStart();
     }
 
     @Override
@@ -149,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
     private void setUpCurtainFragment(){
         setFragment(curtainFragment);
     }
-
 
     private void setFragment(Fragment fragment){
         if(getSupportFragmentManager().findFragmentByTag("current") instanceof RoutineFragment){
@@ -210,14 +233,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateDevices(){
-        devicesMap = new HashMap<>();
-
-        // placeholer @nacho
-        devicesMap.put("Cortina del quincho",new Curtain("Cortina del quincho","Curtain"));
-        devicesMap.put("freezer",new Fridge("freezer","Fridge", getApplicationContext()));
-        devicesMap.put("hornito ",new Oven("hornito ","Oven", getApplicationContext()));
-        devicesMap.put("luz del pasillo",new Light("luz del pasillo","Light", getApplicationContext()));
-        devicesMap.put("puertita",new Door("puertita","Door"));
+        devicesMap = API.getDevicesMap();
     }
 
     public void updateRoutines(){

@@ -8,19 +8,19 @@ public class Fridge extends Device {
     private int freezerTemperature;
     private int refridgeratorTemperature;
     private String mode;
-    private Context context;
     private int modeIndex;
 
-    public Fridge(String name) {
-        super(name);
-    }
-
-    public Fridge(String name, String type, Context context) {
-        super(name, type);
+    public Fridge(String id, String name, String meta) {
+        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), meta);
         freezerTemperature= -14;
         refridgeratorTemperature=5;
-        mode=context.getResources().getStringArray(R.array.fridge_mode_array)[0];
-        this.context=context;
+        modeIndex=0;
+    }
+
+    public Fridge(String id, String name) {
+        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), null);
+        freezerTemperature= -14;
+        refridgeratorTemperature=5;
         modeIndex=0;
     }
 
@@ -48,7 +48,7 @@ public class Fridge extends Device {
         this.refridgeratorTemperature = refridgeratorTemperature;
     }
     public void setMode(String mode){
-        String[] array=context.getResources().getStringArray(R.array.fridge_mode_array);
+        /*String[] array=context.getResources().getStringArray(R.array.fridge_mode_array);
         this.mode=mode;
         if(mode.equals(array[0])){
             modeIndex=0;
@@ -58,6 +58,6 @@ public class Fridge extends Device {
         }
         if(mode.equals(array[2])){
             modeIndex=2;
-        }
+        }*/
     }
 }

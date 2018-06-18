@@ -1,6 +1,7 @@
 package smartcompany.smarthomie;
 
 
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -73,85 +74,38 @@ public class HomeFragment extends Fragment {
         View deviceView = getLayoutInflater().inflate(R.layout.layout_listitem,((ViewGroup)getView().getParent()),false);
 
         TextView t = deviceView.findViewById(R.id.item_name);
-        t.append(device.name);
+        t.append(device.getName());
 
         devices.addView(deviceView);
 
+
         ImageView imageView = (ImageView) deviceView.findViewById(R.id.image_view);
 
-        switch(device.type){
-            case "Curtain":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        Log.d("NAME",d.name);
-                        ma.setCurrentDevice(d);
-                        ma.externalSetFragment("curtainFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.curtain);
-                break;
-            case "Fridge":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        Log.d("a",device.name);
-                        ma.setCurrentDevice(d);
-                        ma.externalSetFragment("fridgeFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.fridge);
-                break;
-            case "Door":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ma.externalSetFragment("doorFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.door);
-                break;
-            case "Light":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ma.externalSetFragment("lightFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.light);
-                break;
-            case "Oven":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ma.externalSetFragment("ovenFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.oven);
-                break;
+        imageView.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View v) {
+                                             MainActivity ma = ((MainActivity) getActivity());
+                                             View parent = (View) v.getParent();
+                                             String name = ((TextView) parent.findViewById(R.id.item_name)).getText().toString();
+                                             Device d = ma.getDevicesMap().get(name);
+                                             Toast.makeText(getContext(),DevicesTypes.TypeName(d.getTypeId()),Toast.LENGTH_LONG).show();
+                                             ma.setCurrentDevice(d);
+                                             ma.externalSetFragment(DevicesTypes.TypeName(d.getTypeId()) + "Fragment");
+                                         }
+                                     });
+
+        String deviceType = device.getTypeId();
+
+        if(deviceType.equals(DevicesTypes.DOOR.TypeId())) {
+            imageView.setImageResource(R.drawable.door);
+        }else if(deviceType.equals(DevicesTypes.BLIND.TypeId())) {
+            imageView.setImageResource(R.drawable.curtain);
+        }else if(deviceType.equals(DevicesTypes.LAMP.TypeId())) {
+            imageView.setImageResource(R.drawable.light);
+        }else if(deviceType.equals(DevicesTypes.OVEN.TypeId())) {
+            imageView.setImageResource(R.drawable.oven);
+        }else if(deviceType.equals(DevicesTypes.REFRIGERATOR.TypeId())) {
+            imageView.setImageResource(R.drawable.fridge);
         }
     }
 

@@ -47,9 +47,7 @@ public class DoorFragment extends Fragment {
         System.out.println(door);
 
         MainActivity ma = (MainActivity)getActivity();
-
         createNotificationChannel();
-
         if (ma.getComesFromRoutine()){
             routine = ma.getCurrentRoutine();
             LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
@@ -93,6 +91,7 @@ public class DoorFragment extends Fragment {
         doorButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 MainActivity m = (MainActivity) (getActivity());
                 if(m.allowsNotification(door)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
@@ -142,7 +141,6 @@ public class DoorFragment extends Fragment {
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                     notificationManager.notify(0, mBuilder.build());
                 }
-
                 String str = getResources().getString(R.string.lock_button_off);
 
                 if(lockButton.getText().equals(str)){ //TURINING ON CASE
@@ -168,6 +166,7 @@ public class DoorFragment extends Fragment {
             }
         });
     }
+
     public void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

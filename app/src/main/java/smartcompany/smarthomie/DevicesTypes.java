@@ -1,11 +1,11 @@
 package smartcompany.smarthomie;
 
 public enum DevicesTypes {
-    BLIND("eu0v2xgprrhhg41g","blind"),
+    BLIND("eu0v2xgprrhhg41g","curtain"),
     OVEN("im77xxyulpegfmv8","oven"),
-    REFRIGERATOR("rnizejqr2di0okho","refrigerator"),
+    REFRIGERATOR("rnizejqr2di0okho","fridge"),
     DOOR("lsf78ly0eqrjbz91","door"),
-    LAMP("go46xmbqeomjrsjr","lamp");
+    LAMP("go46xmbqeomjrsjr","light");
 
     private String typeId;
     private String typeName;
@@ -37,11 +37,11 @@ public enum DevicesTypes {
     public static String TypeId(String typeName) {
         String aux = typeName.toLowerCase();
         switch (aux){
-            case "blind":   return  BLIND.TypeId();
+            case "curtain":   return  BLIND.TypeName();
             case "oven": return OVEN.TypeId();
-            case "lamp": return LAMP.TypeId();
+            case "light": return LAMP.TypeId();
             case "door": return DOOR.TypeId();
-            case "refrigerator": return REFRIGERATOR.TypeId();
+            case "fridge": return REFRIGERATOR.TypeId();
             default: return null;
         }
     }

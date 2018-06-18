@@ -1,6 +1,5 @@
 package smartcompany.smarthomie;
 
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +27,9 @@ import android.widget.Toast;
  * A simple {@link Fragment} subclass.
  */
 public class CurtainFragment extends Fragment {
-
+    private static final int MY_NOTIFICATION_ID = 1;
     Curtain curtain;
     Routine routine;
-
-    private static final int MY_NOTIFICATION_ID = 1;
 
     public CurtainFragment() {
         // Required empty public constructor
@@ -46,27 +45,25 @@ public class CurtainFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        curtain = (Curtain) ((MainActivity) getActivity()).getCurrentDevice();
-        MainActivity ma = (MainActivity)getActivity();
 
-        if (ma.getComesFromRoutine()){
-            routine = ma.getCurrentRoutine();
+        MainActivity mainActivity = (MainActivity)getActivity();
+        curtain = (Curtain) mainActivity.getCurrentDevice();
+
+        if (mainActivity.getComesFromRoutine()) {
+            routine = mainActivity.getCurrentRoutine();
             LinearLayout routineLayout = view.findViewById(R.id.routine_lay);
             View routineView = getLayoutInflater().inflate(R.layout.routine_section_devices_layout, ((ViewGroup) getView().getParent()), false);
             routineLayout.addView(routineView);
 
-            Button back = view.findViewById(R.id.backToRoutine);
+            Button save = view.findViewById(R.id.backToRoutine);
 
-            back.setOnClickListener(new View.OnClickListener(){
+            save.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     ((MainActivity)getActivity()).externalSetFragment("routineFragment");
                 }
             });
         }
-
-        final TextView title = (TextView) view.findViewById(R.id.curtain_title);
-        title.setText(curtain.getName());
 
         final Button curtainButton = (Button) view.findViewById(R.id.curtain_button);
         final TextView curtainText= (TextView) view.findViewById(R.id.curtain_text);
@@ -83,6 +80,9 @@ public class CurtainFragment extends Fragment {
         curtainButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                String str = getResources().getString(R.string.curtain_button_off);
+
 
                 createNotificationChannel();
 
@@ -101,8 +101,6 @@ public class CurtainFragment extends Fragment {
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                     notificationManager.notify(0, mBuilder.build());
                 }
-
-                String str = getResources().getString(R.string.curtain_button_off);
 
                 if(curtainButton.getText().equals(str)){ //TURINING ON CASE
                     curtainButton.setText(R.string.curtain_button_on);
@@ -141,5 +139,6 @@ public class CurtainFragment extends Fragment {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
 
 }

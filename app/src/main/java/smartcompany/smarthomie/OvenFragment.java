@@ -46,7 +46,9 @@ public class OvenFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         oven = (Oven) ((MainActivity)getActivity()).getCurrentDevice();
+
         createNotificationChannel();
+
         MainActivity ma = (MainActivity)getActivity();
 
         if (ma.getComesFromRoutine()){
@@ -67,8 +69,6 @@ public class OvenFragment extends Fragment {
 
         final TextView title = (TextView) view.findViewById(R.id.oven_title);
         title.setText(oven.getName());
-
-
         final SeekBar ovenTemperatureSlider = (SeekBar) view.findViewById(R.id.oven_temperature_slider);
         final Spinner ovenConvectionSelect = (Spinner) view.findViewById(R.id.oven_convection_select);
         final Spinner ovenGrillSelect = (Spinner) view.findViewById(R.id.oven_grill_select);
@@ -103,7 +103,7 @@ public class OvenFragment extends Fragment {
                             Intent intent = new Intent(getContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
                                     .setSmallIcon(R.drawable.baseline_home_black_24dp)
                                     .setContentTitle(getContext().getString(R.string.notification_title))
                                     .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
@@ -167,8 +167,8 @@ public class OvenFragment extends Fragment {
                 oven.setConvection(array[index]);
                 MainActivity m = (MainActivity) (getActivity());
                 if(m.allowsNotification(oven)) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    Intent intent = new Intent(getContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
                             .setSmallIcon(R.drawable.baseline_home_black_24dp)
@@ -180,7 +180,6 @@ public class OvenFragment extends Fragment {
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                     notificationManager.notify(0, mBuilder.build());
                 }
-
             }
 
             @Override
@@ -197,11 +196,12 @@ public class OvenFragment extends Fragment {
         ovenGrillSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                MainActivity m = (MainActivity) (getActivity());
                 String[] array = getResources().getStringArray(R.array.oven_grill_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
                 oven.setGrill(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
+
                 if(m.allowsNotification(oven)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -234,22 +234,23 @@ public class OvenFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String[] array = getResources().getStringArray(R.array.oven_heat_array);
                 int index = parentView.getSelectedItemPosition();
-                System.out.println("you have selected: "+array[index]);
+                System.out.println("you have selected: " + array[index]);
                 oven.setHeat(array[index]);
                 MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(oven)) {
+                if (m.allowsNotification(oven)) {
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
                     NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
                             .setSmallIcon(R.drawable.baseline_home_black_24dp)
                             .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
+                            .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                             .setContentIntent(pendingIntent)
                             .setAutoCancel(true);
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                     notificationManager.notify(0, mBuilder.build());
+
                 }
             }
 
@@ -270,6 +271,7 @@ public class OvenFragment extends Fragment {
             }
         });
     }
+
     public void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library

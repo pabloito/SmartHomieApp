@@ -57,10 +57,10 @@ public class DevicesFragment extends Fragment {
         View deviceView = getLayoutInflater().inflate(R.layout.layout_devices_item,((ViewGroup)getView().getParent()),false);
 
         TextView type = deviceView.findViewById(R.id.device_type);
-        type.append(device.type);
+        type.append(device.getTypeId());
 
         TextView t = deviceView.findViewById(R.id.item_name);
-        t.append(device.name);
+        t.append(device.getName());
 
         devices.addView(deviceView);
 
@@ -75,90 +75,37 @@ public class DevicesFragment extends Fragment {
 
         ImageView imageView = deviceView.findViewById(R.id.image_view);
 
-        switch(device.type){
-            case "Curtain":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
+        imageView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
 
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ((MainActivity)getActivity()).externalSetFragment("curtainFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.curtain);
-                break;
-            case "Fridge":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
+                MainActivity ma = ((MainActivity)getActivity());
+                View parent = (View)v.getParent();
+                String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
+                Device d = ma.getDevicesMap().get(name);
+                ma.setCurrentDevice(d);
+                ((MainActivity)getActivity()).externalSetFragment(DevicesTypes.TypeName(d.getTypeId()) + "Fragment");
+            }
+        });
 
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ((MainActivity)getActivity()).externalSetFragment("fridgeFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.fridge);
-                break;
-            case "Door":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
+        String deviceType = device.getTypeId();
 
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ((MainActivity)getActivity()).externalSetFragment("doorFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.door);
-                break;
-            case "Light":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ((MainActivity)getActivity()).externalSetFragment("lightFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.light);
-                break;
-            case "Oven":
-                imageView.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-
-                        MainActivity ma = ((MainActivity)getActivity());
-                        View parent = (View)v.getParent();
-                        String name = ((TextView)parent.findViewById(R.id.item_name)).getText().toString();
-                        Device d = ma.getDevicesMap().get(name);
-                        ma.setCurrentDevice(d);
-                        ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
-                    }
-                });
-                imageView.setImageResource(R.drawable.oven);
-                break;
-
+        if(deviceType.equals(DevicesTypes.DOOR.TypeId())) {
+            imageView.setImageResource(R.drawable.door);
+        }else if(deviceType.equals(DevicesTypes.BLIND.TypeId())) {
+            imageView.setImageResource(R.drawable.curtain);
+        }else if(deviceType.equals(DevicesTypes.LAMP.TypeId())) {
+            imageView.setImageResource(R.drawable.light);
+        }else if(deviceType.equals(DevicesTypes.OVEN.TypeId())) {
+            imageView.setImageResource(R.drawable.oven);
+        }else if(deviceType.equals(DevicesTypes.REFRIGERATOR.TypeId())) {
+            imageView.setImageResource(R.drawable.fridge);
         }
     }
 
     public void drawDevices(View view){
         MainActivity m = (MainActivity) getActivity();
         m.updateDevices();
-
         HashMap<String, Device> dmap = m.getDevicesMap();
 
         for(String key : dmap.keySet()){

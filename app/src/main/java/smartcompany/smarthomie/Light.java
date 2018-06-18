@@ -2,6 +2,9 @@ package smartcompany.smarthomie;
 
 import android.content.Context;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Light extends Device {
 
     private String state;
@@ -9,25 +12,19 @@ public class Light extends Device {
     private int brightness;
     private String color;
     private int colorIndex;
-    private Context context;
 
-    public Light(String name) {
-        super(name);
-        state="On";
+    public Light(String id, String name, String meta) {
+        super(id, name, DevicesTypes.LAMP.TypeId(), meta);
         stateIndex=0;
         brightness=50;
-        color="Default";
         colorIndex=0;
     }
 
-    public Light(String name, String type, Context context) {
-        super(name, type);
-        state=context.getResources().getStringArray(R.array.lamp_state_array)[0];
+    public Light(String id, String name) {
+        super(id, name, DevicesTypes.LAMP.TypeId(),null);
         stateIndex=0;
         brightness=50;
-        color=context.getResources().getStringArray(R.array.lamp_color_array)[0];
         colorIndex=0;
-        this.context=context;
     }
 
     public int getBrightness() {
@@ -51,22 +48,21 @@ public class Light extends Device {
     }
 
     public void setState(String state) {
-        String[] array= context.getResources().getStringArray(R.array.lamp_state_array);
-        this.state = state;
-        if(state.equals(array[0])){
-            stateIndex=0;
-        }
-        else{
-            stateIndex=1;
+        if(state.equals("On")){
+            API.SendEvent(this,"turnOn");
+        }else{
+            API.SendEvent(this,"turnOff");
         }
     }
 
     public void setBrightness(int brightness) {
-        this.brightness = brightness;
+        List<Object> param = new LinkedList<>();
+        param.add(brightness);
+        API.SendEventWithParameters(this,"setBrightness",param);
     }
 
     public void setColor(String color) {
-        String[] array= context.getResources().getStringArray(R.array.lamp_color_array);
+        /*String[] array= context.getResources().getStringArray(R.array.lamp_color_array);
         this.color = color;
         if(color.equals(array[0])){
             colorIndex=0;
@@ -79,6 +75,6 @@ public class Light extends Device {
         }
         if(color.equals(array[3])){
             colorIndex=3;
-        }
+        }*/
     }
 }

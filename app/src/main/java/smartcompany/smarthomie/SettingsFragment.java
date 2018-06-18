@@ -57,32 +57,25 @@ public class SettingsFragment extends Fragment {
 
         ImageView imageView = settingsView.findViewById(R.id.image_view);
 
-        switch(device.type){
-            case "Curtain":
-                imageView.setImageResource(R.drawable.curtain);
-                break;
-            case "Fridge":
-                imageView.setImageResource(R.drawable.fridge);
-                break;
-            case "Door":
-                imageView.setImageResource(R.drawable.door);
-                break;
-            case "Light":
-                imageView.setImageResource(R.drawable.light);
-                break;
-            case "Oven":
-                imageView.setImageResource(R.drawable.oven);
-                break;
+        String deviceType = device.getTypeId();
 
+        if(deviceType.equals(DevicesTypes.DOOR.TypeId())) {
+            imageView.setImageResource(R.drawable.door);
+        }else if(deviceType.equals(DevicesTypes.BLIND.TypeId())) {
+            imageView.setImageResource(R.drawable.curtain);
+        }else if(deviceType.equals(DevicesTypes.LAMP.TypeId())) {
+            imageView.setImageResource(R.drawable.light);
+        }else if(deviceType.equals(DevicesTypes.OVEN.TypeId())) {
+            imageView.setImageResource(R.drawable.oven);
+        }else if(deviceType.equals(DevicesTypes.REFRIGERATOR.TypeId())) {
+            imageView.setImageResource(R.drawable.fridge);
         }
-
-
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = prefs.edit();
 
         Button button = settingsView.findViewById(R.id.checkButton);
-        int ret=prefs.getInt(device.name,3);
+        int ret=prefs.getInt(device.getName(),3);
 
 
         Log.d("not",String.valueOf(ret));

@@ -104,24 +104,20 @@ public class NewRoutineFragment extends Fragment {
         });
 
         ImageView im = newRoutineView.findViewById(R.id.image_view);
-        Log.d("dev",device.name);
-        Log.d("dev",device.type);
-        switch(device.type){
-            case "Fridge":
-                im.setImageResource(R.drawable.fridge);
-                break;
-            case "Curtain":
-                im.setImageResource(R.drawable.curtain);
-                break;
-            case "Light":
-                im.setImageResource(R.drawable.light);
-                break;
-            case "Door":
-                im.setImageResource(R.drawable.door);
-                break;
-            case "Oven":
-                im.setImageResource(R.drawable.oven);
-                break;
+        Log.d("dev",device.getName());
+        Log.d("dev",device.getTypeId());
+        String deviceType = device.getTypeId();
+
+        if(deviceType.equals(DevicesTypes.DOOR.TypeId())) {
+            im.setImageResource(R.drawable.door);
+        }else if(deviceType.equals(DevicesTypes.BLIND.TypeId())) {
+            im.setImageResource(R.drawable.curtain);
+        }else if(deviceType.equals(DevicesTypes.LAMP.TypeId())) {
+            im.setImageResource(R.drawable.light);
+        }else if(deviceType.equals(DevicesTypes.OVEN.TypeId())) {
+            im.setImageResource(R.drawable.oven);
+        }else if(deviceType.equals(DevicesTypes.REFRIGERATOR.TypeId())) {
+            im.setImageResource(R.drawable.fridge);
         }
     }
 

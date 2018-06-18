@@ -78,13 +78,27 @@ public class RoutineFragment extends Fragment {
         devices.addView(routineView);
 
         TextView t = routineView.findViewById(R.id.item_name);
-        t.append(device.name);
+        t.append(device.getName());
 
-        ImageView imageView = routineView.findViewById(R.id.image_view);
-        Log.d("a",device.type);
-        switch(device.type){
+        View imageView = routineView.findViewById(R.id.image_view);
+        Log.d("a",device.getTypeId());
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity ma = ((MainActivity) getActivity());
+                View parent = (View) v.getParent();
+                String name = ((TextView) parent.findViewById(R.id.item_name)).getText().toString();
+                Device d = ma.getDevicesMap().get(name);
+                Toast.makeText(getContext(),DevicesTypes.TypeName(d.getTypeId()),Toast.LENGTH_LONG).show();
+                ma.setCurrentDevice(d);
+                ma.externalSetFragment(DevicesTypes.TypeName(d.getTypeId()) + "Fragment");
+            }
+        });
+        //DEPRECATED: SE REPLAZO POR LO DE ARRIBA!
+        /*
+        switch(device.getTypeId()){
             case "Curtain":
-                imageView.setImageResource(R.drawable.curtain);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -113,7 +127,6 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Door":
-                imageView.setImageResource(R.drawable.door);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -127,7 +140,6 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Light":
-                imageView.setImageResource(R.drawable.light);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -141,7 +153,6 @@ public class RoutineFragment extends Fragment {
                 });
                 break;
             case "Oven":
-                imageView.setImageResource(R.drawable.oven);
                 imageView.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View v) {
@@ -153,12 +164,12 @@ public class RoutineFragment extends Fragment {
                         ((MainActivity)getActivity()).externalSetFragment("ovenFragment");
                     }
                 });
-                imageView.setImageResource(R.drawable.fridge);
                 break;
             default:
                 Log.d("a","default");
                 break;
         }
+        */
     }
 
     public void drawDevices(View view){

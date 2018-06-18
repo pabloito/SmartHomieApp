@@ -200,7 +200,7 @@ public class API {
                             if(response.getBoolean("result")){
                                 Toast.makeText(currentContext,"Dispositivo borrado con exito",Toast.LENGTH_LONG).show();
                             }else{
-                                Toast.makeText(currentContext,"No se pudo remover el dispositivo",Toast.LENGTH_LONG).show();
+                                Toast.makeText(currentContext,"El dispositivo ya fue removido",Toast.LENGTH_LONG).show();
                             }
                         }catch (Exception e){
                             Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();

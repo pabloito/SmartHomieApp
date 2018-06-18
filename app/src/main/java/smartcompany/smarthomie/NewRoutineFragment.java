@@ -4,12 +4,14 @@ package smartcompany.smarthomie;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -100,6 +102,27 @@ public class NewRoutineFragment extends Fragment {
                         Toast.LENGTH_LONG).show();;
             }
         });
+
+        ImageView im = newRoutineView.findViewById(R.id.image_view);
+        Log.d("dev",device.name);
+        Log.d("dev",device.type);
+        switch(device.type){
+            case "Fridge":
+                im.setImageResource(R.drawable.fridge);
+                break;
+            case "Curtain":
+                im.setImageResource(R.drawable.curtain);
+                break;
+            case "Light":
+                im.setImageResource(R.drawable.light);
+                break;
+            case "Door":
+                im.setImageResource(R.drawable.door);
+                break;
+            case "Oven":
+                im.setImageResource(R.drawable.oven);
+                break;
+        }
     }
 
     public void drawDevices(View view){

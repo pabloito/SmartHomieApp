@@ -17,6 +17,8 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
     private boolean comesFromRoutine = false;
 
+    private static final int MY_NOTIFICATION_ID = 1;
+
     private BottomNavigationView mMainNav;
     private FrameLayout mMainFrame;
 

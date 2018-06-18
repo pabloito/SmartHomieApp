@@ -51,6 +51,7 @@ public class NewDeviceFragment extends Fragment {
         cancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                selectType.setText("");
                 ((MainActivity)getActivity()).externalSetFragment("homeFragment");
             }
         });
@@ -100,7 +101,7 @@ public class NewDeviceFragment extends Fragment {
                 if (ok) {
                     String type = dropdown.getSelectedItem().toString().toLowerCase();
                     type = DevicesTypes.TypeId(type);
-                    API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null,getContext()));
+                    API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null));
                 }
 
             }

@@ -6,14 +6,14 @@ public class Door extends Device {
     private boolean locked;
     private boolean closed;
 
-    public Door(String id,String name, String meta,Context context) {
-        super(id ,name, DevicesTypes.DOOR.TypeId(), meta,context);
+    public Door(String id,String name, String meta) {
+        super(id ,name, DevicesTypes.DOOR.TypeId(), meta);
         locked=false;
         closed=false;
     }
 
-    public Door(String id, String name,Context context) {
-        super(id, name, DevicesTypes.DOOR.TypeId(),null,context);
+    public Door(String id, String name) {
+        super(id, name, DevicesTypes.DOOR.TypeId(),null);
         locked=false;
         closed=false;
     }

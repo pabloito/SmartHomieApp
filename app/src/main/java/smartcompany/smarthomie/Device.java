@@ -7,9 +7,8 @@ public class Device {
      String typeId;
      String id;
      String meta;
-     Context context;
 
-    public Device(String id, String name, String typeId, String meta, Context context) {
+    public Device(String id, String name, String typeId, String meta) {
         this.id = id;
         this.name = name;
         this.typeId = typeId;
@@ -34,17 +33,17 @@ public class Device {
 
     /*Convert a generic device to an specific device like blind, lamp, etc*/
 
-    public static Device DeviceFactory(Device d, Context context){
+    public static Device DeviceFactory(Device d){
         if(d.getTypeId().equals(DevicesTypes.BLIND.TypeId())) {
-            return  new Curtain(d.getId(),d.getName(),d.getMeta(),context);
+            return  new Curtain(d.getId(),d.getName(),d.getMeta());
         }else if(d.getTypeId().equals(DevicesTypes.LAMP.TypeId())) {
-            return  new Light(d.getId(),d.getName(),d.getMeta(),context);
+            return  new Light(d.getId(),d.getName(),d.getMeta());
         }else if(d.getTypeId().equals(DevicesTypes.REFRIGERATOR.TypeId())) {
-            return  new Fridge(d.getId(),d.getName(),d.getMeta(),context);
+            return  new Fridge(d.getId(),d.getName(),d.getMeta());
         }else if(d.getTypeId().equals(DevicesTypes.OVEN.TypeId())) {
-            return  new Oven(d.getId(),d.getName(),d.getMeta(),context);
+            return  new Oven(d.getId(),d.getName(),d.getMeta());
         }else if(d.getTypeId().equals(DevicesTypes.DOOR.TypeId())){
-            return  new Door(d.getId(),d.getName(),d.getMeta(),context);
+            return  new Door(d.getId(),d.getName(),d.getMeta());
         }else {
             return null;
         }

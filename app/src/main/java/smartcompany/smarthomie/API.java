@@ -31,6 +31,9 @@ public class API {
     static private String baseUrl;
     static private HashMap<String,Device> devicesMap;
 
+    public static Context getContext(){
+        return currentContext;
+    }
 
     public static void initAPIConnection(Context context){
         if(!alreadyInit) {
@@ -59,7 +62,7 @@ public class API {
                                 Type listType = new TypeToken<List<Device>>(){}.getType();
                                 List<Device> devices = gson.fromJson(response.getJSONArray("devices").toString(),listType);
                                 for(Device d: devices) {
-                                    Device castedDevice = Device.DeviceFactory(d,currentContext);
+                                    Device castedDevice = Device.DeviceFactory(d);
                                     if (castedDevice != null)
                                         devicesMap.put(castedDevice.getName(), castedDevice);
                                 }

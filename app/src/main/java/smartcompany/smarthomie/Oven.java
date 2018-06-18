@@ -14,8 +14,8 @@ public class Oven extends Device {
     private int grillIndex;
 
 
-    public Oven(String id, String name, String meta, Context context) {
-        super(id, name, DevicesTypes.OVEN.TypeId(), meta,context);
+    public Oven(String id, String name, String meta) {
+        super(id, name, DevicesTypes.OVEN.TypeId(), meta);
         stateIndex=0;
         temperature=160;
         heatIndex=0;
@@ -23,8 +23,8 @@ public class Oven extends Device {
         convectionIndex=0;
     }
 
-    public Oven(String id, String name, Context context) {
-        super(id, name, DevicesTypes.OVEN.TypeId(), null,context);
+    public Oven(String id, String name) {
+        super(id, name, DevicesTypes.OVEN.TypeId(), null);
         stateIndex=0;
         temperature=160;
         heatIndex=0;

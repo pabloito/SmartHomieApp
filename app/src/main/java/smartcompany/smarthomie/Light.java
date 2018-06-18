@@ -13,15 +13,15 @@ public class Light extends Device {
     private String color;
     private int colorIndex;
 
-    public Light(String id, String name, String meta, Context context) {
-        super(id, name, DevicesTypes.LAMP.TypeId(), meta,context);
+    public Light(String id, String name, String meta) {
+        super(id, name, DevicesTypes.LAMP.TypeId(), meta);
         stateIndex=0;
         brightness=50;
         colorIndex=0;
     }
 
-    public Light(String id, String name,Context context) {
-        super(id, name, DevicesTypes.LAMP.TypeId(),null,context);
+    public Light(String id, String name) {
+        super(id, name, DevicesTypes.LAMP.TypeId(),null);
         stateIndex=0;
         brightness=50;
         colorIndex=0;
@@ -62,9 +62,9 @@ public class Light extends Device {
     }
 
     public void setColor(String color) {
-        String[] array= context.getResources().getStringArray(R.array.lamp_color_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.lamp_color_array);
         this.color = color;
-        if(color.equals(array[0])){
+        if(color.equals("Default")){
             colorIndex=0;
         }
         if(color.equals(array[1])){

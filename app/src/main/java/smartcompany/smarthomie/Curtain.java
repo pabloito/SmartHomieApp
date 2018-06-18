@@ -5,13 +5,13 @@ import android.content.Context;
 public class Curtain extends Device {
     private boolean raised;
 
-    public Curtain(String id, String name, String meta,Context context) {
-        super(id, name, DevicesTypes.BLIND.TypeId(), meta,context);
+    public Curtain(String id, String name, String meta) {
+        super(id, name, DevicesTypes.BLIND.TypeId(), meta);
         raised=true;
     }
 
     public Curtain(String id, String name,Context context) {
-        super(id, name, DevicesTypes.BLIND.TypeId(), null,context);
+        super(id, name, DevicesTypes.BLIND.TypeId(), null);
         raised=true;
     }
 

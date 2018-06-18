@@ -53,13 +53,10 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/checkBox"
+            <Button
+                android:id="@+id/checkButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:gravity="center_vertical"
-                android:text="@string/receive_notifications" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </TableRow>

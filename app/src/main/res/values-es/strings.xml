@@ -23,6 +23,9 @@
     <string name="EntryName">Escriba el nombre</string>
     <string name="selectType">Seleccione tipo</string>
     <string name="Cancel">Cancelar</string>
+
+    <string name="remove_notifications">Remover notificaciones</string>
+    <string name="add_notifications">Agregar notificaciones</string>
     <string name="titleText">Agregar dispositivo</string>
     <string name="help_title">Ayuda</string>
     <string name="help_description">Bienvenido a la sección de Ayuda!

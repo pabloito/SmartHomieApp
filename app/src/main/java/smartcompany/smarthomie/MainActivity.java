@@ -260,15 +260,16 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         Log.d("NOTIF",d.name);
+
         int ret;
         if((ret=prefs.getInt(d.name,3))==3){
-            new Exception("device not created");
+            return false;
         }
         else if (ret==0){
             Log.d("NOTIF","false");
             return false;
         }
-
+        Log.d("NOTIF",String.valueOf(ret));
         Log.d("NOTIF","true");
         return true;
     }

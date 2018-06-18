@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
+import static android.content.ContentValues.TAG;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,8 +76,26 @@ public class SettingsFragment extends Fragment {
 
         }
 
-        CheckBox check = settingsView.findViewById(R.id.checkBox);
-        check.setOnClickListener(new View.OnClickListener(){
+
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Button button = settingsView.findViewById(R.id.checkButton);
+        int ret=prefs.getInt(device.name,3);
+
+
+        Log.d("not",String.valueOf(ret));
+        if(ret==1){
+            Log.d("not","checking");
+            button.setText(R.string.remove_notifications);
+        }
+        else {
+            Log.d("not","unchecking");
+            button.setText(R.string.add_notifications);
+        }
+
+        button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 MainActivity ma = ((MainActivity)getActivity());
@@ -84,31 +104,27 @@ public class SettingsFragment extends Fragment {
                 Device d = ma.getDevicesMap().get(name);
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                 SharedPreferences.Editor editor = prefs.edit();
-                CheckBox check = v.findViewById(R.id.checkBox);
-                if(check.isChecked()){
+                Button button = v.findViewById(R.id.checkButton);
+
+                int ret=prefs.getInt(d.name,3);
+
+                if(ret!=1){
+                    Log.d("NOTIF","put 1 in "+d.name);
                     editor.putInt(d.name,1);
+                    button.setText(R.string.remove_notifications);
                 }
                 else{
+                    Log.d("NOTIF","put 0 in "+d.name);
                     editor.putInt(d.name,0);
+                    button.setText(R.string.add_notifications);
                 }
+                editor.commit();
             }
         });
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = prefs.edit();
-
-        int ret;
         if(prefs.getInt(device.name,3)==3){
             editor.putInt(device.name, 0);
-        }
-
-        ret=prefs.getInt(device.name,3);
-        if(ret==1){
-            check.setChecked(true);
-        }
-
-        if(ret==0){
-            check.setChecked(false);
+            editor.commit();
         }
     }
 

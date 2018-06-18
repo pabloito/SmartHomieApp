@@ -12,9 +12,11 @@ public class Light extends Device {
     private int brightness;
     private String color;
     private int colorIndex;
+    Context context;
 
-    public Light(String id, String name, String meta) {
+    public Light(String id, String name, String meta, Context context) {
         super(id, name, DevicesTypes.LAMP.TypeId(), meta);
+        this.context=context;
         stateIndex=0;
         brightness=50;
         colorIndex=0;
@@ -62,7 +64,7 @@ public class Light extends Device {
     }
 
     public void setColor(String color) {
-        /*String[] array= context.getResources().getStringArray(R.array.lamp_color_array);
+        String[] array= context.getResources().getStringArray(R.array.lamp_color_array);
         this.color = color;
         if(color.equals(array[0])){
             colorIndex=0;
@@ -75,6 +77,27 @@ public class Light extends Device {
         }
         if(color.equals(array[3])){
             colorIndex=3;
-        }*/
+        }
+
+        List<Object> param = new LinkedList<>();
+
+        switch(colorIndex){
+            case 0:
+                param.add("EFF70A");
+                API.SendEventWithParameters(this,"setColor",param);
+                break;
+            case 1:
+                param.add("F70A22");
+                API.SendEventWithParameters(this,"setColor",param);
+                break;
+            case 2:
+                param.add("1E07F0");
+                API.SendEventWithParameters(this,"setColor",param);
+                break;
+            case 3:
+                param.add("07F04D");
+                API.SendEventWithParameters(this,"setColor",param);
+                break;
+        }
     }
 }

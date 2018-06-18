@@ -10,15 +10,15 @@ public class Fridge extends Device {
     private String mode;
     private int modeIndex;
 
-    public Fridge(String id, String name, String meta) {
-        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), meta);
+    public Fridge(String id, String name, String meta,Context context) {
+        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), meta,context);
         freezerTemperature= -14;
         refridgeratorTemperature=5;
         modeIndex=0;
     }
 
-    public Fridge(String id, String name) {
-        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), null);
+    public Fridge(String id, String name,Context context) {
+        super(id , name, DevicesTypes.REFRIGERATOR.TypeId(), null,context);
         freezerTemperature= -14;
         refridgeratorTemperature=5;
         modeIndex=0;

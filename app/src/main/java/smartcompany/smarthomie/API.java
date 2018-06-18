@@ -59,7 +59,7 @@ public class API {
                                 Type listType = new TypeToken<List<Device>>(){}.getType();
                                 List<Device> devices = gson.fromJson(response.getJSONArray("devices").toString(),listType);
                                 for(Device d: devices) {
-                                    Device castedDevice = Device.DeviceFactory(d);
+                                    Device castedDevice = Device.DeviceFactory(d,currentContext);
                                     if (castedDevice != null)
                                         devicesMap.put(castedDevice.getName(), castedDevice);
                                 }

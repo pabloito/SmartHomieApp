@@ -12,18 +12,16 @@ public class Light extends Device {
     private int brightness;
     private String color;
     private int colorIndex;
-    Context context;
 
     public Light(String id, String name, String meta, Context context) {
-        super(id, name, DevicesTypes.LAMP.TypeId(), meta);
-        this.context=context;
+        super(id, name, DevicesTypes.LAMP.TypeId(), meta,context);
         stateIndex=0;
         brightness=50;
         colorIndex=0;
     }
 
-    public Light(String id, String name) {
-        super(id, name, DevicesTypes.LAMP.TypeId(),null);
+    public Light(String id, String name,Context context) {
+        super(id, name, DevicesTypes.LAMP.TypeId(),null,context);
         stateIndex=0;
         brightness=50;
         colorIndex=0;

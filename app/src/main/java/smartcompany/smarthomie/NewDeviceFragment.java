@@ -100,7 +100,7 @@ public class NewDeviceFragment extends Fragment {
                 if (ok) {
                     String type = dropdown.getSelectedItem().toString().toLowerCase();
                     type = DevicesTypes.TypeId(type);
-                    API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null));
+                    API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null,getContext()));
                 }
 
             }

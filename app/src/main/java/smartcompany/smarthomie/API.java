@@ -4,6 +4,7 @@ package smartcompany.smarthomie;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.util.Log;
+import android.view.animation.RotateAnimation;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -472,4 +473,34 @@ public class API {
             }
         }
     }
+
+    public static void RemoveRoutine(Routine routine) {
+        if(rQueue != null) {
+            String requestUrl = baseUrl + "/routines/" + routine.getId();
+            routineMap.remove(routine.getName());
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, requestUrl, null, new
+                    Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                if (response.getBoolean("result")) {
+                                    Toast.makeText(currentContext,"Se removio correctamente la rutina",Toast.LENGTH_LONG).show();
+                                }else {
+                                    Toast.makeText(currentContext,"Fallo al remover la rutina",Toast.LENGTH_LONG).show();
+                                }
+                            }catch (Exception e){
+                                Toast.makeText(currentContext,"Error al conectar al querer remover rutina",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            rQueue.add(jsonObjectRequest);
+            rQueue.start();
+        }
+    }
+
 }

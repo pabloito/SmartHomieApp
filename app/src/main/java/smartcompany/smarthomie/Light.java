@@ -112,4 +112,41 @@ public class Light extends Device {
     public void updateStatus(){
         API.LightUpdateState(this);
     }
+
+
+    public void setState_Api(String state){
+        this.state=state;
+        String[] array= API.getContext().getResources().getStringArray(R.array.lamp_state_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.lamp_state_array_L);
+
+        if(state.equals(array[0])||color.equals(array2[0])){
+            this.stateIndex=0;
+        }else{
+            this.stateIndex=1;
+        }
+    }
+
+    public void setBrightness_Api(int brightness) {
+        this.brightness=brightness;
+    }
+
+    public void setColor_Api(String color) {
+        this.color = color;
+        String[] array = API.getContext().getResources().getStringArray(R.array.lamp_color_array);
+        String[] array2 = API.getContext().getResources().getStringArray(R.array.lamp_color_array_L);
+        this.color = color;
+        if (color.equals(array[0]) || color.equals(array2[0])) {
+            colorIndex = 0;
+        }
+        if (color.equals(array[1]) || color.equals(array2[1])) {
+            colorIndex = 1;
+        }
+        if (color.equals(array[2]) || color.equals(array2[2])) {
+            colorIndex = 2;
+        }
+        if (color.equals(array[3]) || color.equals(array2[3])) {
+            colorIndex = 3;
+
+        }
+    }
 }

@@ -56,6 +56,7 @@ public class Fridge extends Device {
         param.add(refridgeratorTemperature);
         API.SendEventWithParameters(this,"setTemperature",param);
     }
+
     public void setMode(String mode){
         String[] array= API.getContext().getResources().getStringArray(R.array.fridge_mode_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.fridge_mode_array_L);
@@ -88,6 +89,35 @@ public class Fridge extends Device {
                 break;
         }
     }
+
+
+    public void setRefridgeratorTemperature_Api(int refridgeratorTemperature) {
+        this.refridgeratorTemperature = refridgeratorTemperature;
+        List<Object> param = new LinkedList<>();
+        param.add(refridgeratorTemperature);
+    }
+
+    public void setFreezerTemperature_Api(int freezerTemperature) {
+        this.freezerTemperature = freezerTemperature;
+        List<Object> param = new LinkedList<>();
+        param.add(freezerTemperature);
+    }
+
+    public void setMode_Api(String mode){
+        String[] array= API.getContext().getResources().getStringArray(R.array.fridge_mode_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.fridge_mode_array_L);
+        this.mode=mode;
+        if(mode.equals(array[0])|| mode.equals(array2[0])){
+            modeIndex=0;
+        }
+        if(mode.equals(array[1])|| mode.equals(array2[1])){
+            modeIndex=1;
+        }
+        if(mode.equals(array[2])|| mode.equals(array2[2])){
+            modeIndex=2;
+        }
+    }
+
 
     public void updateStatus() {
         API.FridgeUpdateState(this);

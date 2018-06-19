@@ -1,7 +1,5 @@
 package smartcompany.smarthomie;
 
-import android.content.Context;
-
 public class Device {
      String name;
      String typeId;
@@ -35,15 +33,25 @@ public class Device {
 
     public static Device DeviceFactory(Device d){
         if(d.getTypeId().equals(DevicesTypes.BLIND.TypeId())) {
-            return  new Curtain(d.getId(),d.getName(),d.getMeta());
+            Curtain curtain = new Curtain(d.getId(),d.getName(),d.getMeta());
+            curtain.updateStatus();
+            return  curtain;
         }else if(d.getTypeId().equals(DevicesTypes.LAMP.TypeId())) {
-            return  new Light(d.getId(),d.getName(),d.getMeta());
+            Light l = new Light(d.getId(),d.getName(),d.getMeta());
+            l.updateStatus();
+            return  l;
         }else if(d.getTypeId().equals(DevicesTypes.REFRIGERATOR.TypeId())) {
-            return  new Fridge(d.getId(),d.getName(),d.getMeta());
+            Fridge f = new Fridge(d.getId(),d.getName(),d.getMeta());
+            f.updateStatus();
+            return  f;
         }else if(d.getTypeId().equals(DevicesTypes.OVEN.TypeId())) {
-            return  new Oven(d.getId(),d.getName(),d.getMeta());
+            Oven oven = new Oven(d.getId(),d.getName(),d.getMeta());
+            oven.updateStatus();
+            return  oven;
         }else if(d.getTypeId().equals(DevicesTypes.DOOR.TypeId())){
-            return  new Door(d.getId(),d.getName(),d.getMeta());
+            Door door = new Door(d.getId(),d.getName(),d.getMeta());
+            door.updateStatus();
+            return  door;
         }else {
             return null;
         }

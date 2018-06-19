@@ -48,7 +48,7 @@ public class Fridge extends Device {
         this.refridgeratorTemperature = refridgeratorTemperature;
     }
     public void setMode(String mode){
-        /*String[] array=context.getResources().getStringArray(R.array.fridge_mode_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.fridge_mode_array);
         this.mode=mode;
         if(mode.equals(array[0])){
             modeIndex=0;
@@ -58,6 +58,10 @@ public class Fridge extends Device {
         }
         if(mode.equals(array[2])){
             modeIndex=2;
-        }*/
+        }
+    }
+
+    public void updateStatus() {
+        API.FridgeUpdateState(this);
     }
 }

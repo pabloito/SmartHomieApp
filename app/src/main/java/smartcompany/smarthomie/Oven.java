@@ -69,8 +69,7 @@ public class Oven extends Device {
     }
 
     public void setConvection(String convection) {
-        /*
-        String[] array= context.getResources().getStringArray(R.array.oven_convection_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.oven_convection_array);
         this.convection = convection;
         if(convection.equals(array[0])){
             convectionIndex=0;
@@ -80,7 +79,7 @@ public class Oven extends Device {
         }
         if(convection.equals(array[2])){
             convectionIndex=2;
-        }*/
+        }
     }
 
     public void setTemperature(int temperature) {
@@ -88,7 +87,7 @@ public class Oven extends Device {
     }
 
     public void setGrill(String grill) {
-       /* String[] array= context.getResources().getStringArray(R.array.oven_grill_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.oven_grill_array);
         this.grill = grill;
         if(grill.equals(array[0])){
             grillIndex=0;
@@ -98,11 +97,11 @@ public class Oven extends Device {
         }
         if(grill.equals(array[2])){
             grillIndex=2;
-        }*/
+        }
     }
 
     public void setHeat(String heat) {
-        /*String[] array= context.getResources().getStringArray(R.array.oven_heat_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.oven_heat_array);
         this.heat = heat;
         if(heat.equals(array[0])){
             heatIndex=0;
@@ -112,17 +111,21 @@ public class Oven extends Device {
         }
         if(heat.equals(array[2])){
             heatIndex=2;
-        }*/
+        }
     }
 
     public void setState(String state) {
-        /*String[] array= context.getResources().getStringArray(R.array.oven_state_array);
+        String[] array= API.getContext().getResources().getStringArray(R.array.oven_state_array);
         this.state = state;
         if(state.equals(array[0])){
             stateIndex=0;
         }
         if(state.equals(array[1])){
             stateIndex=1;
-        }*/
+        }
+    }
+
+    public void updateStatus() {
+        API.OvenUpdateState(this);
     }
 }

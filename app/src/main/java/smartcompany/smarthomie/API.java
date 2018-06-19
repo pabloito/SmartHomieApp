@@ -1,6 +1,7 @@
 package smartcompany.smarthomie;
 
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,7 +22,9 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class API {
     static private RequestQueue rQueue = null;
@@ -30,6 +33,11 @@ public class API {
     static private Context currentContext;
     static private String baseUrl;
     static private HashMap<String,Device> devicesMap;
+    static private Queue<Fridge> fridgesToGetState;
+    static private Queue<Oven> ovensToGetState;
+    static private Queue<Light> lampsToGetState;
+    static private Queue<Door> doorsToGetState;
+    static private Queue<Curtain> blidsToGetState;
 
     public static Context getContext(){
         return currentContext;
@@ -41,6 +49,11 @@ public class API {
             alreadyInit = true;
             gson = new Gson();
             devicesMap = new HashMap<>();
+            ovensToGetState = new LinkedList<>();
+            lampsToGetState = new LinkedList<>();
+            doorsToGetState = new LinkedList<>();
+            blidsToGetState = new LinkedList<>();
+            fridgesToGetState = new LinkedList<>();
         }
     }
 
@@ -219,4 +232,156 @@ public class API {
         rQueue.add(jsonRequest);
         rQueue.start();
     }
+
+    public static void OvenUpdateState(Oven o) {
+        ovensToGetState.offer(o);
+        String requestUrl = baseUrl + "/devices/" + o.getId() + "/getState";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Oven o = ovensToGetState.poll();
+                        try {
+                            JSONObject aux = response.getJSONObject("result");
+                            o.setConvection(aux.getString("convection"));
+                            o.setGrill(aux.getString("grill"));
+                            o.setHeat(aux.getString("heat"));
+                            o.setState(aux.getString("status"));
+                            o.setTemperature(aux.getInt("temperature"));
+                        }catch (Exception e) {
+                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonObjectRequest);
+        rQueue.start();
+    }
+
+    public static void FridgeUpdateState(Fridge fridge) {
+        fridgesToGetState.offer(fridge);
+        String requestUrl = baseUrl + "/devices/" + fridge.getId() + "/getState";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Fridge f = fridgesToGetState.poll();
+                        try {
+                            JSONObject aux = response.getJSONObject("result");
+                            f.setFreezerTemperature(aux.getInt("freezerTemperature"));
+                            f.setMode(aux.getString("mode"));
+                            f.setRefridgeratorTemperature(aux.getInt("temperature"));
+                        }catch (Exception e) {
+                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonObjectRequest);
+        rQueue.start();
+    }
+
+    public static void CurtainUpdateState(Curtain c) {
+        blidsToGetState.offer(c);
+        String requestUrl = baseUrl + "/devices/" + c.getId() + "/getState";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Curtain c = blidsToGetState.poll();
+                        try {
+                            JSONObject aux = response.getJSONObject("result");
+                            if(aux.getString("status").equals("opened")){
+                                c.setRaised(true);
+                            }else {
+                                c.setRaised(false);
+                            }
+                        }catch (Exception e) {
+                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonObjectRequest);
+        rQueue.start();
+    }
+
+    public static void LightUpdateState(Light l) {
+        lampsToGetState.offer(l);
+        String requestUrl = baseUrl + "/devices/" + l.getId() + "/getState";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Light l = lampsToGetState.poll();
+                        try {
+                            JSONObject aux = response.getJSONObject("result");
+                            l.setBrightness();
+                            l.setColor(aux.getString("color"));
+                            l.setState(aux.getString("status"));
+
+                        }catch (Exception e) {
+                            Log.d("JSONLight",e.getMessage());
+                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonObjectRequest);
+        rQueue.start();
+    }
+
+    public static void DoorUpdateState(Door d) {
+        doorsToGetState.offer(d);
+        String requestUrl = baseUrl + "/devices/" + d.getId() + "/getState";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Door d = doorsToGetState.poll();
+                        try {
+                            JSONObject aux = response.getJSONObject("result");
+                            d.setClosed(aux.getString("status").equals("close"));
+                            d.setLocked(!aux.getString("lock").equals("unlocked"));
+                        }catch (Exception e) {
+                            Log.d("JSONDoor",e.getMessage());
+                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rQueue.add(jsonObjectRequest);
+        rQueue.start();
+    }
+
 }

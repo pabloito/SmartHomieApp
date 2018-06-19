@@ -98,4 +98,8 @@ public class Light extends Device {
                 break;
         }
     }
+
+    public void updateStatus(){
+        API.LightUpdateState(this);
+    }
 }

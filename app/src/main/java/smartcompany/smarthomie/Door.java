@@ -40,4 +40,16 @@ public class Door extends Device {
     public boolean isClosed(){
         return closed;
     }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+
+    public void updateStatus() {
+       API.DoorUpdateState(this);
+    }
 }

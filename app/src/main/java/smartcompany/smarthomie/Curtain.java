@@ -24,4 +24,12 @@ public class Curtain extends Device {
     public boolean isRaised() {
         return raised;
     }
+
+    public void setRaised(boolean raised) {
+        this.raised = raised;
+    }
+
+    public void updateStatus() {
+        API.CurtainUpdateState(this);
+    }
 }

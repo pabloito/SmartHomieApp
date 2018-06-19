@@ -77,13 +77,13 @@
     <string-array name="fridge_mode_array">
         <item>Estandar</item>
         <item>Fiesta</item>
-        <item>Eco</item>
+        <item>Vacaciones</item>
     </string-array>
 
     <string-array name="fridge_mode_array_L">
         <item>default</item>
         <item>party</item>
-        <item>eco</item>
+        <item>vacation</item>
     </string-array>
 
     <!-- OVEN STRINGS-->

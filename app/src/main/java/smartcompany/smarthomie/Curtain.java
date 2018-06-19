@@ -15,10 +15,15 @@ public class Curtain extends Device {
         raised=true;
     }
 
-    public void raiseCurtain(){ raised=true; }
+    public void raiseCurtain(){
+        API.SendEvent(this,"up");
+        raised=true;
+    }
 
     public void lowerCurtain(){
+        API.SendEvent(this,"down");
         raised=false;
+
     }
 
     public boolean isRaised() {

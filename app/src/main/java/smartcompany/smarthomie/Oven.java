@@ -2,6 +2,9 @@ package smartcompany.smarthomie;
 
 import android.content.Context;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Oven extends Device {
     private String state;
     private int stateIndex;
@@ -69,6 +72,7 @@ public class Oven extends Device {
     }
 
     public void setConvection(String convection) {
+        this.convection=convection;
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_convection_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.oven_convection_array);
         this.convection = convection;
@@ -81,13 +85,34 @@ public class Oven extends Device {
         if(convection.equals(array[2]) || convection.equals(array2[2])){
             convectionIndex=2;
         }
+
+        List<Object> param = new LinkedList<>();
+
+        switch(convectionIndex){
+            case 0:
+                param.add("normal");
+                API.SendEventWithParameters(this,"setConvection",param);
+                break;
+            case 1:
+                param.add("eco");
+                API.SendEventWithParameters(this,"setConvection",param);
+                break;
+            case 2:
+                param.add("off");
+                API.SendEventWithParameters(this,"setConvection",param);
+                break;
+        }
     }
 
     public void setTemperature(int temperature) {
         this.temperature = temperature;
+        List<Object> param = new LinkedList<>();
+        param.add(temperature);
+        API.SendEventWithParameters(this,"setTemperature",param);
     }
 
     public void setGrill(String grill) {
+        this.grill=grill;
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_grill_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.oven_grill_array);
         this.grill = grill;
@@ -101,9 +126,27 @@ public class Oven extends Device {
         if(grill.equals(array[2]) || grill.equals(array2[2])){
             grillIndex=2;
         }
+
+        List<Object> param = new LinkedList<>();
+
+        switch(grillIndex) {
+            case 0:
+                param.add("large");
+                API.SendEventWithParameters(this, "setGrill", param);
+                break;
+            case 1:
+                param.add("eco");
+                API.SendEventWithParameters(this, "setGrill", param);
+                break;
+            case 2:
+                param.add("off");
+                API.SendEventWithParameters(this, "setGrill", param);
+                break;
+        }
     }
 
     public void setHeat(String heat) {
+        this.heat=heat;
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_heat_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.oven_heat_array_L);
         this.heat = heat;
@@ -116,16 +159,36 @@ public class Oven extends Device {
         if(heat.equals(array[2])|| heat.equals(array2[2])){
             heatIndex=2;
         }
+
+        List<Object> param = new LinkedList<>();
+
+        switch(grillIndex) {
+            case 0:
+                param.add("conventional");
+                API.SendEventWithParameters(this, "setHeat", param);
+                break;
+            case 1:
+                param.add("superior");
+                API.SendEventWithParameters(this, "setHeat", param);
+                break;
+            case 2:
+                param.add("inferior");
+                API.SendEventWithParameters(this, "setHeat", param);
+                break;
+        }
     }
 
     public void setState(String state) {
+        this.state=state;
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_state_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.oven_state_array_L);
         this.state = state;
         if(state.equals(array[0]) || state.equals(array2[0])){
+            API.SendEvent(this,"turnOn");
             stateIndex=0;
         }
         if(state.equals(array[1]) || state.equals(array2[1])){
+            API.SendEvent(this,"turnOff");
             stateIndex=1;
         }
     }

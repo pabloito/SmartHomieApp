@@ -48,20 +48,29 @@ public class Light extends Device {
     }
 
     public void setState(String state) {
-        if(state.equals("On")){
+        this.state=state;
+        String[] array= API.getContext().getResources().getStringArray(R.array.lamp_state_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.lamp_state_array_L);
+
+        if(state.equals(array[0])||color.equals(array2[0])){
             API.SendEvent(this,"turnOn");
+            this.stateIndex=0;
         }else{
             API.SendEvent(this,"turnOff");
+            this.stateIndex=1;
         }
+
     }
 
     public void setBrightness(int brightness) {
+        this.brightness=brightness;
         List<Object> param = new LinkedList<>();
         param.add(brightness);
         API.SendEventWithParameters(this,"setBrightness",param);
     }
 
     public void setColor(String color) {
+        this.color=color;
         String[] array= API.getContext().getResources().getStringArray(R.array.lamp_color_array);
         String[] array2= API.getContext().getResources().getStringArray(R.array.lamp_color_array_L);
         this.color = color;

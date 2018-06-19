@@ -193,6 +193,11 @@
     <string name="toast_success_1">Device removal successful</string>
     <string name="toast_success_2">Device added!</string>
 
+    <string name="fail_1">Name is already used!</string>
+    <string name="fail_2">Name has invalid characters!</string>
+    <string name="fail_3">Name must have at least 3 characters !</string>
+    <string name="fail_4">Name must have at least one character!</string>
+
 
 
 </resources>

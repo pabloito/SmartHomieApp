@@ -190,4 +190,10 @@
     <string name="toast_success_2">Dispositivo agregado!</string>
 
 
+    <string name="fail_1">El nombre ya esta utilizado !</string>
+    <string name="fail_2">El nombre tiene caracteres inválidos !</string>
+    <string name="fail_3">El nombre debe tener al menos 3 caracteres !</string>
+    <string name="fail_4">El nombre debe tener al menos un caracter !</string>
+
+
 </resources>

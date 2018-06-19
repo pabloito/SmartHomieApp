@@ -69,7 +69,7 @@ public class NewRoutineFragment extends Fragment {
                 boolean ok = true;
 
                 if(str.length() == 0){
-                    Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos un caracter !",
+                    Toast toast = Toast.makeText(getContext(), getContext().getString(R.string.fail_4),
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
@@ -77,7 +77,7 @@ public class NewRoutineFragment extends Fragment {
                 }
 
                 if(str.length() < 3){
-                    Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos 3 caracteres !",
+                    Toast toast = Toast.makeText(getContext(), getContext().getString(R.string.fail_3),
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
@@ -87,7 +87,7 @@ public class NewRoutineFragment extends Fragment {
                 Matcher real = cmp.matcher(str);
 
                 if(!real.find()){
-                    Toast toast = Toast.makeText(getContext(), "El nombre tiene caracteres inválidos !",
+                    Toast toast = Toast.makeText(getContext(), getContext().getString(R.string.fail_2),
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
@@ -96,7 +96,7 @@ public class NewRoutineFragment extends Fragment {
 
                 if(API.getRoutineMap() != null){
                     if(API.getRoutineMap().containsKey(name.getText().toString())){
-                        Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
+                        Toast toast = Toast.makeText(getContext(), getContext().getString(R.string.fail_1),
                                 Toast.LENGTH_SHORT);
                         toast.show();
                         ok = false;

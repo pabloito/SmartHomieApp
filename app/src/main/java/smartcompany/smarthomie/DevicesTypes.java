@@ -37,7 +37,7 @@ public enum DevicesTypes {
     public static String TypeId(String typeName) {
         String aux = typeName.toLowerCase();
         switch (aux){
-            case "curtain":   return  BLIND.TypeName();
+            case "curtain":   return  BLIND.TypeId();
             case "oven": return OVEN.TypeId();
             case "light": return LAMP.TypeId();
             case "door": return DOOR.TypeId();

@@ -25,6 +25,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,7 +117,14 @@ public class FridgeFragment extends Fragment {
                             notificationManager.notify(0, mBuilder.build());
                         }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
-                        fridge.setFreezerTemperature(curr);
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        if(mainActivity.getComesFromRoutine()){
+                            List<Object> param = new LinkedList<>();
+                            param.add(curr);
+                            routine.actions.add(new RoutineAction(fridge.id,"setFreezerTemperature",param));
+                        }else {
+                            fridge.setFreezerTemperature(curr);
+                        }
                         System.out.println(curr);
                     }
                 });
@@ -150,7 +160,14 @@ public class FridgeFragment extends Fragment {
                             notificationManager.notify(0, mBuilder.build());
                         }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
-                        fridge.setRefridgeratorTemperature(curr);
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        if(mainActivity.getComesFromRoutine()){
+                            List<Object> param = new LinkedList<>();
+                            param.add(curr);
+                            routine.actions.add(new RoutineAction(fridge.id,"setTemperature",param));
+                        }else {
+                            fridge.setRefridgeratorTemperature(curr);
+                        }
                         System.out.println(curr);
                     }
                 });
@@ -162,22 +179,42 @@ public class FridgeFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String[] array = getResources().getStringArray(R.array.fridge_mode_array);
                 int index = parentView.getSelectedItemPosition();
-                fridge.setMode(array[index]);
-                System.out.println("you have selected: "+array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(fridge)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()) {
+                    List<Object> param = new LinkedList<>();
+
+                    switch(index){
+                        case 0:
+                            param.add("default");
+                            routine.actions.add(new RoutineAction(fridge.id,"setMode",param));
+                            break;
+                        case 1:
+                            param.add("party");
+                            routine.actions.add(new RoutineAction(fridge.id,"setMode",param));
+                            break;
+                        case 2:
+                            param.add("vacation");
+                            routine.actions.add(new RoutineAction(fridge.id,"setMode",param));
+                            break;
+                    }
+                }else{
+                    fridge.setMode(array[index]);
+                    System.out.println("you have selected: "+array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if(m.allowsNotification(fridge)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + fridge.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
             }
 

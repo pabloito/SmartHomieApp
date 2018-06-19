@@ -22,6 +22,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,7 +118,14 @@ public class OvenFragment extends Fragment {
                         }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         System.out.println(curr);
-                        oven.setTemperature(curr);
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        if(mainActivity.getComesFromRoutine()){
+                            List<Object> param = new LinkedList<>();
+                            param.add(curr);
+                            routine.actions.add(new RoutineAction(oven.id,"setTemperature",param));
+                        }else{
+                            oven.setTemperature(curr);
+                        }
                     }
                 });
 
@@ -128,21 +138,31 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_state_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-                oven.setState(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(oven)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()){
+                    String[] array2= API.getContext().getResources().getStringArray(R.array.oven_state_array_L);
+                    if(array2[index].equals("on")){
+                        routine.actions.add(new RoutineAction(oven.id,"turnOn",null));
+                    }else{
+                        routine.actions.add(new RoutineAction(oven.id,"turnOff",null));
+                    }
+                }else{
+                    oven.setState(array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if(m.allowsNotification(oven)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
 
             }
@@ -164,21 +184,42 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_convection_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-                oven.setConvection(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(oven)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()){
+
+                    List<Object> param = new LinkedList<>();
+
+                    switch(index){
+                        case 0:
+                            param.add("normal");
+                            routine.actions.add(new RoutineAction(oven.id,"setConvection",param));
+                            break;
+                        case 1:
+                            param.add("eco");
+                            routine.actions.add(new RoutineAction(oven.id,"setConvection",param));
+                            break;
+                        case 2:
+                            param.add("off");
+                            routine.actions.add(new RoutineAction(oven.id,"setConvection",param));
+                            break;
+                    }
+                }else {
+                    oven.setConvection(array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if (m.allowsNotification(oven)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
             }
 
@@ -200,21 +241,43 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_grill_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-                oven.setGrill(array[index]);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()){
 
-                if(m.allowsNotification(oven)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                    List<Object> param = new LinkedList<>();
+
+                    switch(index) {
+                        case 0:
+                            param.add("large");
+                            routine.actions.add(new RoutineAction(oven.id, "setGrill", param));
+                            break;
+                        case 1:
+                            param.add("eco");
+                            routine.actions.add(new RoutineAction(oven.id,"setGrill", param));
+                            break;
+                        case 2:
+                            param.add("off");
+                            routine.actions.add(new RoutineAction(oven.id,"setGrill", param));
+                            break;
+                    }
+                }else {
+
+                    oven.setGrill(array[index]);
+
+                    if (m.allowsNotification(oven)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
             }
 
@@ -235,22 +298,44 @@ public class OvenFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.oven_heat_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: " + array[index]);
-                oven.setHeat(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if (m.allowsNotification(oven)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
 
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()){
+
+                    List<Object> param = new LinkedList<>();
+
+                    switch(index) {
+                        case 0:
+                            param.add("conventional");
+                            routine.actions.add(new RoutineAction(oven.id,"setHeat", param));
+                            break;
+                        case 1:
+                            param.add("superior");
+                            routine.actions.add(new RoutineAction(oven.id, "setHeat", param));
+                            break;
+                        case 2:
+                            param.add("inferior");
+                            routine.actions.add(new RoutineAction(oven.id, "setHeat", param));
+                            break;
+                    }
+                }else {
+                    oven.setHeat(array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if (m.allowsNotification(oven)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + oven.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+
+                    }
                 }
             }
 

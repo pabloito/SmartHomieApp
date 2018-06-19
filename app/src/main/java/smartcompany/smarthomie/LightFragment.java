@@ -22,6 +22,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,8 +113,15 @@ public class LightFragment extends Fragment {
                             notificationManager.notify(0, mBuilder.build());
                         }
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
-                        light.setBrightness(curr);
-                        System.out.println(curr);
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        if(mainActivity.getComesFromRoutine()){
+                            List<Object> param = new LinkedList<>();
+                            param.add(curr);
+                            routine.actions.add(new RoutineAction(light.id,"setBrightness",param));
+                        }else {
+                            light.setBrightness(curr);
+                            System.out.println(curr);
+                        }
                     }
                 });
 
@@ -124,21 +134,33 @@ public class LightFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.lamp_state_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-                light.setState(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(light)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+light.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()) {
+                    if(mainActivity.getComesFromRoutine()){
+                        String[] array2= API.getContext().getResources().getStringArray(R.array.lamp_state_array_L);
+                        if(array2[index].equals("on")){
+                            routine.actions.add(new RoutineAction(light.id,"turnOn",null));
+                        }else{
+                            routine.actions.add(new RoutineAction(light.id,"turnOff",null));
+                        }
+                    }
+                }else {
+                    light.setState(array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if (m.allowsNotification(light)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + light.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
 
             }
@@ -160,21 +182,45 @@ public class LightFragment extends Fragment {
                 String[] array = getResources().getStringArray(R.array.lamp_color_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: "+array[index]);
-                light.setColor(array[index]);
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(light)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+light.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if(mainActivity.getComesFromRoutine()) {
+                    List<Object> param = new LinkedList<>();
+
+                    switch(index){
+                        case 0:
+                            param.add("EFF70A");
+                            routine.actions.add(new RoutineAction(light.id,"setColor",param));
+                            break;
+                        case 1:
+                            param.add("F70A22");
+                            routine.actions.add(new RoutineAction(light.id,"setColor",param));
+                            break;
+                        case 2:
+                            param.add("1E07F0");
+                            routine.actions.add(new RoutineAction(light.id,"setColor",param));
+                            break;
+                        case 3:
+                            param.add("07F04D");
+                            routine.actions.add(new RoutineAction(light.id,"setColor",param));
+                            break;
+                    }
+                }else {
+                    light.setColor(array[index]);
+                    MainActivity m = (MainActivity) (getActivity());
+                    if (m.allowsNotification(light)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before) + light.name + getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
                 }
             }
 

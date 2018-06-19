@@ -418,7 +418,7 @@ public class API {
                                 Type listType = new TypeToken<List<Routine>>(){}.getType();
                                 List<Routine> routines = gson.fromJson(response.getJSONArray("routines").toString(),listType);
                                 for(Routine r: routines) {
-                                    routineMap.put(r.getId(),r);
+                                    routineMap.put(r.getName(),r);
                                 }
                             }catch (Exception e){
                                 Log.d(e.toString(),e.getMessage());

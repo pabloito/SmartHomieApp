@@ -144,7 +144,7 @@ public class API {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(currentContext,"fallo la conexion al agreagar un device",Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_11),Toast.LENGTH_LONG).show();
                 }
             });
             rQueue.add(request);
@@ -160,18 +160,18 @@ public class API {
             requestJson.put("name",d.getName());
             if (d.getMeta() != null) requestJson.put("meta",d.getMeta());
         }catch (Exception e) {
-            Toast.makeText(currentContext,"Cannot add Device, check the device properties",Toast.LENGTH_LONG).show();
+            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_12),Toast.LENGTH_LONG).show();
         }
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, requestUrl, requestJson, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(currentContext,"Dispositivo Agregado!",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_success_2),Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"Fallo la conexion al agregar un dispositivo",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_11),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -189,18 +189,18 @@ public class API {
                     public void onResponse(JSONObject response) {
                         try{
                             if(response.getBoolean("result")){
-                                Toast.makeText(currentContext,"Dispositivo borrado con exito",Toast.LENGTH_LONG).show();
+                                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_success_1),Toast.LENGTH_LONG).show();
                             }else{
-                                Toast.makeText(currentContext,"No se pudo remover el dispositivo",Toast.LENGTH_LONG).show();
+                                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_10),Toast.LENGTH_LONG).show();
                             }
                         }catch (Exception e){
-                            Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_9),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion al remover",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_8),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -217,18 +217,18 @@ public class API {
                     public void onResponse(JSONObject response) {
                         try{
                             if(response.getBoolean("result")){
-                                Toast.makeText(currentContext,"Dispositivo borrado con exito",Toast.LENGTH_LONG).show();
+                                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_success_1),Toast.LENGTH_LONG).show();
                             }else{
-                                Toast.makeText(currentContext,"El dispositivo ya fue removido",Toast.LENGTH_LONG).show();
+                                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_7),Toast.LENGTH_LONG).show();
                             }
                         }catch (Exception e){
-                            Toast.makeText(currentContext,"fallo la conexion al remover",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_8),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_9),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -253,13 +253,13 @@ public class API {
                             o.setState(aux.getString("status"));
                             o.setTemperature(aux.getInt("temperature"));
                         }catch (Exception e) {
-                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion en actualizar un Oven",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_6),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -282,13 +282,13 @@ public class API {
                             f.setMode(aux.getString("mode"));
                             f.setRefridgeratorTemperature(aux.getInt("temperature"));
                         }catch (Exception e) {
-                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion en actualizar un fridge",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_5),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -313,13 +313,13 @@ public class API {
                                 c.setRaised(false);
                             }
                         }catch (Exception e) {
-                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion en actualizar un blind",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_4),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -344,13 +344,13 @@ public class API {
 
                         }catch (Exception e) {
                             Log.d("JSONLight",e.getMessage());
-                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion en actualizar una luz",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_3),Toast.LENGTH_LONG).show();
             }
         });
 
@@ -373,13 +373,13 @@ public class API {
                             d.setLocked(!aux.getString("lock").equals("unlocked"));
                         }catch (Exception e) {
                             Log.d("JSONDoor",e.getMessage());
-                            Toast.makeText(currentContext,"Un dispositivo fue borrado desde un medio exterior",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"Fallo la conexion en actualizar una puerta",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_1),Toast.LENGTH_LONG).show();
             }
         });
 

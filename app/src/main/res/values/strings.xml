@@ -133,5 +133,25 @@
         <item>Curtain</item>
     </string-array>
 
+    <!--Toast Fails-->
+    <string name="toast_fail_1">Connection failed in door modification</string>
+    <string name="toast_fail_2">A device was modified from an outside source</string>
+    <string name="toast_fail_3">Connection failed in light modification</string>
+    <string name="toast_fail_4">Connection failed in blind modification</string>
+    <string name="toast_fail_5">Connection failed in fridge modification</string>
+    <string name="toast_fail_6">Connection failed in oven modification</string>
+    <string name="toast_fail_7">Device has already been removed</string>
+    <string name="toast_fail_8">Connection failed in removal</string>
+    <string name="toast_fail_9">Connection failed</string>
+    <string name="toast_fail_10">Device removal failed</string>
+    <string name="toast_fail_11">Connection failed in device addition</string>
+    <string name="toast_fail_12">Device addition failed. Check device properties</string>
+
+
+    <!--Toast Success-->
+    <string name="toast_success_1">Device removal successful</string>
+    <string name="toast_success_2">Device added!</string>
+
+
 
 </resources>

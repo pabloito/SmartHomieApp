@@ -115,11 +115,21 @@
         <item>Prendio</item>
         <item>Apagado</item>
     </string-array>
+    <string-array name="lamp_state_array_dup">
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
     <string-array name="lamp_color_array">
         <item>Estandar</item>
         <item>Rojo</item>
         <item>Azul</item>
         <item>Verde</item>
+    </string-array>
+    <string-array name="lamp_color_array_dup">
+        <item>Default</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
     </string-array>
 
     <string-array name="devices">
@@ -129,5 +139,25 @@
         <item>Puerta</item>
         <item>Cortina</item>
     </string-array>
+
+    <!--Toast Fails-->
+    <string name="toast_fail_1">Fallo la conección en actualizar una puerta</string>
+    <string name="toast_fail_2">Un dispositivo fue borrado desde un medio exterior</string>
+    <string name="toast_fail_3">Falló la conección en actualizar una luz</string>
+    <string name="toast_fail_4">Falló la conección en actualizar una cortina</string>
+    <string name="toast_fail_5">Falló la conección en actualizar una heladera</string>
+    <string name="toast_fail_6">Falló la conección en actualizar un horno</string>
+    <string name="toast_fail_7">El dispositivo ya fue removido</string>
+    <string name="toast_fail_8">Falló la conección al remover</string>
+    <string name="toast_fail_9">Falló la conección con la API</string>
+    <string name="toast_fail_10">No se pudo remover el dispositivo</string>
+    <string name="toast_fail_11">Falló la conección al agregar un dispositivo</string>
+    <string name="toast_fail_12">No se pudo agregar el dispositivo, revise sus propiedades</string>
+
+
+    <!--Toast Success-->
+    <string name="toast_success_1">Dispositivo borrado con éxito</string>
+    <string name="toast_success_2">Dispositivo agregado!</string>
+
 
 </resources>

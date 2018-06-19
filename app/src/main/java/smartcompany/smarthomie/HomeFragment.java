@@ -35,6 +35,13 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        Log.d("hola","onstart");
+        super.onStart();
+        drawDevicesRemote();
+        drawRoutinesRemote();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

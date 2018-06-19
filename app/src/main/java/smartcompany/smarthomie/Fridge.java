@@ -49,14 +49,15 @@ public class Fridge extends Device {
     }
     public void setMode(String mode){
         String[] array= API.getContext().getResources().getStringArray(R.array.fridge_mode_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.fridge_mode_array_L);
         this.mode=mode;
-        if(mode.equals(array[0])){
+        if(mode.equals(array[0])|| mode.equals(array2[0])){
             modeIndex=0;
         }
-        if(mode.equals(array[1])){
+        if(mode.equals(array[1])|| mode.equals(array2[1])){
             modeIndex=1;
         }
-        if(mode.equals(array[2])){
+        if(mode.equals(array[2])|| mode.equals(array2[2])){
             modeIndex=2;
         }
     }

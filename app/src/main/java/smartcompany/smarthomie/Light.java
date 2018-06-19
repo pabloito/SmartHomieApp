@@ -63,17 +63,18 @@ public class Light extends Device {
 
     public void setColor(String color) {
         String[] array= API.getContext().getResources().getStringArray(R.array.lamp_color_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.lamp_color_array_L);
         this.color = color;
-        if(color.equals("Default")){
+        if(color.equals(array[0])||color.equals(array2[0])){
             colorIndex=0;
         }
-        if(color.equals(array[1])){
+        if(color.equals(array[1])||color.equals(array2[1])){
             colorIndex=1;
         }
-        if(color.equals(array[2])){
+        if(color.equals(array[2])||color.equals(array2[2])){
             colorIndex=2;
         }
-        if(color.equals(array[3])){
+        if(color.equals(array[3])||color.equals(array2[3])){
             colorIndex=3;
         }
 

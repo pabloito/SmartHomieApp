@@ -77,10 +77,17 @@
     <string name="fridge_text_mode">Mode</string>
     <string name="fridge_text_refrigerator">Refrigerator Temperature</string>
     <string name="fridge_text_fridge">Fridge Temperature</string>
+
     <string-array name="fridge_mode_array">
         <item>Default</item>
         <item>Party</item>
         <item>Eco</item>
+    </string-array>
+
+    <string-array name="fridge_mode_array_L">
+        <item>default</item>
+        <item>party</item>
+        <item>eco</item>
     </string-array>
 
     <!-- OVEN STRINGS-->
@@ -89,6 +96,7 @@
     <string name="oven_grill_text">Grill</string>
     <string name="oven_temperature_text">Temperature</string>
     <string name="oven_convection_text">Convection</string>
+
     <string-array name="oven_state_array">
         <item>On</item>
         <item>Off</item>
@@ -109,6 +117,26 @@
         <item>Off</item>
     </string-array>
 
+    <string-array name="oven_state_array_L">
+        <item>on</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="oven_convection_array_L">
+        <item>normal</item>
+        <item>eco</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="oven_heat_array_L">
+        <item>conventional</item>
+        <item>superior</item>
+        <item>inferior</item>
+    </string-array>
+    <string-array name="oven_grill_array_L">
+        <item>large</item>
+        <item>eco</item>
+        <item>off</item>
+    </string-array>
+
     <!-- LIGHT STRINGS-->
     <string name="lamp_state_text">State</string>
     <string name="lamp_brightness_text">Brightness</string>
@@ -124,6 +152,18 @@
         <item>Blue</item>
         <item>Green</item>
     </string-array>
+
+    <string-array name="lamp_state_array_L">
+        <item>on</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="lamp_color_array_L">
+        <item>default</item>
+        <item>red</item>
+        <item>blue</item>
+        <item>green</item>
+    </string-array>
+
 
     <string-array name="devices">
         <item>Fridge</item>

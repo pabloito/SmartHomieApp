@@ -80,6 +80,12 @@
         <item>Eco</item>
     </string-array>
 
+    <string-array name="fridge_mode_array_L">
+        <item>default</item>
+        <item>party</item>
+        <item>eco</item>
+    </string-array>
+
     <!-- OVEN STRINGS-->
     <string name="oven_state_text">Estado</string>
     <string name="oven_heat_text">Calor</string>
@@ -106,6 +112,27 @@
         <item>Apagado</item>
     </string-array>
 
+    <string-array name="oven_state_array_L">
+        <item>on</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="oven_convection_array_L">
+        <item>normal</item>
+        <item>eco</item>
+        <item>off</item>
+    </string-array>
+    <string-array name="oven_heat_array_L">
+        <item>conventional</item>
+        <item>superior</item>
+        <item>inferior</item>
+    </string-array>
+    <string-array name="oven_grill_array_L">
+        <item>large</item>
+        <item>eco</item>
+        <item>off</item>
+    </string-array>
+
+
     <!-- LIGHT STRINGS-->
     <string name="lamp_state_text">Estado</string>
     <string name="lamp_brightness_text">Brillo</string>
@@ -115,22 +142,24 @@
         <item>Prendio</item>
         <item>Apagado</item>
     </string-array>
-    <string-array name="lamp_state_array_dup">
-        <item>On</item>
-        <item>Off</item>
-    </string-array>
     <string-array name="lamp_color_array">
         <item>Estandar</item>
         <item>Rojo</item>
         <item>Azul</item>
         <item>Verde</item>
     </string-array>
-    <string-array name="lamp_color_array_dup">
-        <item>Default</item>
-        <item>Red</item>
-        <item>Blue</item>
-        <item>Green</item>
+
+    <string-array name="lamp_state_array_L">
+        <item>on</item>
+        <item>off</item>
     </string-array>
+    <string-array name="lamp_color_array_L">
+        <item>default</item>
+        <item>red</item>
+        <item>blue</item>
+        <item>green</item>
+    </string-array>
+
 
     <string-array name="devices">
         <item>Heladera</item>

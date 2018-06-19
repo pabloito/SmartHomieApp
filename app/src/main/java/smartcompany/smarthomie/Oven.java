@@ -70,14 +70,15 @@ public class Oven extends Device {
 
     public void setConvection(String convection) {
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_convection_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.oven_convection_array);
         this.convection = convection;
-        if(convection.equals(array[0])){
+        if(convection.equals(array[0]) || convection.equals(array2[0])){
             convectionIndex=0;
         }
-        if(convection.equals(array[1])){
+        if(convection.equals(array[1]) || convection.equals(array2[1])){
             convectionIndex=1;
         }
-        if(convection.equals(array[2])){
+        if(convection.equals(array[2]) || convection.equals(array2[2])){
             convectionIndex=2;
         }
     }
@@ -88,39 +89,43 @@ public class Oven extends Device {
 
     public void setGrill(String grill) {
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_grill_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.oven_grill_array);
         this.grill = grill;
-        if(grill.equals(array[0])){
+        if(grill.equals(array[0]) || grill.equals(array2[0])){
             grillIndex=0;
+            return;
         }
-        if(grill.equals(array[1])){
+        if(grill.equals(array[1]) || grill.equals(array2[1])){
             grillIndex=1;
         }
-        if(grill.equals(array[2])){
+        if(grill.equals(array[2]) || grill.equals(array2[2])){
             grillIndex=2;
         }
     }
 
     public void setHeat(String heat) {
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_heat_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.oven_heat_array_L);
         this.heat = heat;
-        if(heat.equals(array[0])){
+        if(heat.equals(array[0]) || heat.equals(array2[0])){
             heatIndex=0;
         }
-        if(heat.equals(array[1])){
+        if(heat.equals(array[1])|| heat.equals(array2[1])){
             heatIndex=1;
         }
-        if(heat.equals(array[2])){
+        if(heat.equals(array[2])|| heat.equals(array2[2])){
             heatIndex=2;
         }
     }
 
     public void setState(String state) {
         String[] array= API.getContext().getResources().getStringArray(R.array.oven_state_array);
+        String[] array2= API.getContext().getResources().getStringArray(R.array.oven_state_array_L);
         this.state = state;
-        if(state.equals(array[0])){
+        if(state.equals(array[0]) || state.equals(array2[0])){
             stateIndex=0;
         }
-        if(state.equals(array[1])){
+        if(state.equals(array[1]) || state.equals(array2[1])){
             stateIndex=1;
         }
     }

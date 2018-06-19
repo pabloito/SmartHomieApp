@@ -51,6 +51,7 @@ public class RoutineFragment extends Fragment {
         routine = (Routine) ((MainActivity)getActivity()).getCurrentRoutine();
 
         TextView name = (TextView) view.findViewById(R.id.routine_name);
+
         name.append(routine.name);
 
         ImageButton execute = (ImageButton) view.findViewById(R.id.routine_execute);
@@ -68,6 +69,7 @@ public class RoutineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 routine.delete();
+                ((MainActivity)getActivity()).externalSetFragment("homeFragment");
             }
         });
 

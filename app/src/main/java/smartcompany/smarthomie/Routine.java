@@ -32,7 +32,7 @@ public class Routine {
     }
 
     public void delete(){
-
+        API.RemoveRoutine(this);
     }
 
     public void addAction(){// recibe action object?

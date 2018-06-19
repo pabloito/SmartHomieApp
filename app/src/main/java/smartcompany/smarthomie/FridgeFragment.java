@@ -174,6 +174,7 @@ public class FridgeFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.fridge_mode_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fridgeModeSelect.setAdapter(adapter);
+        fridgeModeSelect.setSelection(fridge.getModeIndex(),false);
         fridgeModeSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {

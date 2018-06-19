@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +30,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
+
 public class OvenFragment extends Fragment {
 
+
+    public boolean inhibit_spinner1=false;
+    public boolean inhibit_spinner2=false;
+    public boolean inhibit_spinner3=false;
+    public boolean inhibit_spinner4=false;
     Oven oven;
     Routine routine;
 
@@ -80,10 +87,6 @@ public class OvenFragment extends Fragment {
         final Button removeButton = (Button) view.findViewById(R.id.oven_remove_button);
 
         ovenTemperatureSlider.setProgress(oven.getTemperature()-90);
-        ovenConvectionSelect.setSelection(oven.getConvectionIndex());
-        ovenGrillSelect.setSelection(oven.getGrillIndex());
-        ovenHeatSelect.setSelection(oven.getHeatIndex());
-        ovenStateSelect.setSelection(oven.getStateIndex());
 
         ovenTemperatureSlider.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener()
@@ -132,6 +135,7 @@ public class OvenFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),R.array.oven_state_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ovenStateSelect.setAdapter(adapter);
+        ovenStateSelect.setSelection(oven.getStateIndex(),false);
         ovenStateSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -178,6 +182,7 @@ public class OvenFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(getContext(),R.array.oven_convection_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ovenConvectionSelect.setAdapter(adapter2);
+        ovenConvectionSelect.setSelection(oven.getConvectionIndex(),false);
         ovenConvectionSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -234,9 +239,11 @@ public class OvenFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(getContext(),R.array.oven_grill_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ovenGrillSelect.setAdapter(adapter3);
+        ovenGrillSelect.setSelection(oven.getGrillIndex(),false);
         ovenGrillSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
                 MainActivity m = (MainActivity) (getActivity());
                 String[] array = getResources().getStringArray(R.array.oven_grill_array);
                 int index = parentView.getSelectedItemPosition();
@@ -292,9 +299,11 @@ public class OvenFragment extends Fragment {
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(getContext(),R.array.oven_heat_array, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ovenHeatSelect.setAdapter(adapter4);
+        ovenHeatSelect.setSelection(oven.getHeatIndex(),false);
         ovenHeatSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
                 String[] array = getResources().getStringArray(R.array.oven_heat_array);
                 int index = parentView.getSelectedItemPosition();
                 System.out.println("you have selected: " + array[index]);

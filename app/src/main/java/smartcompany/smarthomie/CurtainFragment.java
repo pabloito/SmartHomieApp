@@ -22,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -87,12 +89,12 @@ public class CurtainFragment extends Fragment {
                     if(curtainButton.getText().equals(str)){ //TURINING ON CASE
                         curtainButton.setText(R.string.curtain_button_on);
                         curtainText.setText(R.string.curtain_text_on);
-                        routine.actions.add(new RoutineAction(curtain.id,"down",null));
+                        routine.actions.add(new RoutineAction(curtain.id,"down",new LinkedList<Object>()));
                     }
                     else{ //TURNING OFF CASE
                         curtainButton.setText(R.string.curtain_button_off);
                         curtainText.setText(R.string.curtain_text_off);
-                        routine.actions.add(new RoutineAction(curtain.id,"up",null));
+                        routine.actions.add(new RoutineAction(curtain.id,"up",new LinkedList<Object>()));
                     }
                 }
             });

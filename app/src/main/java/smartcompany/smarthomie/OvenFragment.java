@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -147,9 +148,9 @@ public class OvenFragment extends Fragment {
                 if(mainActivity.getComesFromRoutine()){
                     String[] array2= API.getContext().getResources().getStringArray(R.array.oven_state_array_L);
                     if(array2[index].equals("on")){
-                        routine.actions.add(new RoutineAction(oven.id,"turnOn",null));
+                        routine.actions.add(new RoutineAction(oven.id,"turnOn",new ArrayList<Object>()));
                     }else{
-                        routine.actions.add(new RoutineAction(oven.id,"turnOff",null));
+                        routine.actions.add(new RoutineAction(oven.id,"turnOff",new ArrayList<Object>()));
                     }
                 }else{
                     oven.setState(array[index]);

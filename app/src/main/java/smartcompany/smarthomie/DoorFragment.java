@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -98,12 +100,12 @@ public class DoorFragment extends Fragment {
                     if(doorButton.getText().equals(str)){ //TURINING ON CASE
                         doorButton.setText(R.string.door_button_on);
                         doorText.setText(R.string.door_text_on);
-                        routine.actions.add(new RoutineAction(door.id,"open",null));
+                        routine.actions.add(new RoutineAction(door.id,"open",new ArrayList<Object>()));
                     }
                     else{ //TURNING OFF CASE
                         doorButton.setText(R.string.door_button_off);
                         doorText.setText(R.string.door_text_off);
-                        routine.actions.add(new RoutineAction(door.id,"close",null));
+                        routine.actions.add(new RoutineAction(door.id,"close",new ArrayList<Object>()));
                     }
                 }
                 else{
@@ -148,12 +150,12 @@ public class DoorFragment extends Fragment {
                     if(lockButton.getText().equals(str)){ //TURINING ON CASE
                         lockButton.setText(R.string.lock_button_on);
                         lockText.setText(R.string.lock_text_on);
-                        routine.actions.add(new RoutineAction(door.id,"unlock",null));
+                        routine.actions.add(new RoutineAction(door.id,"unlock",new ArrayList<Object>()));
                     }
                     else{ //TURNING OFF CASE
                         lockButton.setText(R.string.lock_button_off);
                         lockText.setText(R.string.lock_text_off);
-                        routine.actions.add(new RoutineAction(door.id,"lock",null));
+                        routine.actions.add(new RoutineAction(door.id,"lock",new ArrayList<Object>()));
                     }
                 }
                 else{

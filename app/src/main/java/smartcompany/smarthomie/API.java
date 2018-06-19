@@ -335,7 +335,7 @@ public class API {
                         Light l = lampsToGetState.poll();
                         try {
                             JSONObject aux = response.getJSONObject("result");
-                            l.setBrightness();
+                            l.setBrightness(50);
                             l.setColor(aux.getString("color"));
                             l.setState(aux.getString("status"));
 

@@ -516,8 +516,12 @@ public class API {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Routine r = gson.fromJson(response.toString(),Routine.class);
-                                routineMap.put(r.getName(),r);
+                                try {
+                                    Routine r = gson.fromJson(response.getJSONObject("routine").toString(),Routine.class);
+                                    routineMap.put(r.getName(),r);
+                                }catch (Exception e){
+
+                                }
                             }
                         }, new Response.ErrorListener() {
                     @Override

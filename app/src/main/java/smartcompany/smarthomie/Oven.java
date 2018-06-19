@@ -118,7 +118,6 @@ public class Oven extends Device {
         this.grill = grill;
         if(grill.equals(array[0]) || grill.equals(array2[0])){
             grillIndex=0;
-            return;
         }
         if(grill.equals(array[1]) || grill.equals(array2[1])){
             grillIndex=1;
@@ -162,7 +161,7 @@ public class Oven extends Device {
 
         List<Object> param = new LinkedList<>();
 
-        switch(grillIndex) {
+        switch(heatIndex) {
             case 0:
                 param.add("conventional");
                 API.SendEventWithParameters(this, "setHeat", param);

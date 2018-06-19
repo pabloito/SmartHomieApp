@@ -181,6 +181,7 @@ public class API {
 
     public static void RemoveDevice(Device d) {
         String requestUrl = baseUrl + "/devices/" + d.getId();
+        devicesMap.remove(d.getName());
 
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.DELETE, requestUrl, null,
                 new Response.Listener<JSONObject>() {

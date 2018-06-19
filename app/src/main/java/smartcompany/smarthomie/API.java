@@ -23,7 +23,6 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -263,11 +262,11 @@ public class API {
                         Oven o = ovensToGetState.poll();
                         try {
                             JSONObject aux = response.getJSONObject("result");
-                            o.setConvection(aux.getString("convection"));
-                            o.setGrill(aux.getString("grill"));
-                            o.setHeat(aux.getString("heat"));
-                            o.setState(aux.getString("status"));
-                            o.setTemperature(aux.getInt("temperature"));
+                            o.setConvection_Api(aux.getString("convection"));
+                            o.setGrill_Api(aux.getString("grill"));
+                            o.setHeat_Api(aux.getString("heat"));
+                            o.setState_Api(aux.getString("status"));
+                            o.setTemperature_Api(aux.getInt("temperature"));
                         }catch (Exception e) {
                             Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
@@ -294,9 +293,9 @@ public class API {
                         Fridge f = fridgesToGetState.poll();
                         try {
                             JSONObject aux = response.getJSONObject("result");
-                            f.setFreezerTemperature(aux.getInt("freezerTemperature"));
-                            f.setMode(aux.getString("mode"));
-                            f.setRefridgeratorTemperature(aux.getInt("temperature"));
+                            f.setFreezerTemperature_Api(aux.getInt("freezerTemperature"));
+                            f.setMode_Api(aux.getString("mode"));
+                            f.setRefridgeratorTemperature_Api(aux.getInt("temperature"));
                         }catch (Exception e) {
                             Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_fail_2),Toast.LENGTH_LONG).show();
                         }
@@ -354,9 +353,9 @@ public class API {
                         Light l = lampsToGetState.poll();
                         try {
                             JSONObject aux = response.getJSONObject("result");
-                            l.setBrightness(aux.getInt("brightness"));
-                            l.setColor(aux.getString("color"));
-                            l.setState(aux.getString("status"));
+                            l.setBrightness_Api(aux.getInt("brightness"));
+                            l.setColor_Api(aux.getString("color"));
+                            l.setState_Api(aux.getString("status"));
 
                         }catch (Exception e) {
                             Log.d("JSONLight",e.getMessage());
@@ -450,8 +449,7 @@ public class API {
             String requestUrl = baseUrl + "/routines";
             try{
                 String jsonString = gson.toJson(routine,Routine.class);
-                JSONParser jsonParser = new JSONParser();
-                JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonString);
+                JSONObject jsonObject = new JSONObject(jsonString);
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, requestUrl, jsonObject,
                         new Response.Listener<JSONObject>() {
                             @Override

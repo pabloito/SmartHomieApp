@@ -190,8 +190,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d("W","Doesn't come from routine...");
             comesFromRoutine=false;
         }
-
-        if((fragment instanceof CurtainFragment)||(fragment instanceof LightFragment)||(fragment instanceof DoorFragment)||(fragment instanceof OvenFragment)||(fragment instanceof FridgeFragment)){
+        Log.d("TAG",fragment.toString());
+        Fragment frag = getSupportFragmentManager().findFragmentByTag("current");
+        if((frag instanceof CurtainFragment)||(frag instanceof LightFragment)||(frag instanceof DoorFragment)||(frag instanceof OvenFragment)||(frag instanceof FridgeFragment)){
             comesFromDeviceThatComesFromRoutine=true;
         }
         else

@@ -34,6 +34,7 @@ public class RoutineFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d("TAG",((MainActivity)getActivity()).getComesFromDeviceThatComesFromRoutine()?"true":"false");
         if(!((MainActivity)getActivity()).getComesFromDeviceThatComesFromRoutine())routine.actions=new ArrayList<>();
     }
 

@@ -45,10 +45,6 @@ public class Routine {
         API.RemoveRoutine(this);
     }
 
-    public void addAction(){// recibe action object?
-
-    }
-
     public String getId() {
         return id;
     }

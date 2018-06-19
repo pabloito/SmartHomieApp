@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center"
             android:text="@string/help_description"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="20dp"/>
 
 
     </LinearLayout>

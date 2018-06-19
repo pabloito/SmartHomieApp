@@ -29,11 +29,11 @@
     <string name="channel_name">Channel</string>
     <string name="channel_description">Channel</string>
     <string name="help_title">Help</string>
-    <string name="help_description">Welcome to the help screen!
+    <string name="help_description">Welcome to the help screen!\n
             Previously created devices and routines are found in the home. To add new devices to the list, make your way to the "Devices" tab and select "New Device".
-            To remove a device tap on it and select the "Remove" option inside the newly opened window.
-            To add a routine to the list, make your way to the "Routines" tab and select "New Routine".
-            To delete a routine tap on it and select the "Remove" option inside the newly opened window.</string>
+            \n To remove a device tap on it and select the "Remove" option inside the newly opened window.
+            \n To add a routine to the list, make your way to the "Routines" tab and select "New Routine".
+            \n To delete a routine tap on it and select the "Remove" option inside the newly opened window.</string>
     <string name="recieve_notifications">Recieve notifications</string>
     <string name="receive_notifications">Receive Notifications</string>
 

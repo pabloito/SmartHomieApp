@@ -102,6 +102,7 @@ public class NewDeviceFragment extends Fragment {
                     String type = dropdown.getSelectedItem().toString().toLowerCase();
                     type = DevicesTypes.TypeId(type);
                     API.AddNewDevice(new Device(null,selectType.getText().toString(),type,null));
+                    ((MainActivity)getActivity()).externalSetFragment("homeFragment");
                 }
 
             }

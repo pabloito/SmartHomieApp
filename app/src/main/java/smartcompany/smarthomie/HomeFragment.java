@@ -22,13 +22,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
-
+    boolean first=true;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -62,11 +63,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ((MainActivity)getActivity()).updateRoutines();
-        ((MainActivity)getActivity()).updateDevices();
-
         drawDevices(view);
         drawRoutines(view);
+
+        if(first){
+            new Task().execute(this);
+            first = false;
+        }
     }
 
     public void addDevice(View view, final Device device){
@@ -137,6 +140,9 @@ public class HomeFragment extends Fragment {
         MainActivity m = (MainActivity) getActivity();
         m.updateDevices();
 
+        LinearLayout devs = view.findViewById(R.id.home_devices);
+        devs.removeAllViews();
+
         HashMap<String, Device> dmap = m.getDevicesMap();
 
         for(String key : dmap.keySet()){
@@ -148,10 +154,22 @@ public class HomeFragment extends Fragment {
         MainActivity m = (MainActivity) getActivity();
         m.updateRoutines();
 
+        LinearLayout routines = view.findViewById(R.id.home_routines);
+        routines.removeAllViews();
+
         HashMap<String, Routine> rmap = m.getRoutinesMap();
 
         for(String key : rmap.keySet()){
             addRoutine(view, rmap.get(key));
         }
     }
+
+    public void drawDevicesRemote(){
+        drawDevices(getView());
+    }
+
+    public void drawRoutinesRemote(){
+        drawRoutines(getView());
+    }
+
 }

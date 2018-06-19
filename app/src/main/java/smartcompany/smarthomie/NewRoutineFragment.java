@@ -100,6 +100,7 @@ public class NewRoutineFragment extends Fragment {
                                 Toast.LENGTH_SHORT);
                         toast.show();
                         ok = false;
+                        return;
                     }
                 }
 

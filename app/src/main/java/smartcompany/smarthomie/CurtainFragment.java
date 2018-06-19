@@ -77,43 +77,67 @@ public class CurtainFragment extends Fragment {
             curtainText.setText(R.string.curtain_text_on);
         }
 
-        curtainButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
 
-                String str = getResources().getString(R.string.curtain_button_off);
-
-
-                createNotificationChannel();
-
-                MainActivity m = (MainActivity) (getActivity());
-                if(m.allowsNotification(curtain)) {
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                            .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                            .setContentTitle(getContext().getString(R.string.notification_title))
-                            .setContentText(getContext().getString(R.string.notification_text_before)+curtain.name+getContext().getString(R.string.notification_text_after))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setContentIntent(pendingIntent)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                    notificationManager.notify(0, mBuilder.build());
+        // HANDLERS DIFERENCIADOS
+        if(mainActivity.getComesFromRoutine()){
+            curtainButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    String str = getResources().getString(R.string.curtain_button_off);
+                    if(curtainButton.getText().equals(str)){ //TURINING ON CASE
+                        curtainButton.setText(R.string.curtain_button_on);
+                        curtainText.setText(R.string.curtain_text_on);
+                        routine.actions.add(new RoutineAction(curtain.id,"down",null));
+                    }
+                    else{ //TURNING OFF CASE
+                        curtainButton.setText(R.string.curtain_button_off);
+                        curtainText.setText(R.string.curtain_text_off);
+                        routine.actions.add(new RoutineAction(curtain.id,"up",null));
+                    }
                 }
+            });
+        }
+        else{
+            curtainButton.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
 
-                if(curtainButton.getText().equals(str)){ //TURINING ON CASE
-                    curtainButton.setText(R.string.curtain_button_on);
-                    curtainText.setText(R.string.curtain_text_on);
-                    curtain.lowerCurtain();
+                    String str = getResources().getString(R.string.curtain_button_off);
+
+
+                    createNotificationChannel();
+
+                    MainActivity m = (MainActivity) (getActivity());
+                    if(m.allowsNotification(curtain)) {
+                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                .setContentTitle(getContext().getString(R.string.notification_title))
+                                .setContentText(getContext().getString(R.string.notification_text_before)+curtain.name+getContext().getString(R.string.notification_text_after))
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setContentIntent(pendingIntent)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                        notificationManager.notify(0, mBuilder.build());
+                    }
+
+                    if(curtainButton.getText().equals(str)){ //TURINING ON CASE
+                        curtainButton.setText(R.string.curtain_button_on);
+                        curtainText.setText(R.string.curtain_text_on);
+                        curtain.lowerCurtain();
+                    }
+                    else{ //TURNING OFF CASE
+                        curtainButton.setText(R.string.curtain_button_off);
+                        curtainText.setText(R.string.curtain_text_off);
+                        curtain.raiseCurtain();
+                    }
                 }
-                else{ //TURNING OFF CASE
-                    curtainButton.setText(R.string.curtain_button_off);
-                    curtainText.setText(R.string.curtain_text_off);
-                    curtain.raiseCurtain();
-                }
-            }
-        });
+            });
+        }
+
+
         removeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

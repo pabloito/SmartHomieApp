@@ -10,7 +10,7 @@ import java.util.List;
 public class Routine {
     String name;
     String id;
-    List<RoutineAction> actions;
+    public List<RoutineAction> actions;
 
     // necesitamos un array temporal de action objects para una rutina que se está creando
 

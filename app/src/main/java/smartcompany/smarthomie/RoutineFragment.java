@@ -16,6 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -30,6 +31,11 @@ public class RoutineFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(!((MainActivity)getActivity()).getComesFromDeviceThatComesFromRoutine())routine.actions=new ArrayList<>();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,12 +55,11 @@ public class RoutineFragment extends Fragment {
 
         ImageButton execute = (ImageButton) view.findViewById(R.id.routine_execute);
         ImageButton delete = (ImageButton) view.findViewById(R.id.routine_delete);
+        ImageButton save = (ImageButton) view.findViewById(R.id.save_routine_button);
 
         execute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "falta esta funcion porque no está la api",
-                        Toast.LENGTH_LONG).show();
                 routine.execute();
             }
         });
@@ -62,9 +67,14 @@ public class RoutineFragment extends Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "falta esta funcion porque no está la api",
-                        Toast.LENGTH_LONG).show();
                 routine.delete();
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 

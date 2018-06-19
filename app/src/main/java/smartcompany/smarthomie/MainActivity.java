@@ -175,6 +175,12 @@ public class MainActivity extends AppCompatActivity {
         setFragment(curtainFragment);
     }
 
+    boolean comesFromDeviceThatComesFromRoutine = false;
+
+    public boolean getComesFromDeviceThatComesFromRoutine(){
+        return comesFromDeviceThatComesFromRoutine;
+    }
+
     private void setFragment(Fragment fragment){
         if(getSupportFragmentManager().findFragmentByTag("current") instanceof RoutineFragment){
             Log.d("W","Comes from routine...");
@@ -184,6 +190,13 @@ public class MainActivity extends AppCompatActivity {
             Log.d("W","Doesn't come from routine...");
             comesFromRoutine=false;
         }
+
+        if((fragment instanceof CurtainFragment)||(fragment instanceof LightFragment)||(fragment instanceof DoorFragment)||(fragment instanceof OvenFragment)||(fragment instanceof FridgeFragment)){
+            comesFromDeviceThatComesFromRoutine=true;
+        }
+        else
+            comesFromDeviceThatComesFromRoutine=false;
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment, "current");
         fragmentTransaction.commit();

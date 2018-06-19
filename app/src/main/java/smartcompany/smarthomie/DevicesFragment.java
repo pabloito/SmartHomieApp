@@ -57,7 +57,7 @@ public class DevicesFragment extends Fragment {
         View deviceView = getLayoutInflater().inflate(R.layout.layout_devices_item,((ViewGroup)getView().getParent()),false);
 
         TextView type = deviceView.findViewById(R.id.device_type);
-        type.append(device.getTypeId());
+        type.append(DevicesTypes.TypeName(device.getTypeId()));
 
         TextView t = deviceView.findViewById(R.id.item_name);
         t.append(device.getName());

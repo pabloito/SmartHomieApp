@@ -132,7 +132,9 @@ public class API {
             Toast.makeText(currentContext,"",Toast.LENGTH_LONG).show();
 
             JSONArray arrayParameters = new JSONArray();
-            arrayParameters.put(parameters);
+            for (Object o: parameters) {
+                arrayParameters.put(o);
+            }
 
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.PUT, requestUrl, arrayParameters, new Response.Listener<JSONArray>() {
                 @Override
@@ -142,7 +144,7 @@ public class API {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(currentContext,"fallo la conexion al agreagar un device",Toast.LENGTH_LONG).show();
                 }
             });
             rQueue.add(request);
@@ -169,7 +171,7 @@ public class API {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"No se pudo conectar con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"Fallo la conexion al agregar un dispositivo",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -197,7 +199,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"fallo la conexion al remover",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -219,7 +221,7 @@ public class API {
                                 Toast.makeText(currentContext,"El dispositivo ya fue removido",Toast.LENGTH_LONG).show();
                             }
                         }catch (Exception e){
-                            Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,"fallo la conexion al remover",Toast.LENGTH_LONG).show();
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -256,7 +258,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"fallo la conexion en actualizar un Oven",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -285,7 +287,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"fallo la conexion en actualizar un fridge",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -316,7 +318,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"fallo la conexion en actualizar un blind",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -335,7 +337,7 @@ public class API {
                         Light l = lampsToGetState.poll();
                         try {
                             JSONObject aux = response.getJSONObject("result");
-                            l.setBrightness(50);
+                            l.setBrightness(aux.getInt("brightness"));
                             l.setColor(aux.getString("color"));
                             l.setState(aux.getString("status"));
 
@@ -347,7 +349,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"fallo la conexion en actualizar una luz",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -376,7 +378,7 @@ public class API {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(currentContext,"fallo la conexion con la API",Toast.LENGTH_LONG).show();
+                Toast.makeText(currentContext,"Fallo la conexion en actualizar una puerta",Toast.LENGTH_LONG).show();
             }
         });
 

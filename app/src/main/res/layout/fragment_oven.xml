@@ -125,8 +125,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
-                            android:text="@string/oven_grill_text"
-                            android:textColor="@android:color/white"/>
+                            android:textColor="@android:color/white"
+                            android:text="@string/oven_grill_text"/>
                     </LinearLayout>
 
                     <LinearLayout

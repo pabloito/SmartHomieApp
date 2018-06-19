@@ -37,11 +37,12 @@
 
                     <EditText
                         android:id="@+id/EntryName"
-                        android:layout_width="357dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="100"
                         android:hint="@string/EntryName"
                         android:inputType="textPersonName"
+                        android:gravity="center_vertical"
                         android:textColor="@android:color/white" />
                 </LinearLayout>
 
@@ -63,6 +64,7 @@
                         android:layout_width="149dp"
                         android:layout_height="33dp"
                         android:text="@string/selectType"
+                        android:gravity="center_vertical"
                         android:textColor="@android:color/white"/>
 
                 </LinearLayout>

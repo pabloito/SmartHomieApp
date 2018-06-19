@@ -20,15 +20,19 @@ public class Door extends Device {
 
     public void lock() {
         locked=true;
+        API.SendEvent(this,"lock");
     }
     public void unlock() {
         locked =false;
+        API.SendEvent(this,"unlock");
     }
     public void open() {
         closed=false;
+        API.SendEvent(this,"open");
     }
     public void close() {
         closed=true;
+        API.SendEvent(this,"close");
     }
     public boolean isLocked(){
         return locked;

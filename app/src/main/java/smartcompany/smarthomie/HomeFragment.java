@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
         drawRoutines(view);
 
         if(first){
-            new Task().execute(this);
+            (new Task()).execute(this);
             first = false;
         }
     }

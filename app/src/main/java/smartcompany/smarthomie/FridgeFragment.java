@@ -192,9 +192,11 @@ public class FridgeFragment extends Fragment {
         removeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast toast = Toast.makeText(getContext(), "Lo removiste!.",
-                        Toast.LENGTH_SHORT);
-                toast.show();
+                View parent = (View) v.getParent().getParent().getParent().getParent().getParent();
+                TextView t = parent.findViewById(R.id.fridge_title);
+                Device d = ((MainActivity)getActivity()).getDevicesMap().get(t.getText());
+                API.RemoveDevice(d);
+                ((MainActivity)getActivity()).externalSetFragment("homeFragment");
             }
         });
     }

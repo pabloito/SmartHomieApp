@@ -29,6 +29,10 @@ public class Device {
         return typeId;
     }
 
+    public void removeDevice(){
+        API.RemoveDevice(this);
+    }
+
     /*Convert a generic device to an specific device like blind, lamp, etc*/
 
     public static Device DeviceFactory(Device d){

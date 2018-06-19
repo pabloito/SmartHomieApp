@@ -16,7 +16,10 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +29,14 @@ import java.util.regex.Pattern;
  */
 public class NewRoutineFragment extends Fragment {
 
+
+    static ArrayList<Device> devices;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        devices = new ArrayList<>();
+    }
 
     public NewRoutineFragment() {
         // Required empty public constructor
@@ -62,6 +73,7 @@ public class NewRoutineFragment extends Fragment {
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
+                    return;
                 }
 
                 if(str.length() < 3){
@@ -69,6 +81,7 @@ public class NewRoutineFragment extends Fragment {
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
+                    return;
                 }
 
                 Matcher real = cmp.matcher(str);
@@ -78,6 +91,7 @@ public class NewRoutineFragment extends Fragment {
                             Toast.LENGTH_SHORT);
                     toast.show();
                     ok = false;
+                    return;
                 }
 
                 if(API.getRoutineMap() != null){
@@ -89,9 +103,13 @@ public class NewRoutineFragment extends Fragment {
                     }
                 }
 
-                if(ok){
-                    //AGREGA LA RUTINA!
+                ArrayList<RoutineAction> ra = new ArrayList<>();
+                for(Device d : NewRoutineFragment.devices){
+                    ra.add(new RoutineAction(d.id,"getState", new ArrayList<Object>()));
                 }
+
+                API.AddNewRoutine(new Routine(null,str.toString(),ra));
+                ((MainActivity)getActivity()).externalSetFragment("homeFragment");
             }
         });
     }
@@ -109,8 +127,12 @@ public class NewRoutineFragment extends Fragment {
         check.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "check HANDLER WORKS",
-                        Toast.LENGTH_LONG).show();;
+                View p = (View)v.getParent().getParent().getParent();
+                String name = ((TextView)p.findViewById(R.id.item_name)).getText().toString();
+                if(((CheckBox)v).isChecked())
+                    NewRoutineFragment.devices.add(((MainActivity)getActivity()).getDevicesMap().get(name));
+                else
+                    NewRoutineFragment.devices.remove(((MainActivity)getActivity()).getDevicesMap().get(name));
             }
         });
 

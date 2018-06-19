@@ -28,7 +28,7 @@ public class Routine {
     }
 
     public void execute(){
-
+        API.ExecuteRoutine(this);
     }
 
     public void delete(){

@@ -530,4 +530,26 @@ public class API {
         }
     }
 
+    public static void ExecuteRoutine(Routine routine) {
+        if(rQueue != null) {
+            String requestString = baseUrl + "/routines/" + routine.getId() + "/execute";
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestString, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Toast.makeText(currentContext,"La rutina se ejecuto con exito",Toast.LENGTH_LONG).show();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(currentContext,"La rutina fue borrada de un medio exterior",Toast.LENGTH_LONG).show();
+                }
+            });
+
+            rQueue.add(jsonObjectRequest);
+            rQueue.start();
+        }
+
+    }
+
 }

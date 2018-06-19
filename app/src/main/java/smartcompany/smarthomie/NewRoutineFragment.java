@@ -55,17 +55,20 @@ public class NewRoutineFragment extends Fragment {
 
                 Pattern cmp = Pattern.compile("^[a-z|A-Z|0-9_]+( [a-z|A-Z|0-9_]+)*$");
                 Editable str = name.getText();
+                boolean ok = true;
 
                 if(str.length() == 0){
                     Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos un caracter !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
                 }
 
                 if(str.length() < 3){
                     Toast toast = Toast.makeText(getContext(), "El nombre debe tener al menos 3 caracteres !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
                 }
 
                 Matcher real = cmp.matcher(str);
@@ -74,12 +77,20 @@ public class NewRoutineFragment extends Fragment {
                     Toast toast = Toast.makeText(getContext(), "El nombre tiene caracteres inválidos !",
                             Toast.LENGTH_SHORT);
                     toast.show();
+                    ok = false;
                 }
 
-                if(true/*nameIsUsed(str)*/){
-                    Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
+                if(API.getRoutineMap() != null){
+                    if(API.getRoutineMap().containsKey(name.getText().toString())){
+                        Toast toast = Toast.makeText(getContext(), "El nombre ya esta utilizado !",
+                                Toast.LENGTH_SHORT);
+                        toast.show();
+                        ok = false;
+                    }
+                }
+
+                if(ok){
+                    //AGREGA LA RUTINA!
                 }
             }
         });

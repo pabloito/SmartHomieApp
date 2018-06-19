@@ -12,13 +12,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.lang.reflect.Type;
 import java.util.Collection;
@@ -438,5 +442,34 @@ public class API {
 
     public static HashMap<String, Routine> getRoutineMap() {
         return routineMap;
+    }
+
+    public static void AddNewRoutine(Routine routine) {
+        if(rQueue != null) {
+            String requestUrl = baseUrl + "/routines";
+            try{
+                String jsonString = gson.toJson(routine,Routine.class);
+                JSONParser jsonParser = new JSONParser();
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonString);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, requestUrl, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Routine r = gson.fromJson(response.toString(),Routine.class);
+                                routineMap.put(r.getName(),r);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                rQueue.add(jsonObjectRequest);
+                rQueue.start();
+
+            }catch (Exception e){
+                Toast.makeText(currentContext,"Connection Problem on Routines creation",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

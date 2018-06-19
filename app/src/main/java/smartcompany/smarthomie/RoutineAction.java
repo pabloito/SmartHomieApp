@@ -18,4 +18,8 @@ public class RoutineAction {
         if(actionDevice != null && params == null) API.SendEvent(actionDevice,actionName);
         else if(actionDevice != null)   API.SendEventWithParameters(actionDevice,actionName, params);
     }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
 }

@@ -517,8 +517,7 @@ public class API {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    Routine r = gson.fromJson(response.getJSONObject("routine").toString(),Routine.class);
-                                    routineMap.put(r.getName(),r);
+                                    AddExistingRoutineToMaps(response.getJSONObject("params").getString("routineId"));
                                 }catch (Exception e){
 
                                 }
@@ -558,6 +557,36 @@ public class API {
             rQueue.start();
         }
 
+    }
+
+    public static void AddExistingRoutineToMaps(String id) {
+        if(rQueue != null){
+            String  requesSting = baseUrl + "/routines/" + id;
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, requesSting, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try{
+
+                                Routine r = gson.fromJson(response.getJSONObject("routine").toString(),Routine.class);
+                                routineMap.put(r.getName(),r);
+                            }
+                            catch (Exception e){
+
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+
+            rQueue.add(jsonObjectRequest);
+            rQueue.start();
+        }
     }
 
 }

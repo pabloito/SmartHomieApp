@@ -5,16 +5,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Routine {
     String name;
-    Context context;
+    String id;
+    List<RoutineAction> actions;
 
     // necesitamos un array temporal de action objects para una rutina que se está creando
 
-    public Routine(String name, Context context){
+    public Routine(String id, String name, List<RoutineAction> actions){
         this.name = name;
-        this.context =context;
+        this.id = id;
+        this.actions = actions;
     }
 
     public HashMap<String, Device> getRoutineDevices(){
@@ -34,5 +37,13 @@ public class Routine {
 
     public void addAction(){// recibe action object?
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }

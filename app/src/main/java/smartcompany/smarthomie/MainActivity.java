@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         API.initAPIConnection(getApplicationContext());
         API.SendAndRequestAllDevices();
+        API.SendAndRequestAllRoutines();
 
         mMainFrame =  findViewById(R.id.main_frame);
         mMainNav =  findViewById(R.id.main_nav);
@@ -232,17 +233,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void updateDevices(){
-        devicesMap = API.getDevicesMap();
-    }
+    public void updateDevices(){ devicesMap = API.getDevicesMap(); }
 
-    public void updateRoutines(){
-        routinesMap = new HashMap<>();
-
-        // placeholder @nacho
-        routinesMap.put("Me voy de aca",new Routine("Me voy de aca", getApplicationContext()));
-        routinesMap.put("Prender freezer",new Routine("Prender freezer", getApplicationContext()));
-    }
+    public void updateRoutines(){ routinesMap = API.getRoutineMap(); }
 
     public HashMap<String, Device> getDevicesMap(){
         return devicesMap;

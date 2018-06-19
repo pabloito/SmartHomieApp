@@ -21,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class API {
     static private Context currentContext;
     static private String baseUrl;
     static private HashMap<String,Device> devicesMap;
+    static private HashMap<String,Routine> routineMap;
     static private Queue<Fridge> fridgesToGetState;
     static private Queue<Oven> ovensToGetState;
     static private Queue<Light> lampsToGetState;
@@ -49,6 +51,7 @@ public class API {
             alreadyInit = true;
             gson = new Gson();
             devicesMap = new HashMap<>();
+            routineMap = new HashMap<>();
             ovensToGetState = new LinkedList<>();
             lampsToGetState = new LinkedList<>();
             doorsToGetState = new LinkedList<>();
@@ -166,7 +169,15 @@ public class API {
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, requestUrl, requestJson, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(currentContext,currentContext.getResources().getText(R.string.toast_success_2),Toast.LENGTH_LONG).show();
+
+                try{
+                    Device d = gson.fromJson(response.getJSONObject("device").toString(),Device.class);
+                    Device castedDevice = Device.DeviceFactory(d);
+                    devicesMap.put(castedDevice.getName(),castedDevice);
+                }catch (Exception e) {
+
+                }
+                Toast.makeText(currentContext,"Dispositivo Agregado!",Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -387,4 +398,45 @@ public class API {
         rQueue.start();
     }
 
+    public static Device GetDeviceById(String id) {
+        Collection<Device> devices = devicesMap.values();
+        for (Device d: devices) {
+            if(d.getId().equals(id)) return d;
+        }
+        return null;
+    }
+
+    public static void SendAndRequestAllRoutines() {
+        if(rQueue != null) {
+            String requestUrl = baseUrl + "/routines";
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, requestUrl, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try{
+                                Type listType = new TypeToken<List<Routine>>(){}.getType();
+                                List<Routine> routines = gson.fromJson(response.getJSONArray("routines").toString(),listType);
+                                for(Routine r: routines) {
+                                    routineMap.put(r.getId(),r);
+                                }
+                            }catch (Exception e){
+                                Log.d(e.toString(),e.getMessage());
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }});
+
+            rQueue.add(jsonObjectRequest);
+            rQueue.start();
+        }
+    }
+
+    public static HashMap<String, Routine> getRoutineMap() {
+        return routineMap;
+    }
 }

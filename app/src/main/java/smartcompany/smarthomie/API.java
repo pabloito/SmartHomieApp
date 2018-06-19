@@ -501,4 +501,33 @@ public class API {
         }
     }
 
+    public static void UpdateRoutine(Routine routine) {
+        if(rQueue != null) {
+            routineMap.remove(routine.getName());
+            String requestUrl = baseUrl + "/routines/" + routine.getId();
+            try{
+                String jsonString = gson.toJson(routine,Routine.class);
+                JSONObject jsonObject = new JSONObject(jsonString);
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, requestUrl, jsonObject,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Routine r = gson.fromJson(response.toString(),Routine.class);
+                                routineMap.put(r.getName(),r);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                rQueue.add(jsonObjectRequest);
+                rQueue.start();
+
+            }catch (Exception e){
+                Toast.makeText(currentContext,"Connection Problem on Routines creation",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 }

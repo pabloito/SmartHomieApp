@@ -5,7 +5,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Routine {
     String name;
@@ -22,8 +24,16 @@ public class Routine {
 
     public HashMap<String, Device> getRoutineDevices(){
         HashMap<String, Device> f = new HashMap<>();
-
-        // placeholder @nacho
+        HashMap<String, Device> apiDevs = API.getDevicesMap();
+        Set<String> ids = new HashSet<>();
+        for (RoutineAction r: this.actions){
+            if(!ids.contains(r.getDeviceId())) {
+                ids.add(r.getDeviceId());
+                for (Device d: apiDevs.values()){
+                    if(d.getId().equals(r.getDeviceId()))   f.put(d.getName(),d);
+                }
+            }
+        }
         return f;
     }
 

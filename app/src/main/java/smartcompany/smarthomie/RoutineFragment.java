@@ -55,7 +55,7 @@ public class RoutineFragment extends Fragment {
 
         ImageButton execute = (ImageButton) view.findViewById(R.id.routine_execute);
         ImageButton delete = (ImageButton) view.findViewById(R.id.routine_delete);
-        ImageButton save = (ImageButton) view.findViewById(R.id.save_routine_button);
+        android.support.v7.widget.AppCompatButton save = view.findViewById(R.id.save_routine_button);
 
         execute.setOnClickListener(new View.OnClickListener() {
             @Override

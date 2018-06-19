@@ -102,20 +102,7 @@ public class FridgeFragment extends Fragment {
                                                   boolean fromUser)
                     {
                         MainActivity m = (MainActivity) (getActivity());
-                        if(m.allowsNotification(fridge)) {
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                                    .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                                    .setContentTitle(getContext().getString(R.string.notification_title))
-                                    .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                    .setContentIntent(pendingIntent)
-                                    .setAutoCancel(true);
-                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                            notificationManager.notify(0, mBuilder.build());
-                        }
+
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         MainActivity mainActivity = (MainActivity) getActivity();
                         if(mainActivity.getComesFromRoutine()){
@@ -124,6 +111,20 @@ public class FridgeFragment extends Fragment {
                             routine.actions.add(new RoutineAction(fridge.id,"setFreezerTemperature",param));
                         }else {
                             fridge.setFreezerTemperature(curr);
+                            if(m.allowsNotification(fridge)) {
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                        .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                        .setContentTitle(getContext().getString(R.string.notification_title))
+                                        .setContentText(getContext().getString(R.string.notification_text_before)+fridge.name+getContext().getString(R.string.notification_text_after))
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                        .setContentIntent(pendingIntent)
+                                        .setAutoCancel(true);
+                                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                                notificationManager.notify(0, mBuilder.build());
+                            }
                         }
                         System.out.println(curr);
                     }

@@ -104,21 +104,7 @@ public class OvenFragment extends Fragment {
                     public void onProgressChanged(SeekBar seekBar, int progress,
                                                   boolean fromUser)
                     {
-                        MainActivity m = (MainActivity) (getActivity());
-                        if(m.allowsNotification(oven)) {
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
-                                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
-                                    .setSmallIcon(R.drawable.baseline_home_black_24dp)
-                                    .setContentTitle(getContext().getString(R.string.notification_title))
-                                    .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
-                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                    .setContentIntent(pendingIntent)
-                                    .setAutoCancel(true);
-                            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                            notificationManager.notify(0, mBuilder.build());
-                        }
+
                         curr=seekBar.getProgress()-(seekBar.getMax()-max);
                         System.out.println(curr);
                         MainActivity mainActivity = (MainActivity) getActivity();
@@ -128,6 +114,21 @@ public class OvenFragment extends Fragment {
                             routine.actions.add(new RoutineAction(oven.id,"setTemperature",param));
                         }else{
                             oven.setTemperature(curr);
+                            MainActivity m = (MainActivity) (getActivity());
+                            if(m.allowsNotification(oven)) {
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, 0);
+                                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), getContext().getString(R.string.channel_name))
+                                        .setSmallIcon(R.drawable.baseline_home_black_24dp)
+                                        .setContentTitle(getContext().getString(R.string.notification_title))
+                                        .setContentText(getContext().getString(R.string.notification_text_before)+oven.name+getContext().getString(R.string.notification_text_after))
+                                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                        .setContentIntent(pendingIntent)
+                                        .setAutoCancel(true);
+                                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                                notificationManager.notify(0, mBuilder.build());
+                            }
                         }
                     }
                 });

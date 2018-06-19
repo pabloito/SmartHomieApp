@@ -541,7 +541,7 @@ public class API {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            Toast.makeText(currentContext,"La rutina se ejecuto con exito",Toast.LENGTH_LONG).show();
+                            Toast.makeText(currentContext,R.string.executed_routine,Toast.LENGTH_LONG).show();
                         }
                     }, new Response.ErrorListener() {
                 @Override

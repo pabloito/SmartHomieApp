@@ -27,6 +27,7 @@
     <string name="Cancel">Cancel</string>
     <string name="titleText">Add device</string>
     <string name="channel_name">Channel</string>
+    <string name="executed_routine">Executed routine</string>
     <string name="channel_description">Channel</string>
     <string name="help_title">Help</string>
     <string name="help_description">Welcome to the help screen!\n

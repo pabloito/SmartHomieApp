@@ -62,6 +62,7 @@ public class RoutineFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 routine.execute();
+
             }
         });
 
@@ -76,7 +77,8 @@ public class RoutineFragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Routine n = new Routine(routine.id,routine.name,routine.actions);
+                API.UpdateRoutine(n);
             }
         });
 
